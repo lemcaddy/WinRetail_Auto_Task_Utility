@@ -12,7 +12,7 @@ namespace WinRetail_Auto_Task_Utility
 {
     public partial class ATUtility : Form
     {
-        public ATUtility()
+        public ATUtility()//
         {
             InitializeComponent();
         }
