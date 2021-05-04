@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30517.126
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinRetail_Auto_Task_Utility", "WinRetail_Auto_Task_Utility\WinRetail_Auto_Task_Utility.csproj", "{22A0B12F-3001-40AA-86E9-51E747768BBB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{22A0B12F-3001-40AA-86E9-51E747768BBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22A0B12F-3001-40AA-86E9-51E747768BBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22A0B12F-3001-40AA-86E9-51E747768BBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22A0B12F-3001-40AA-86E9-51E747768BBB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6AFEC28A-D110-4684-A5E8-9A822FCC8DDE}
+	EndGlobalSection
+EndGlobal
