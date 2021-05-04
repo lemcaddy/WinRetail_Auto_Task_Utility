@@ -21,5 +21,11 @@ namespace WinRetail_Auto_Task_Utility
         {
 
         }
+
+        private void button_Paste_in_receipt_Click(object sender, EventArgs e)
+        {
+            Form pasteForm = new PasteBox();
+            pasteForm.Show();
+        }
     }
 }

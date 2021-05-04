@@ -235,6 +235,7 @@
             this.button_Paste_in_receipt.TabIndex = 21;
             this.button_Paste_in_receipt.Text = "Paste In Receipt";
             this.button_Paste_in_receipt.UseVisualStyleBackColor = false;
+            this.button_Paste_in_receipt.Click += new System.EventHandler(this.button_Paste_in_receipt_Click);
             // 
             // button_set_all_company
             // 
