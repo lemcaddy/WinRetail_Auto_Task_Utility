@@ -14,37 +14,25 @@ namespace WinRetail_Auto_Task_Utility
 {
     public partial class PasteBox : Form
     {
-        string path_to_what_user_pasted = @"what_user_pasted_in.txt";
-        string pattern_1_output = @"Pattern_1_output_file.txt";
-        string company_name;
-
-
+        string contents_of_textbox =  @"what_user_pasted_in.txt";
+        string pattern_output = @"Pattern_output_file.txt";
+        string resulting_file = @"Final_output_file.txt";
 
         public PasteBox()
         {
             InitializeComponent();
         }
-         
-      
-
-
 
         private void button_ok_Click(object sender, EventArgs e)
         {
-
-            //using (StreamReader sr = new StreamReader(path_to_what_user_pasted))
-            //{
-            //    string[] lines = File.ReadAllLines(path_to_what_user_pasted);
-            //    if (lines.StartsWith("Company:"))
-            //    {
-            //        string[] aparts = lines.Split(':');
-            //        company_name = aparts[1];
-            //    }
-            //}
-
-            using (StreamReader SR = new StreamReader(path_to_what_user_pasted))
+            using (StreamWriter sw = new StreamWriter(contents_of_textbox))
             {
-                string[] lines = File.ReadAllLines(path_to_what_user_pasted);
+                sw.WriteLine(textBox_pasted_items.Text);
+            }
+
+            using (StreamReader SR = new StreamReader(contents_of_textbox))
+            {
+                string[] lines = File.ReadAllLines(contents_of_textbox);
                 {
                     var target_text = lines.SkipWhile(x => x != "========================================")// skips everything before 
                         .Skip(1)//and the ====== itself
@@ -53,7 +41,7 @@ namespace WinRetail_Auto_Task_Utility
                         .ToList();
 
 
-                    using (StreamWriter SW = new StreamWriter(pattern_1_output))
+                    using (StreamWriter SW = new StreamWriter(pattern_output))
                     {
 
                         {
@@ -65,77 +53,59 @@ namespace WinRetail_Auto_Task_Utility
             }
 
             /// get rid of line with    LAYAWAY RECALL in it
-            var oldlines = File.ReadAllLines(pattern_1_output);
+            var oldlines = File.ReadAllLines(pattern_output);
             var omit_line = oldlines.Where(line => !line.Contains("LAYAWAY RECALL"));
-            File.WriteAllLines(pattern_1_output, omit_line);
-
-            
+            File.WriteAllLines(pattern_output, omit_line);
 
 
-                //pull out pattern 1
-                List<string> Lines_from_what_user_pasted_in = new List<string>(File.ReadAllLines(pattern_1_output));
-            List<string> Pattern_1_List = new List<string>();
-            for (int i = 0; i < Lines_from_what_user_pasted_in.Count; i++)
+            List<Items_From_Receipt> list = new List<Items_From_Receipt>();
+
+            List<string> Lines = new List<string>(File.ReadAllLines(pattern_output));
+
+            List<string> new_list = new List<string>();
+
+           
+            for (int i = 0; i < Lines.Count; i++)
+
             {
-                if (Lines_from_what_user_pasted_in[i].ToString().Contains("Serial No:"))
+                new_list.Add(Lines[i].ToString());// add all the lines to the list
+
+
+                if (Lines[i].ToString().Contains("Serial No:"))
                 {
-                    Pattern_1_List.Add(Lines_from_what_user_pasted_in[i - 2]
-                        +","
-                        + (Lines_from_what_user_pasted_in[i - 1])+
-                        ","
-                        + Lines_from_what_user_pasted_in[i]);
-                    
-                    
-                    
-                }
-                
-            }
-            using (StreamWriter sr = new StreamWriter(pattern_1_output))
-            {
+                    new_list.Add(Lines[i - 2]+"," + (Lines[i - 1] + "," + (Lines[i])));
 
-                Pattern_1_List.ForEach(i => sr.Write("{0}\n", i));
 
-            }
 
-            // output looks like this.....
-            //WIN10 LICENCE                      75.00,  0000000000784,Serial No:       04248000841821
-            //WIN10 LICENCE                      75.00,  0000000000784,Serial No:       04248000841830
-            //WIN10 LICENCE                      75.00,  0000000000784,Serial No:       04248000841831
-            //WIN10 LICENCE                      75.00,  0000000000784,Serial No:       04248000841832
-
-            ///parse pattern 1 and add it datamodel
-            ///
-
-            using (StreamReader sr = new StreamReader(pattern_1_output))
-            {
-                while(true)
-                {
-                    string fullline = sr.ReadLine();
-
-                    if (fullline == null)
-                        break;
-
-                    string[] aparts = fullline.Split(',');
-                    string product_des = aparts[0];
-
-                    List<Items_From_Receipt> list = new List<Items_From_Receipt>();
                     list.Add(new Items_From_Receipt
                     {
                         Config_item_ID = "",
-                        Product_Name = product_des,
-                        Company_Name = company_name
+                        Product_Name = Lines[i - 2].Substring(0, 30),
+                        Serial_Number = Lines[i].Substring(16)
 
-                    }) ;
+                    }); ;
 
                 }
+                
+            }
+
+
+            using (StreamWriter sr = new StreamWriter(resulting_file, false))//Example_2_Final.txt
+            {
+
+                new_list.ForEach(i => sr.Write("{0}\n", i));
 
             }
-            
-            
 
 
 
         }
+    
+            
+
+
+
+        
 
         private void button_exit_Click(object sender, EventArgs e)
         {
@@ -143,6 +113,11 @@ namespace WinRetail_Auto_Task_Utility
         }
 
         private void PasteBox_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox_pasted_items_TextChanged(object sender, EventArgs e)
         {
 
         }

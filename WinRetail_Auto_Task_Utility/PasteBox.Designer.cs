@@ -54,6 +54,7 @@
             this.textBox_pasted_items.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.textBox_pasted_items.Size = new System.Drawing.Size(376, 483);
             this.textBox_pasted_items.TabIndex = 1;
+            this.textBox_pasted_items.TextChanged += new System.EventHandler(this.textBox_pasted_items_TextChanged);
             // 
             // button_ok
             // 
