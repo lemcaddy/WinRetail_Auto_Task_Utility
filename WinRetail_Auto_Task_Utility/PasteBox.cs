@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using DataModel;
 
 namespace WinRetail_Auto_Task_Utility
 {
@@ -15,14 +16,31 @@ namespace WinRetail_Auto_Task_Utility
     {
         string path_to_what_user_pasted = @"what_user_pasted_in.txt";
         string pattern_1_output = @"Pattern_1_output_file.txt";
-        
+        string company_name;
+
+
+
         public PasteBox()
         {
             InitializeComponent();
         }
+         
+      
+
+
 
         private void button_ok_Click(object sender, EventArgs e)
         {
+
+            //using (StreamReader sr = new StreamReader(path_to_what_user_pasted))
+            //{
+            //    string[] lines = File.ReadAllLines(path_to_what_user_pasted);
+            //    if (lines.StartsWith("Company:"))
+            //    {
+            //        string[] aparts = lines.Split(':');
+            //        company_name = aparts[1];
+            //    }
+            //}
 
             using (StreamReader SR = new StreamReader(path_to_what_user_pasted))
             {
@@ -51,9 +69,11 @@ namespace WinRetail_Auto_Task_Utility
             var omit_line = oldlines.Where(line => !line.Contains("LAYAWAY RECALL"));
             File.WriteAllLines(pattern_1_output, omit_line);
 
+            
 
-            //pull out pattern 1
-            List<string> Lines_from_what_user_pasted_in = new List<string>(File.ReadAllLines(pattern_1_output));
+
+                //pull out pattern 1
+                List<string> Lines_from_what_user_pasted_in = new List<string>(File.ReadAllLines(pattern_1_output));
             List<string> Pattern_1_List = new List<string>();
             for (int i = 0; i < Lines_from_what_user_pasted_in.Count; i++)
             {
@@ -86,17 +106,32 @@ namespace WinRetail_Auto_Task_Utility
             ///parse pattern 1 and add it datamodel
             ///
 
-            string line_from_pattern_1_output;
-            
             using (StreamReader sr = new StreamReader(pattern_1_output))
             {
-                while ((line_from_pattern_1_output = sr.ReadLine())! = null)
+                while(true)
                 {
-                    string[] fields = line_from_pattern_1_output.Split(','); 
+                    string fullline = sr.ReadLine();
+
+                    if (fullline == null)
+                        break;
+
+                    string[] aparts = fullline.Split(',');
+                    string product_des = aparts[0];
+
+                    List<Items_From_Receipt> list = new List<Items_From_Receipt>();
+                    list.Add(new Items_From_Receipt
+                    {
+                        Config_item_ID = "",
+                        Product_Name = product_des,
+                        Company_Name = company_name
+
+                    }) ;
 
                 }
-            }
 
+            }
+            
+            
 
 
 
@@ -105,6 +140,11 @@ namespace WinRetail_Auto_Task_Utility
         private void button_exit_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void PasteBox_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

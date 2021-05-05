@@ -48,7 +48,7 @@
             // textBox_pasted_items
             // 
             this.textBox_pasted_items.Location = new System.Drawing.Point(75, 81);
-            this.textBox_pasted_items.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox_pasted_items.Margin = new System.Windows.Forms.Padding(2);
             this.textBox_pasted_items.Multiline = true;
             this.textBox_pasted_items.Name = "textBox_pasted_items";
             this.textBox_pasted_items.ScrollBars = System.Windows.Forms.ScrollBars.Both;
@@ -60,7 +60,7 @@
             this.button_ok.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.button_ok.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_ok.Location = new System.Drawing.Point(505, 198);
-            this.button_ok.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button_ok.Margin = new System.Windows.Forms.Padding(2);
             this.button_ok.Name = "button_ok";
             this.button_ok.Size = new System.Drawing.Size(67, 110);
             this.button_ok.TabIndex = 2;
@@ -73,7 +73,7 @@
             this.button_exit.BackColor = System.Drawing.Color.Red;
             this.button_exit.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_exit.Location = new System.Drawing.Point(505, 454);
-            this.button_exit.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button_exit.Margin = new System.Windows.Forms.Padding(2);
             this.button_exit.Name = "button_exit";
             this.button_exit.Size = new System.Drawing.Size(67, 110);
             this.button_exit.TabIndex = 3;
@@ -91,9 +91,10 @@
             this.Controls.Add(this.button_ok);
             this.Controls.Add(this.textBox_pasted_items);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "PasteBox";
             this.Text = "PasteBox";
+            this.Load += new System.EventHandler(this.PasteBox_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
