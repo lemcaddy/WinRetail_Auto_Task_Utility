@@ -48,7 +48,7 @@ namespace WinRetail_Auto_Task_Utility
 
         private void dataGridView_products_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-        
+            
 
         }
 
@@ -58,6 +58,22 @@ namespace WinRetail_Auto_Task_Utility
             //var source = items_From_Receipt.Pasted_in;
             //dataGridView_products.DataSource = source;
             //this.Refresh();
+        }
+
+        private void dataGridView_products_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            { //gets a collection that contains all the rows
+                DataGridViewRow row = this.dataGridView_products.Rows[e.RowIndex];
+                //populate the textbox from specific value of the coordinates of column and row.
+                textBox_Product_name.Text = row.Cells[1].Value.ToString();
+                textBox_Company_details.Text = row.Cells[2].Value.ToString();
+                textBox_install_date.Text = row.Cells[3].Value.ToString();
+                textBox_serial_number.Text = row.Cells[4].Value.ToString();
+                textBox_reference_name.Text = row.Cells[5].Value.ToString();
+            }
+                
+            
         }
     }
 }

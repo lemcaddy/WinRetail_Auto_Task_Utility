@@ -157,8 +157,10 @@
             this.dataGridView_products.Name = "dataGridView_products";
             this.dataGridView_products.RowHeadersWidth = 51;
             this.dataGridView_products.RowTemplate.Height = 24;
+            this.dataGridView_products.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView_products.Size = new System.Drawing.Size(806, 122);
             this.dataGridView_products.TabIndex = 13;
+            this.dataGridView_products.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_products_CellClick);
             this.dataGridView_products.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_products_CellContentClick);
             // 
             // button_search
