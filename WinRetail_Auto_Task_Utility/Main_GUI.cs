@@ -75,5 +75,14 @@ namespace WinRetail_Auto_Task_Utility
                 
             
         }
+
+        private void button_update_Click(object sender, EventArgs e)
+        {
+            dataGridView_products.CurrentRow.Cells[1].Value = textBox_Product_name.Text;
+            dataGridView_products.CurrentRow.Cells[2].Value = textBox_Company_details.Text;
+            dataGridView_products.CurrentRow.Cells[3].Value = textBox_install_date.Text;
+            dataGridView_products.CurrentRow.Cells[4].Value = textBox_serial_number.Text;
+            dataGridView_products.CurrentRow.Cells[5].Value = textBox_reference_name.Text;
+        }
     }
 }

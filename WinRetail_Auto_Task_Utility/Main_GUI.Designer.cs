@@ -50,7 +50,6 @@
             this.button_set_all_company = new System.Windows.Forms.Button();
             this.button_set_all_install_date = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.btn_refresh = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_products)).BeginInit();
             this.SuspendLayout();
             // 
@@ -158,7 +157,7 @@
             this.dataGridView_products.RowHeadersWidth = 51;
             this.dataGridView_products.RowTemplate.Height = 24;
             this.dataGridView_products.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView_products.Size = new System.Drawing.Size(806, 122);
+            this.dataGridView_products.Size = new System.Drawing.Size(806, 343);
             this.dataGridView_products.TabIndex = 13;
             this.dataGridView_products.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_products_CellClick);
             this.dataGridView_products.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_products_CellContentClick);
@@ -186,6 +185,7 @@
             this.button_update.TabIndex = 15;
             this.button_update.Text = "Update";
             this.button_update.UseVisualStyleBackColor = false;
+            this.button_update.Click += new System.EventHandler(this.button_update_Click);
             // 
             // button_new
             // 
@@ -227,7 +227,7 @@
             // 
             this.button_import.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.button_import.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_import.Location = new System.Drawing.Point(100, 550);
+            this.button_import.Location = new System.Drawing.Point(102, 767);
             this.button_import.Margin = new System.Windows.Forms.Padding(2);
             this.button_import.Name = "button_import";
             this.button_import.Size = new System.Drawing.Size(380, 51);
@@ -239,7 +239,7 @@
             // 
             this.button_export.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.button_export.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_export.Location = new System.Drawing.Point(542, 550);
+            this.button_export.Location = new System.Drawing.Point(543, 767);
             this.button_export.Margin = new System.Windows.Forms.Padding(2);
             this.button_export.Name = "button_export";
             this.button_export.Size = new System.Drawing.Size(363, 51);
@@ -295,26 +295,12 @@
             this.label1.TabIndex = 24;
             this.label1.Text = "Reference Name Example = Till1,Till2 etc.\r\nIt can Also be Left Blank\r\n\r\n";
             // 
-            // btn_refresh
-            // 
-            this.btn_refresh.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.btn_refresh.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_refresh.Location = new System.Drawing.Point(827, 145);
-            this.btn_refresh.Margin = new System.Windows.Forms.Padding(2);
-            this.btn_refresh.Name = "btn_refresh";
-            this.btn_refresh.Size = new System.Drawing.Size(192, 123);
-            this.btn_refresh.TabIndex = 25;
-            this.btn_refresh.Text = "refresh";
-            this.btn_refresh.UseVisualStyleBackColor = false;
-            this.btn_refresh.Click += new System.EventHandler(this.btn_refresh_Click);
-            // 
             // ATUtility
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(1028, 611);
-            this.Controls.Add(this.btn_refresh);
+            this.ClientSize = new System.Drawing.Size(1138, 859);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button_set_all_install_date);
             this.Controls.Add(this.button_set_all_company);
@@ -370,7 +356,6 @@
         private System.Windows.Forms.Button button_set_all_company;
         private System.Windows.Forms.Button button_set_all_install_date;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btn_refresh;
     }
 }
 
