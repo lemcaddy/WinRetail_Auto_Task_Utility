@@ -12,7 +12,7 @@ namespace DataModel
         public string Serial_Number { get; set; }
         public string Reference_Name { get; set; }
 
-        //public List<Items_From_Receipt> pattern_1 = null;
+        public List<Items_From_Receipt> Pasted_in = null;
         // Pattern 1 looks for three lines, keyword is "Serial Number", takes it and the previous 2 lines
         //        WIN10 LICENCE                      75.00
         //  0000000000784
@@ -39,6 +39,8 @@ namespace DataModel
             Install_Date = "";
             Serial_Number = "";
             Reference_Name = "";
+            Pasted_in = new List<Items_From_Receipt>();
+
 
             //pattern_1 = new List<Items_From_Receipt>();
             //pattern_2 = new List<Items_From_Receipt>();

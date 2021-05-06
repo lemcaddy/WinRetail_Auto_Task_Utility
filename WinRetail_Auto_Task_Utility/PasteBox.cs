@@ -19,9 +19,17 @@ namespace WinRetail_Auto_Task_Utility
         string resulting_file = @"Final_output_file.txt";
         string Company_name;
 
+       public  List<Items_From_Receipt> Item_list_123 = new List<Items_From_Receipt>();
+
+        public List<Items_From_Receipt> get_list ()
+        {
+
+            return Item_list_123;
+        }
         public PasteBox()
         {
             InitializeComponent();
+            
         }
 
         private void button_ok_Click(object sender, EventArgs e)
@@ -68,47 +76,63 @@ namespace WinRetail_Auto_Task_Utility
             var oldlines = File.ReadAllLines(pattern_output);
             var omit_line = oldlines.Where(line => !line.Contains("LAYAWAY RECALL"));
             File.WriteAllLines(pattern_output, omit_line);
-
            
-           
-
-
-            List<Items_From_Receipt> list = new List<Items_From_Receipt>();
 
             List<string> Lines = new List<string>(File.ReadAllLines(pattern_output));
-            
-
 
             List<string> new_list = new List<string>();
-
-           
 
             for (int i = 0; i < Lines.Count; i++)
 
             {
-                
-
-
                 if (Lines[i].ToString().Contains("Serial No:"))
                 {
-                    new_list.Add(Lines[i - 2]+"," + (Lines[i - 1] + "," + (Lines[i])));
-
-
-
-                    list.Add(new Items_From_Receipt
+                    new_list.Add(Lines[i - 2] + "," + (Lines[i - 1] + "," + (Lines[i])));
+                    Item_list_123.Add(new Items_From_Receipt
                     {
                         Config_item_ID = "",
                         Product_Name = Lines[i - 2].Substring(0, 30),
-                        Company_Name=Company_name,
-                        Serial_Number = Lines[i].Substring(16)
+                        Company_Name = Company_name,
+                        Install_Date = "",
+                        Serial_Number = Lines[i].Substring(16),
+                        Reference_Name = ""
 
                     });
+                }
 
+                if (Lines[i].ToString().Contains("@"))
+                {
+                    new_list.Add(Lines[i - 1] + "," + (Lines[i]) + "," + (Lines[i + 1]));
+
+                    Item_list_123.Add(new Items_From_Receipt
+                    {
+                        Config_item_ID = "",
+                        Product_Name = Lines[i - 1],
+                        Company_Name = Company_name,
+                        Install_Date = "",
+                        Serial_Number = Lines[i + 1],
+                        Reference_Name = ""
+
+                    });
+                    if (Lines[i].ToString().Contains("  0"))
+                    {
+                        new_list.Add(Lines[i - 1] + "," + (Lines[i]));
+
+                        Item_list_123.Add(new Items_From_Receipt
+                        {
+                            Config_item_ID = "",
+                            Product_Name = Lines[i - 1].Substring(0, 20),
+                            Company_Name = Company_name,
+                            Install_Date = "",
+                            Serial_Number = "",
+                            Reference_Name = ""
+
+                        });
+
+                    }
                 }
                 
-                
             }
-
 
             using (StreamWriter sr = new StreamWriter(resulting_file, false))//Example_2_Final.txt
             {
@@ -116,8 +140,6 @@ namespace WinRetail_Auto_Task_Utility
                 new_list.ForEach(i => sr.Write("{0}\n", i));
 
             }
-
-
 
         }
     
@@ -130,6 +152,7 @@ namespace WinRetail_Auto_Task_Utility
         private void button_exit_Click(object sender, EventArgs e)
         {
             this.Close();
+           
         }
 
         private void PasteBox_Load(object sender, EventArgs e)
