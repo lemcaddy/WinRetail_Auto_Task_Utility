@@ -17,6 +17,7 @@ namespace WinRetail_Auto_Task_Utility
         string contents_of_textbox =  @"what_user_pasted_in.txt";
         string pattern_output = @"Pattern_output_file.txt";
         string resulting_file = @"Final_output_file.txt";
+        string Company_name;
 
         public PasteBox()
         {
@@ -28,6 +29,17 @@ namespace WinRetail_Auto_Task_Utility
             using (StreamWriter sw = new StreamWriter(contents_of_textbox))
             {
                 sw.WriteLine(textBox_pasted_items.Text);
+            }
+
+            List<string> Line_with_company_name_in_it = new List<string>(File.ReadAllLines(contents_of_textbox));
+
+            //get company name
+            for (int i = 0; i < Line_with_company_name_in_it.Count; i++)
+            {
+                if (Line_with_company_name_in_it[i].ToString().Contains("Company:"))
+                {
+                    Company_name = Line_with_company_name_in_it[i].Substring(8);
+                }
             }
 
             using (StreamReader SR = new StreamReader(contents_of_textbox))
@@ -57,18 +69,24 @@ namespace WinRetail_Auto_Task_Utility
             var omit_line = oldlines.Where(line => !line.Contains("LAYAWAY RECALL"));
             File.WriteAllLines(pattern_output, omit_line);
 
+           
+           
+
 
             List<Items_From_Receipt> list = new List<Items_From_Receipt>();
 
             List<string> Lines = new List<string>(File.ReadAllLines(pattern_output));
+            
+
 
             List<string> new_list = new List<string>();
 
            
+
             for (int i = 0; i < Lines.Count; i++)
 
             {
-                new_list.Add(Lines[i].ToString());// add all the lines to the list
+                
 
 
                 if (Lines[i].ToString().Contains("Serial No:"))
@@ -81,11 +99,13 @@ namespace WinRetail_Auto_Task_Utility
                     {
                         Config_item_ID = "",
                         Product_Name = Lines[i - 2].Substring(0, 30),
+                        Company_Name=Company_name,
                         Serial_Number = Lines[i].Substring(16)
 
-                    }); ;
+                    });
 
                 }
+                
                 
             }
 
