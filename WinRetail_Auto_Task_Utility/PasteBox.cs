@@ -69,7 +69,7 @@ namespace WinRetail_Auto_Task_Utility
                         }
                     }
                 }
-
+                
             }
 
             /// get rid of line with    LAYAWAY RECALL in it
@@ -141,6 +141,7 @@ namespace WinRetail_Auto_Task_Utility
 
             }
 
+            this.Close();
         }
     
             

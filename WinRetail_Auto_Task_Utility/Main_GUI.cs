@@ -13,7 +13,7 @@ namespace WinRetail_Auto_Task_Utility
 {
     public partial class ATUtility : Form
     {
-        List<Items_From_Receipt> global_list = new List<Items_From_Receipt>();
+        BindingList<Items_From_Receipt> global_list = new BindingList<Items_From_Receipt>();
         
         public ATUtility()//
         {
@@ -78,11 +78,82 @@ namespace WinRetail_Auto_Task_Utility
 
         private void button_update_Click(object sender, EventArgs e)
         {
-            dataGridView_products.CurrentRow.Cells[1].Value = textBox_Product_name.Text;
-            dataGridView_products.CurrentRow.Cells[2].Value = textBox_Company_details.Text;
-            dataGridView_products.CurrentRow.Cells[3].Value = textBox_install_date.Text;
-            dataGridView_products.CurrentRow.Cells[4].Value = textBox_serial_number.Text;
-            dataGridView_products.CurrentRow.Cells[5].Value = textBox_reference_name.Text;
+
+            Items_From_Receipt currob = global_list[dataGridView_products.CurrentRow.Index];
+            
+
+
+
+            currob.Product_Name = textBox_Product_name.Text;
+            currob.Company_Name = textBox_Company_details.Text;
+            currob.Install_Date = textBox_install_date.Text;
+            currob.Serial_Number = textBox_serial_number.Text;
+            currob.Reference_Name = textBox_reference_name.Text;
+
+            dataGridView_products.DataSource = null;////nblIAM RESET DATASOUCE!!!!!!!
+            var source = global_list;
+            dataGridView_products.DataSource = source;
+
+
+        }
+
+        private void button_set_all_company_Click(object sender, EventArgs e)
+
+        {
+            foreach(Items_From_Receipt currrob in global_list)
+            {
+                currrob.Company_Name= textBox_Company_details.Text;
+            }
+
+            dataGridView_products.DataSource = null;////nblIAM RESET DATASOUCE!!!!!!!
+            var source = global_list;
+            dataGridView_products.DataSource = source;
+
+        }
+
+        private void button_new_Click(object sender, EventArgs e)
+        {
+            string configId = "";
+            string Prodname = textBox_Product_name.Text;
+            string comNmse= textBox_Company_details.Text;
+            string indate = textBox_install_date.Text;
+            string seNo = textBox_serial_number.Text;
+            string refNo = textBox_reference_name.Text;
+
+            global_list.Add(new Items_From_Receipt
+            {
+                Config_item_ID = "",
+                Product_Name = Prodname,
+                Company_Name = comNmse,
+                Install_Date = indate,
+                Serial_Number = seNo,
+                Reference_Name = refNo
+
+            });
+            dataGridView_products.DataSource = null;////nblIAM RESET DATASOUCE!!!!!!!
+            var source = global_list;
+            dataGridView_products.DataSource = source;
+        }
+
+        private void button_delete_Click(object sender, EventArgs e)
+        {
+           global_list.RemoveAt(dataGridView_products.CurrentRow.Index);
+           dataGridView_products.DataSource = null;////nblIAM RESET DATASOUCE!!!!!!!
+           var source = global_list;
+           dataGridView_products.DataSource = source;
+        }
+
+        private void button_set_all_install_date_Click(object sender, EventArgs e)
+        {
+            foreach (Items_From_Receipt currrob in global_list)
+            {
+                currrob.Install_Date = textBox_install_date.Text;
+            }
+
+            dataGridView_products.DataSource = null;////nblIAM RESET DATASOUCE!!!!!!!
+            var source = global_list;
+            dataGridView_products.DataSource = source;
+
         }
     }
-}
+    }
