@@ -50,6 +50,8 @@
             this.button_set_all_company = new System.Windows.Forms.Button();
             this.button_set_all_install_date = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.button_clear_fields = new System.Windows.Forms.Button();
+            this.button_reset = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_products)).BeginInit();
             this.SuspendLayout();
             // 
@@ -252,7 +254,7 @@
             this.button_Paste_in_receipt.Location = new System.Drawing.Point(1103, 12);
             this.button_Paste_in_receipt.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button_Paste_in_receipt.Name = "button_Paste_in_receipt";
-            this.button_Paste_in_receipt.Size = new System.Drawing.Size(256, 151);
+            this.button_Paste_in_receipt.Size = new System.Drawing.Size(225, 120);
             this.button_Paste_in_receipt.TabIndex = 21;
             this.button_Paste_in_receipt.Text = "Paste In Receipt";
             this.button_Paste_in_receipt.UseVisualStyleBackColor = false;
@@ -294,12 +296,40 @@
             this.label1.TabIndex = 24;
             this.label1.Text = "Reference Name Example = Till1,Till2 etc.\r\nIt can Also be Left Blank\r\n\r\n";
             // 
+            // button_clear_fields
+            // 
+            this.button_clear_fields.BackColor = System.Drawing.SystemColors.GrayText;
+            this.button_clear_fields.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_clear_fields.Location = new System.Drawing.Point(1103, 146);
+            this.button_clear_fields.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button_clear_fields.Name = "button_clear_fields";
+            this.button_clear_fields.Size = new System.Drawing.Size(225, 131);
+            this.button_clear_fields.TabIndex = 25;
+            this.button_clear_fields.Text = "Clear Fields";
+            this.button_clear_fields.UseVisualStyleBackColor = false;
+            this.button_clear_fields.Click += new System.EventHandler(this.button_clear_fields_Click);
+            // 
+            // button_reset
+            // 
+            this.button_reset.BackColor = System.Drawing.Color.Red;
+            this.button_reset.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_reset.Location = new System.Drawing.Point(1103, 298);
+            this.button_reset.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button_reset.Name = "button_reset";
+            this.button_reset.Size = new System.Drawing.Size(225, 131);
+            this.button_reset.TabIndex = 26;
+            this.button_reset.Text = "Reset";
+            this.button_reset.UseVisualStyleBackColor = false;
+            this.button_reset.Click += new System.EventHandler(this.button_reset_Click);
+            // 
             // ATUtility
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1517, 1057);
+            this.Controls.Add(this.button_reset);
+            this.Controls.Add(this.button_clear_fields);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button_set_all_install_date);
             this.Controls.Add(this.button_set_all_company);
@@ -355,6 +385,8 @@
         private System.Windows.Forms.Button button_set_all_company;
         private System.Windows.Forms.Button button_set_all_install_date;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button button_clear_fields;
+        private System.Windows.Forms.Button button_reset;
     }
 }
 

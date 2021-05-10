@@ -53,13 +53,7 @@ namespace WinRetail_Auto_Task_Utility
 
         }
 
-        private void btn_refresh_Click(object sender, EventArgs e)
-        {
-
-            //var source = items_From_Receipt.Pasted_in;
-            //dataGridView_products.DataSource = source;
-            //this.Refresh();
-        }
+        
 
         private void dataGridView_products_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -153,16 +147,27 @@ namespace WinRetail_Auto_Task_Utility
         private void button_search_Click(object sender, EventArgs e)
         {
             List<Items_From_Receipt> filtered = new List<Items_From_Receipt>();
-           
 
-            if (string.IsNullOrEmpty(textBox_Product_name.Text))
+            if (string.IsNullOrEmpty(textBox_Product_name.Text)
+                && string.IsNullOrEmpty(textBox_serial_number.Text)
+                && string.IsNullOrEmpty(textBox_reference_name.Text))
             {
-               
-                MessageBox.Show("You need a value in the product Description");
+                MessageBox.Show("You need a value in the either the" +
+                    "  product Description" +
+                    "Serial Number" +
+                    "refernece number" +
+                    " textboxes above");
                 return;
-                
             }
-            else
+            
+            
+                bool s1 = string.IsNullOrEmpty(textBox_Product_name.Text);
+                bool s2 = string.IsNullOrEmpty(textBox_serial_number.Text);
+                bool s3 = string.IsNullOrEmpty(textBox_reference_name.Text);
+
+
+
+            if (s1 == false && s2 == true && s3 == true)
             {
                 foreach (Items_From_Receipt currOb in global_list)
                 {
@@ -173,12 +178,37 @@ namespace WinRetail_Auto_Task_Utility
                     }
                 }
             }
+                dataGridView_products.DataSource = null;////nblIAM RESET DATASOUCE!!!!!!!
+                var source = filtered;
+                dataGridView_products.DataSource = source;
+            
+        }
+
+        private void button_clear_fields_Click(object sender, EventArgs e)
+        {
+            textBox_Product_name.Clear();
+            textBox_Company_details.Clear();
+            textBox_install_date.Clear();
+            textBox_serial_number.Clear();
+            textBox_reference_name.Clear();
+
+           
+        }
+
+        private void button_reset_Click(object sender, EventArgs e)
+        {
+
+            MessageBox.Show("Warning!!! Reset will clear all work done");
+            textBox_Product_name.Clear();
+            textBox_Company_details.Clear();
+            textBox_install_date.Clear();
+            textBox_serial_number.Clear();
+            textBox_reference_name.Clear();
+
             dataGridView_products.DataSource = null;////nblIAM RESET DATASOUCE!!!!!!!
-            var source = filtered;
+            var source = global_list;
             dataGridView_products.DataSource = source;
-
-
-
+                
 
         }
     }
