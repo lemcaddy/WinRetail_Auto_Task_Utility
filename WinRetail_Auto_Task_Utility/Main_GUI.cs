@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DataModel;
+using NPOI.SS.Formula.Functions;
 
 namespace WinRetail_Auto_Task_Utility
 {
@@ -62,16 +63,16 @@ namespace WinRetail_Auto_Task_Utility
 
         private void dataGridView_products_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            //if (e.RowIndex >= 0)
-            //{ //gets a collection that contains all the rows
-            //    DataGridViewRow row = this.dataGridView_products.Rows[e.RowIndex];
-            //    //populate the textbox from specific value of the coordinates of column and row.
-            //    textBox_Product_name.Text = row.Cells[1].Value.ToString();
-            //    textBox_Company_details.Text = row.Cells[2].Value.ToString();
-            //    textBox_install_date.Text = row.Cells[3].Value.ToString();
-            //    textBox_serial_number.Text = row.Cells[4].Value.ToString();
-            //    textBox_reference_name.Text = row.Cells[5].Value.ToString();
-            //}
+            if (e.RowIndex >= 0)
+            { //gets a collection that contains all the rows
+                DataGridViewRow row = this.dataGridView_products.Rows[e.RowIndex];
+                //populate the textbox from specific value of the coordinates of column and row.
+                textBox_Product_name.Text = row.Cells[1].Value.ToString();
+                textBox_Company_details.Text = row.Cells[2].Value.ToString();
+                textBox_install_date.Text = row.Cells[3].Value.ToString();
+                textBox_serial_number.Text = row.Cells[4].Value.ToString();
+                textBox_reference_name.Text = row.Cells[5].Value.ToString();
+            }
 
 
         }
@@ -109,21 +110,15 @@ namespace WinRetail_Auto_Task_Utility
 
         private void button_new_Click(object sender, EventArgs e)
         {
-            string configId = "";
-            string Prodname = textBox_Product_name.Text;
-            string comNmse = textBox_Company_details.Text;
-            string indate = textBox_install_date.Text;
-            string seNo = textBox_serial_number.Text;
-            string refNo = textBox_reference_name.Text;
 
             global_list.Add(new Items_From_Receipt
             {
                 Config_item_ID = "",
-                Product_Name = Prodname,
-                Company_Name = comNmse,
-                Install_Date = indate,
-                Serial_Number = seNo,
-                Reference_Name = refNo
+                Product_Name = textBox_Product_name.Text,
+                Company_Name = textBox_Company_details.Text,
+                Install_Date = textBox_install_date.Text,
+                Serial_Number = textBox_serial_number.Text,
+                Reference_Name = textBox_reference_name.Text
 
             });
             dataGridView_products.DataSource = null;////nblIAM RESET DATASOUCE!!!!!!!
@@ -131,7 +126,7 @@ namespace WinRetail_Auto_Task_Utility
             dataGridView_products.DataSource = source;
 
             dataGridView_products.FirstDisplayedScrollingRowIndex = dataGridView_products.RowCount - 1;
-            dataGridView_products.Rows[dataGridView_products.RowCount - 2].Selected = true;
+            dataGridView_products.Rows[dataGridView_products.RowCount - 1].Selected = true;
         }
 
             private void button_delete_Click(object sender, EventArgs e)
@@ -154,6 +149,37 @@ namespace WinRetail_Auto_Task_Utility
                 dataGridView_products.DataSource = source;
 
             }
-        
+
+        private void button_search_Click(object sender, EventArgs e)
+        {
+            List<Items_From_Receipt> filtered = new List<Items_From_Receipt>();
+           
+
+            if (string.IsNullOrEmpty(textBox_Product_name.Text))
+            {
+               
+                MessageBox.Show("You need a value in the product Description");
+                return;
+                
+            }
+            else
+            {
+                foreach (Items_From_Receipt currOb in global_list)
+                {
+
+                    if (currOb.Product_Name.Contains(textBox_Product_name.Text))
+                    {
+                        filtered.Add(currOb);
+                    }
+                }
+            }
+            dataGridView_products.DataSource = null;////nblIAM RESET DATASOUCE!!!!!!!
+            var source = filtered;
+            dataGridView_products.DataSource = source;
+
+
+
+
+        }
     }
 }
