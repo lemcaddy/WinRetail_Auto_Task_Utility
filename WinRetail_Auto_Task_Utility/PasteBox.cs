@@ -103,9 +103,14 @@ namespace WinRetail_Auto_Task_Utility
                 if (Lines[i].ToString().Contains("@"))
                 {
                     new_list.Add(Lines[i - 1] + "," + (Lines[i]) + "," + (Lines[i + 1]));
+                    string line = Lines[1].ToString();
+                    string[] aprts = line.Split('@');
+                    var range = aprts[0];
+                    int Frange = Convert.ToInt32(range);///pick up here!!!
 
                     Item_list_123.Add(new Items_From_Receipt
                     {
+                        
                         Config_item_ID = "",
                         Product_Name = Lines[i - 1],
                         Company_Name = Company_name,
