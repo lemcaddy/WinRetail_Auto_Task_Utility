@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DataModel;
 using NPOI.SS.Formula.Functions;
+using TransLog;
+
+
 
 namespace WinRetail_Auto_Task_Utility
 {
@@ -16,6 +19,7 @@ namespace WinRetail_Auto_Task_Utility
     {
         BindingList<Items_From_Receipt> global_list = new BindingList<Items_From_Receipt>();
 
+       
         public ATUtility()//
         {
             InitializeComponent();
@@ -24,8 +28,13 @@ namespace WinRetail_Auto_Task_Utility
         private void ATUtility_Load(object sender, EventArgs e)
         {
 
+           string timeStamp= DateTime.Now.ToString("h:mm:ss tt");
+           Logwriter.writelog("Login:"+ timeStamp);
 
         }
+
+        
+
 
         private void button_Paste_in_receipt_Click(object sender, EventArgs e)
         {
@@ -46,6 +55,7 @@ namespace WinRetail_Auto_Task_Utility
             var source = global_list;
             dataGridView_products.DataSource = source;
         }
+        
 
         private void dataGridView_products_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -99,6 +109,7 @@ namespace WinRetail_Auto_Task_Utility
             dataGridView_products.DataSource = null;////nblIAM RESET DATASOUCE!!!!!!!
             var source = global_list;
             dataGridView_products.DataSource = source;
+           
 
         }
 
@@ -176,12 +187,46 @@ namespace WinRetail_Auto_Task_Utility
                     {
                         filtered.Add(currOb);
                     }
+
                 }
-            }
                 dataGridView_products.DataSource = null;////nblIAM RESET DATASOUCE!!!!!!!
                 var source = filtered;
                 dataGridView_products.DataSource = source;
-            
+
+            }
+            if (s1 == true && s2 == false && s3 == true)
+            {
+                foreach (Items_From_Receipt currOb in global_list)
+                {
+
+                    if (currOb.Serial_Number.Contains(textBox_serial_number.Text))
+                    {
+                        filtered.Add(currOb);
+                    }
+
+                }
+                dataGridView_products.DataSource = null;
+                var source = filtered;
+                dataGridView_products.DataSource = source;
+            }
+
+            if (s1 == true && s2 == true && s3 == false)
+            {
+                foreach (Items_From_Receipt currOb in global_list)
+                {
+
+                    if (currOb.Reference_Name.Contains(textBox_reference_name.Text))
+                    {
+                        filtered.Add(currOb);
+                    }
+                   
+                }
+                dataGridView_products.DataSource = null;
+                var source = filtered;
+                dataGridView_products.DataSource = source;
+            }
+
+
         }
 
         private void button_clear_fields_Click(object sender, EventArgs e)
@@ -191,7 +236,7 @@ namespace WinRetail_Auto_Task_Utility
             textBox_install_date.Clear();
             textBox_serial_number.Clear();
             textBox_reference_name.Clear();
-
+            return;
            
         }
 
@@ -205,11 +250,18 @@ namespace WinRetail_Auto_Task_Utility
             textBox_serial_number.Clear();
             textBox_reference_name.Clear();
 
-            dataGridView_products.DataSource = null;////nblIAM RESET DATASOUCE!!!!!!!
+            dataGridView_products.DataSource = null;
             var source = global_list;
             dataGridView_products.DataSource = source;
                 
 
+        }
+
+        private void button_save_Click(object sender, EventArgs e)
+        {
+            string timeStamp = DateTime.Now.ToString("h:mm:ss tt");
+            Logwriter.writelog("Save:"+ timeStamp);
+            Logwriter.Store_Name = textBox_Company_details.Text;
         }
     }
 }

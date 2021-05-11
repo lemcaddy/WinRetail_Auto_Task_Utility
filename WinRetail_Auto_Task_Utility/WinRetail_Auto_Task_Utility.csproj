@@ -132,6 +132,10 @@
       <Project>{672a1d4a-bf82-418b-84b8-b64463a10c66}</Project>
       <Name>DataModel</Name>
     </ProjectReference>
+    <ProjectReference Include="..\TransLog\TransLog.csproj">
+      <Project>{b8ae878b-bbbd-4d81-a5c4-54bc86846975}</Project>
+      <Name>TransLog</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
