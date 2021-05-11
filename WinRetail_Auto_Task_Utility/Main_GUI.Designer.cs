@@ -318,27 +318,27 @@
             // 
             // button_reset
             // 
-            this.button_reset.BackColor = System.Drawing.Color.Red;
+            this.button_reset.BackColor = System.Drawing.Color.LightCoral;
             this.button_reset.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_reset.Location = new System.Drawing.Point(958, 238);
             this.button_reset.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button_reset.Name = "button_reset";
             this.button_reset.Size = new System.Drawing.Size(169, 106);
             this.button_reset.TabIndex = 26;
-            this.button_reset.Text = "Reset";
+            this.button_reset.Text = "Re-Load";
             this.button_reset.UseVisualStyleBackColor = false;
             this.button_reset.Click += new System.EventHandler(this.button_reset_Click);
             // 
             // button_save
             // 
-            this.button_save.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.button_save.BackColor = System.Drawing.Color.Red;
             this.button_save.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_save.Location = new System.Drawing.Point(958, 712);
             this.button_save.Margin = new System.Windows.Forms.Padding(2);
             this.button_save.Name = "button_save";
             this.button_save.Size = new System.Drawing.Size(169, 106);
             this.button_save.TabIndex = 27;
-            this.button_save.Text = "Save";
+            this.button_save.Text = "Re-Set";
             this.button_save.UseVisualStyleBackColor = false;
             this.button_save.Click += new System.EventHandler(this.button_save_Click);
             // 
