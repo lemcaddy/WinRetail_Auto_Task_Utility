@@ -32,11 +32,8 @@ namespace WinRetail_Auto_Task_Utility
         //
         private void ATUtility_Load(object sender, EventArgs e)
         {
-
-
             Logwriter.writelog("#LOGIN:, User,Time");
             Logwriter.writelog("LOGIN:" + User+","+ current_timestamp);
-
         }
 
         private static string Timestamp()
@@ -44,18 +41,11 @@ namespace WinRetail_Auto_Task_Utility
             return DateTime.Now.ToString("h:mm:ss tt");
         }
 
-
-
         private void button_Paste_in_receipt_Click(object sender, EventArgs e)
         {
             PasteBox pasteForm = new PasteBox();
             pasteForm.ShowDialog(this);
-
-            //give me the list of paste form and ad it to this form
-
             List<Items_From_Receipt> pasted_in = pasteForm.Item_list_123;
-
-            // add to utilties list, it needs  global list.
             foreach (Items_From_Receipt ifr in pasted_in)
             {
                 global_list.Add(ifr);
@@ -68,16 +58,11 @@ namespace WinRetail_Auto_Task_Utility
             Logwriter.writelog("#NUMBER OF ITEMS PASTED IN:,Count");
             Logwriter.writelog("NUMBER OF ITEMS PASTED IN:"+list_count.ToString());
         }
-        
-
         private void dataGridView_products_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
 
         }
-
-        
-
         private void dataGridView_products_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
@@ -90,8 +75,6 @@ namespace WinRetail_Auto_Task_Utility
                 textBox_serial_number.Text = row.Cells[4].Value.ToString();
                 textBox_reference_name.Text = row.Cells[5].Value.ToString();
             }
-
-
         }
 
         private void button_update_Click(object sender, EventArgs e)
@@ -210,21 +193,26 @@ namespace WinRetail_Auto_Task_Utility
                     "\n or Reference Name textboxes");
                 return;
             }
-            
-            
-                bool s1 = string.IsNullOrEmpty(textBox_Product_name.Text.Trim());
-                bool s2 = string.IsNullOrEmpty(textBox_serial_number.Text.Trim());
-                bool s3 = string.IsNullOrEmpty(textBox_reference_name.Text.Trim());
 
+            bool s1 = string.IsNullOrEmpty(textBox_Product_name.Text.Trim());
+            bool s2 = string.IsNullOrEmpty(textBox_serial_number.Text.Trim());
+            bool s3 = string.IsNullOrEmpty(textBox_reference_name.Text.Trim());
 
-           
-            if (s1 == false && s2 == true && s3 == true)
+            Search_by_Product_name(filtered, s1, s2, s3);
+            Search_By_serial_Number(filtered, s1, s2, s3);
+            Search_By_refernce_Name(filtered, s1, s2, s3);
+
+        }
+
+        private void Search_By_refernce_Name(List<Items_From_Receipt> filtered, bool s1, bool s2, bool s3)
+        {
+            if (s1 == true && s2 == true && s3 == false)
             {
                 var watch = System.Diagnostics.Stopwatch.StartNew();
                 foreach (Items_From_Receipt currOb in global_list)
                 {
 
-                    if (currOb.Product_Name.Contains(textBox_Product_name.Text))
+                    if (currOb.Reference_Name.Contains(textBox_reference_name.Text))
                     {
                         filtered.Add(currOb);
                     }
@@ -233,17 +221,21 @@ namespace WinRetail_Auto_Task_Utility
                 watch.Stop();
 
                 var elapsedMs = watch.ElapsedMilliseconds;
-                dataGridView_products.DataSource = null;////nblIAM RESET DATASOUCE!!!!!!!
+                string searchTerm = textBox_reference_name.Text;
+                int count = filtered.Count();
+                string searchType = "Reference Name";
+
+                dataGridView_products.DataSource = null;
                 var source = filtered;
                 dataGridView_products.DataSource = source;
 
-                string searchType = "Product Name";
-                string searchTerm = textBox_Product_name.Text;
-                int count = filtered.Count();
                 Logwriter.writelog("#SEARCH:Time,Search by type, Search Term, Time Search Took, No of Items Returned");
-                Logwriter.writelog("SEARCH:" + current_timestamp +","+searchType+","+searchTerm+","+ elapsedMs+","+count);
-
+                Logwriter.writelog("SEARCH:" + current_timestamp + "," + searchType + "," + searchTerm + "," + elapsedMs + "," + count);
             }
+        }
+
+        private void Search_By_serial_Number(List<Items_From_Receipt> filtered, bool s1, bool s2, bool s3)
+        {
             if (s1 == true && s2 == false && s3 == true)
             {
                 var watch = System.Diagnostics.Stopwatch.StartNew();
@@ -262,45 +254,46 @@ namespace WinRetail_Auto_Task_Utility
                 string searchTerm = textBox_serial_number.Text;
                 int count = filtered.Count();
                 string searchType = "Serial Number";
-                
+
 
                 dataGridView_products.DataSource = null;
                 var source = filtered;
                 dataGridView_products.DataSource = source;
 
                 Logwriter.writelog("#SEARCH:Time,Search by type, Search Term, Time Search Took, No of Items Returned");
-                Logwriter.writelog("SEARCH:"+ current_timestamp+"," + searchType + "," + searchTerm + "," + elapsedMs + "," + count);
+                Logwriter.writelog("SEARCH:" + current_timestamp + "," + searchType + "," + searchTerm + "," + elapsedMs + "," + count);
 
             }
+        }
 
-            if (s1 == true && s2 == true && s3 == false)
+        private void Search_by_Product_name(List<Items_From_Receipt> filtered, bool s1, bool s2, bool s3)
+        {
+            if (s1 == false && s2 == true && s3 == true)
             {
                 var watch = System.Diagnostics.Stopwatch.StartNew();
                 foreach (Items_From_Receipt currOb in global_list)
                 {
 
-                    if (currOb.Reference_Name.Contains(textBox_reference_name.Text))
+                    if (currOb.Product_Name.Contains(textBox_Product_name.Text))
                     {
                         filtered.Add(currOb);
                     }
-                   
+
                 }
                 watch.Stop();
 
                 var elapsedMs = watch.ElapsedMilliseconds;
-                string searchTerm = textBox_reference_name.Text;
-                int count = filtered.Count();
-                string searchType = "Reference Name";
-
                 dataGridView_products.DataSource = null;
                 var source = filtered;
                 dataGridView_products.DataSource = source;
 
+                string searchType = "Product Name";
+                string searchTerm = textBox_Product_name.Text;
+                int count = filtered.Count();
                 Logwriter.writelog("#SEARCH:Time,Search by type, Search Term, Time Search Took, No of Items Returned");
-                Logwriter.writelog("SEARCH:"+current_timestamp+"," + searchType + "," + searchTerm + "," + elapsedMs + "," + count);
+                Logwriter.writelog("SEARCH:" + current_timestamp + "," + searchType + "," + searchTerm + "," + elapsedMs + "," + count);
+
             }
-
-
         }
 
         private void button_clear_fields_Click(object sender, EventArgs e)
@@ -362,9 +355,6 @@ namespace WinRetail_Auto_Task_Utility
             saveFileDialog1.Filter = "|*.csv";
             saveFileDialog1.Title = "Save CSV File";
             saveFileDialog1.ShowDialog();
-
-            
-
             //Configuration Item ID[updates only],[required] Product Name,[required] Company,Configuration Item Category,Configuration Item Type,[required] Install Date, Warranty Expiration,Serial Number, Reference Number,Reference Name, Number of Users, Contact, Location, Area, Contract, Service, Service Bundle,Billing Product, Billing Product Effective Date,Billing Product Expiration Date, Vendor, Service Level Agreement, Parent Configuration Item Serial Number, Description, Hourly Cost,Monthly Cost, Daily Cost,Per - Use Cost,Setup Fee, Company Link,Material Code(required if creating product),Active / Inactive,Subscription Name, Reviewed for Contract, Subscription Description, Subscription Period Type[required if creating subscription],Subscription Effective Date[required if creating subscription],Subscription Expiration Date[required if creating subscription],Subscription Period Price[required if creating subscription],Subscription Material Code[required if creating subscription],Subscription Purchase Order Number, Subscription Period Cost, Subscription Active,Subscription Vendor, Domain (Required if Category = Domain),SSL Source(Required if Category = SSL Certificate),UDF: 29682852 Username,UDF: 29682853 Password,UDF: 29682854 IP Address, UDF:29682861 OS,UDF: 29682862 Name,UDF: 29682864 Roles,UDF: 29682865 WAN IP:,UDF: 29682866 LAN IP:,UDF: 29682867 Brand,UDF: 29682868 SSID,UDF: 29682869 Security,UDF: 29682870 Location,UDF: 29682871 Make & Model,UDF: 29682872 Battery Life, UDF:29682873 Version,UDF: 29682874 URL,UDF: 29682875 Registrar,UDF: 29682913 AEM_DeviceID,UDF: 29682914 AEM_DeviceUID,UDF: 29682915 AEM_Description,UDF: 29682916 AEM_Manufacturer,UDF: 29682917 AEM_Model,UDF: 29682918 AEM_OperatingSystem,UDF: 29682919 AEM_IPAddress,UDF: 29682920 User - defined field 3,UDF: 29682921 User - defined field 2,UDF: 29682922 User - defined field 1,UDF: 29682923 User - defined field 10,UDF: 29682924 User - defined field 7,UDF: 29682925 User - defined field 6,UDF: 29682926 User - defined field 5,UDF: 29682927 User - defined field 4,UDF: 29682928 User - defined field 9,UDF: 29682929 User - defined field 8,UDF: 29682981 User - defined field 19,UDF: 29682982 User - defined field 17,UDF: 29682983 User - defined field 18,UDF: 29682984 User - defined field 15,UDF: 29682985 User - defined field 16,UDF: 29682986 User - defined field 13,UDF: 29682987 User - defined field 14,UDF: 29682988 User - defined field 11,UDF: 29682989 User - defined field 12,UDF: 29682990 User - defined field 21,UDF: 29682991 User - defined field 20,UDF: 29682992 User - defined field 22,UDF: 29682993 User - defined field 23,UDF: 29682994 User - defined field 24,UDF: 29682995 User - defined field 25,UDF: 29682996 User - defined field 26,UDF: 29682997 User - defined field 27,UDF: 29682998 User - defined field 28,UDF: 29682999 User - defined field 29,UDF: 29683000 Server Type -PixelPOS,UDF: 29683001 User - defined field 30,UDF: 29683002 Bit - Locker,UDF: 29683003 PixelPoint - Backup,UDF: 29683004 Wholesaler,UDF: 29683005 Store ID, UDF:29683006 Symbol Group
             //                                                                                                                                            , WIN10 IOT ENT 2019 LTSC MULTILANG, Centra Roscommon 2054,,,15 / 03 / 2021,,04248000841821,,Till 1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
             //,WIN10 IOT ENT 2019 LTSC MULTILANG, Centra Roscommon 2054,,,15 / 03 / 2021,,04248000841830,,Till 2,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
@@ -394,16 +384,12 @@ namespace WinRetail_Auto_Task_Utility
 
                             + item.Reference_Name+ ",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"
                             );
-                        
-                            
                     }
                 }
                
             }
             watch.Stop();
             var elapsedMs = watch.ElapsedMilliseconds;
-
-
 
             Write_to_current_working_file();
             int count = global_list.Count();
@@ -469,10 +455,6 @@ namespace WinRetail_Auto_Task_Utility
                     int count = global_list.Count();
                     Logwriter.writelog("#IMPORT CSV:Time,Filename,Time lapsed,Count");
                     Logwriter.writelog("IMPORT CSV:"+ current_timestamp+","+ FD.FileName+","+ elapsedMs.ToString()+","+count.ToString());
-
-                   
-                    
-
                 }
                 dataGridView_products.DataSource = null;
                 var source = global_list;
@@ -493,10 +475,5 @@ namespace WinRetail_Auto_Task_Utility
             Logwriter.writelog("LOGOUT:" + User + "," + current_timestamp);
 
         }
-
-
-        //string timeStamp = DateTime.Now.ToString("h:mm:ss tt");
-        //Logwriter.writelog("Save:"+ timeStamp);
-        //    Logwriter.Store_Name = textBox_Company_details.Text;
     }
 }
