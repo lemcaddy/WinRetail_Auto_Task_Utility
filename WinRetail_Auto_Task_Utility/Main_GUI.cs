@@ -125,7 +125,10 @@ namespace WinRetail_Auto_Task_Utility
             dataGridView_products.DataSource = null;////nblIAM RESET DATASOUCE!!!!!!!
             var source = global_list;
             dataGridView_products.DataSource = source;
-           
+            
+            Logwriter.writelog("#SET ALL COMPANY NAME:Value ");
+            Logwriter.writelog("SET ALL COMPANY NAME:"+ textBox_Company_details.Text);
+
 
         }
 
@@ -148,6 +151,12 @@ namespace WinRetail_Auto_Task_Utility
 
             dataGridView_products.FirstDisplayedScrollingRowIndex = dataGridView_products.RowCount - 1;
             dataGridView_products.Rows[dataGridView_products.RowCount - 1].Selected = true;
+            Logwriter.writelog("#NEW:Time,>>>>>VALUE<<<<<<");
+            Logwriter.writelog("#NEW:"+current_timestamp+">>>>>"+ textBox_Product_name.Text+","+
+                textBox_Company_details.Text + "," +
+                textBox_install_date.Text + "," +
+                textBox_serial_number.Text + "," +
+                textBox_reference_name.Text+"<<<<<<");
         }
 
             private void button_delete_Click(object sender, EventArgs e)
@@ -156,7 +165,15 @@ namespace WinRetail_Auto_Task_Utility
                 dataGridView_products.DataSource = null;////nblIAM RESET DATASOUCE!!!!!!!
                 var source = global_list;
                 dataGridView_products.DataSource = source;
-            }
+            Logwriter.writelog("#DELETE:Time,>>>>>VALUE<<<<<<");
+            Logwriter.writelog("DELETE:" + current_timestamp + "," +">>>>>"+
+                dataGridView_products.CurrentRow.Cells[0].Value.ToString() + ","
+                + dataGridView_products.CurrentRow.Cells[1].Value.ToString() + ","
+                + dataGridView_products.CurrentRow.Cells[2].Value.ToString() + ","
+                + dataGridView_products.CurrentRow.Cells[3].Value.ToString() + ","
+                + dataGridView_products.CurrentRow.Cells[4].Value.ToString() + ","
+                + dataGridView_products.CurrentRow.Cells[5].Value.ToString());
+        }
 
             private void button_set_all_install_date_Click(object sender, EventArgs e)
             {
@@ -168,8 +185,10 @@ namespace WinRetail_Auto_Task_Utility
                 dataGridView_products.DataSource = null;////nblIAM RESET DATASOUCE!!!!!!!
                 var source = global_list;
                 dataGridView_products.DataSource = source;
+            Logwriter.writelog("#SET ALL INSTALL DATE:Value ");
+            Logwriter.writelog("SET ALL INSTALL DATE::" + textBox_install_date.Text);
 
-            }
+        }
 
         private void button_search_Click(object sender, EventArgs e)
         {
@@ -291,8 +310,11 @@ namespace WinRetail_Auto_Task_Utility
             textBox_install_date.Clear();
             textBox_serial_number.Clear();
             textBox_reference_name.Clear();
+            Logwriter.writelog("#CLEAR FIELDS:Time");
+            Logwriter.writelog("CLEAR FIELDS:"+ current_timestamp);
+
             return;
-           
+          
         }
 
         private void button_reset_Click(object sender, EventArgs e)
@@ -307,8 +329,12 @@ namespace WinRetail_Auto_Task_Utility
 
             dataGridView_products.DataSource = null;
             var source = global_list;
+            string fsource = source.ToString();
             dataGridView_products.DataSource = source;
-                
+
+            Logwriter.writelog("#RE-LOAD:Time,Source Reset To..., Count");
+            Logwriter.writelog("RE-LOAD:"+ current_timestamp+","+ "Global List"+","+global_list.Count() );
+
 
         }
 
@@ -324,6 +350,8 @@ namespace WinRetail_Auto_Task_Utility
             dataGridView_products.DataSource = null;
             global_list = new BindingList<Items_From_Receipt>();
             //global_list = null;
+            Logwriter.writelog("#RESET:Time");
+            Logwriter.writelog("RESET:" + current_timestamp);
         }
 
         private void button_export_Click(object sender, EventArgs e)
