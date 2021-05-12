@@ -107,7 +107,10 @@ namespace WinRetail_Auto_Task_Utility
             dataGridView_products.DataSource = null;////nblIAM RESET DATASOUCE!!!!!!!
             var source = global_list;
             dataGridView_products.DataSource = source;
-
+            Logwriter.writelog("#UPDATE:Time,>>>>>Item Updated<<<<<");
+            Logwriter.writelog("UPDATE:" + current_timestamp + ","+">>>>>" + currob.Config_item_ID + ","+
+                currob.Product_Name + "," +currob.Company_Name + "," + currob.Install_Date
+                + "," +currob.Serial_Number + "," + currob.Reference_Name+"<<<<<");
 
         }
 
@@ -172,22 +175,22 @@ namespace WinRetail_Auto_Task_Utility
         {
             List<Items_From_Receipt> filtered = new List<Items_From_Receipt>();
 
-            if (string.IsNullOrEmpty(textBox_Product_name.Text)
-                && string.IsNullOrEmpty(textBox_serial_number.Text)
-                && string.IsNullOrEmpty(textBox_reference_name.Text))
+            if (string.IsNullOrEmpty(textBox_Product_name.Text.Trim())
+                && string.IsNullOrEmpty(textBox_serial_number.Text.Trim())
+                && string.IsNullOrEmpty(textBox_reference_name.Text.Trim()))
             {
                 MessageBox.Show("You need a value in the either the" +
-                    "  product Description" +
-                    "Serial Number" +
-                    "refernece number" +
+                    "  Product Name, " +
+                    "Serial Number, " +
+                    "Reference Name " +
                     " textboxes above");
                 return;
             }
             
             
-                bool s1 = string.IsNullOrEmpty(textBox_Product_name.Text);
-                bool s2 = string.IsNullOrEmpty(textBox_serial_number.Text);
-                bool s3 = string.IsNullOrEmpty(textBox_reference_name.Text);
+                bool s1 = string.IsNullOrEmpty(textBox_Product_name.Text.Trim());
+                bool s2 = string.IsNullOrEmpty(textBox_serial_number.Text.Trim());
+                bool s3 = string.IsNullOrEmpty(textBox_reference_name.Text.Trim());
 
 
            
@@ -213,8 +216,8 @@ namespace WinRetail_Auto_Task_Utility
                 string searchType = "Product Name";
                 string searchTerm = textBox_Product_name.Text;
                 int count = filtered.Count();
-                Logwriter.writelog("#SEARCH:Search by type, Search Term, Time Search Took, No of Items Returned");
-                Logwriter.writelog("SEARCH:"+searchType+","+searchTerm+","+ elapsedMs+","+count);
+                Logwriter.writelog("#SEARCH:Time,Search by type, Search Term, Time Search Took, No of Items Returned");
+                Logwriter.writelog("SEARCH:" + current_timestamp +","+searchType+","+searchTerm+","+ elapsedMs+","+count);
 
             }
             if (s1 == true && s2 == false && s3 == true)
@@ -235,13 +238,14 @@ namespace WinRetail_Auto_Task_Utility
                 string searchTerm = textBox_serial_number.Text;
                 int count = filtered.Count();
                 string searchType = "Serial Number";
+                
 
                 dataGridView_products.DataSource = null;
                 var source = filtered;
                 dataGridView_products.DataSource = source;
 
-                Logwriter.writelog("#SEARCH:Search by type, Search Term, Time Search Took, No of Items Returned");
-                Logwriter.writelog("SEARCH:" + searchType + "," + searchTerm + "," + elapsedMs + "," + count);
+                Logwriter.writelog("#SEARCH:Time,Search by type, Search Term, Time Search Took, No of Items Returned");
+                Logwriter.writelog("SEARCH:"+ current_timestamp+"," + searchType + "," + searchTerm + "," + elapsedMs + "," + count);
 
             }
 
@@ -268,8 +272,8 @@ namespace WinRetail_Auto_Task_Utility
                 var source = filtered;
                 dataGridView_products.DataSource = source;
 
-                Logwriter.writelog("#SEARCH:Search by type, Search Term, Time Search Took, No of Items Returned");
-                Logwriter.writelog("SEARCH:" + searchType + "," + searchTerm + "," + elapsedMs + "," + count);
+                Logwriter.writelog("#SEARCH:Time,Search by type, Search Term, Time Search Took, No of Items Returned");
+                Logwriter.writelog("SEARCH:"+current_timestamp+"," + searchType + "," + searchTerm + "," + elapsedMs + "," + count);
             }
 
 
@@ -313,6 +317,7 @@ namespace WinRetail_Auto_Task_Utility
             textBox_reference_name.Clear();
 
             dataGridView_products.DataSource = null;
+            global_list = new BindingList<Items_From_Receipt>();
             //global_list = null;
         }
 
