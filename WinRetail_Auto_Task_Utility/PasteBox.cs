@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using DataModel;
+using TransLog;
 
 namespace WinRetail_Auto_Task_Utility
 {
@@ -34,10 +35,16 @@ namespace WinRetail_Auto_Task_Utility
 
         private void button_ok_Click(object sender, EventArgs e)
         {
+            var watch1 = System.Diagnostics.Stopwatch.StartNew();
             using (StreamWriter sw = new StreamWriter(contents_of_textbox))
             {
                 sw.WriteLine(textBox_pasted_items.Text);
             }
+            watch1.Stop();
+            var elapsedMs = watch1.ElapsedMilliseconds;
+            Logwriter.writelog("#TIME LASPE PASTED ITEMS:Time");
+            Logwriter.writelog("TIME LASPE PASTED ITEMS:" + elapsedMs.ToString());
+
 
             List<string> Line_with_company_name_in_it = new List<string>(File.ReadAllLines(contents_of_textbox));
 
@@ -142,6 +149,7 @@ namespace WinRetail_Auto_Task_Utility
                     }
                 }
                 
+
             }
 
             using (StreamWriter sr = new StreamWriter(resulting_file, false))//Example_2_Final.txt
@@ -168,11 +176,14 @@ namespace WinRetail_Auto_Task_Utility
 
         private void PasteBox_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         private void textBox_pasted_items_TextChanged(object sender, EventArgs e)
         {
+            
+            
+
 
         }
     }

@@ -21,8 +21,10 @@ namespace WinRetail_Auto_Task_Utility
     public partial class ATUtility : Form
     {
         BindingList<Items_From_Receipt> global_list = new BindingList<Items_From_Receipt>();
+        string User = "Liam Coleman";
+        string current_timestamp = Timestamp();
 
-       
+
         public ATUtility()//
         {
             InitializeComponent();
@@ -31,12 +33,17 @@ namespace WinRetail_Auto_Task_Utility
         private void ATUtility_Load(object sender, EventArgs e)
         {
 
-           string timeStamp= DateTime.Now.ToString("h:mm:ss tt");
-           Logwriter.writelog("Login:"+ timeStamp);
+
+            Logwriter.writelog("#LOGIN:, User,Time");
+            Logwriter.writelog("LOGIN:" + User+","+ current_timestamp);
 
         }
 
-        
+        private static string Timestamp()
+        {
+            return DateTime.Now.ToString("h:mm:ss tt");
+        }
+
 
 
         private void button_Paste_in_receipt_Click(object sender, EventArgs e)
@@ -57,6 +64,9 @@ namespace WinRetail_Auto_Task_Utility
             // show the revised datagrid
             var source = global_list;
             dataGridView_products.DataSource = source;
+            var list_count = global_list.Count();
+            Logwriter.writelog("#NUMBER OF ITEMS PASTED IN:,Count");
+            Logwriter.writelog("NUMBER OF ITEMS PASTED IN:"+list_count.ToString());
         }
         
 
@@ -282,15 +292,18 @@ namespace WinRetail_Auto_Task_Utility
             saveFileDialog1.Title = "Save CSV File";
             saveFileDialog1.ShowDialog();
 
+            
 
-
-//Configuration Item ID[updates only],[required] Product Name,[required] Company,Configuration Item Category,Configuration Item Type,[required] Install Date, Warranty Expiration,Serial Number, Reference Number,Reference Name, Number of Users, Contact, Location, Area, Contract, Service, Service Bundle,Billing Product, Billing Product Effective Date,Billing Product Expiration Date, Vendor, Service Level Agreement, Parent Configuration Item Serial Number, Description, Hourly Cost,Monthly Cost, Daily Cost,Per - Use Cost,Setup Fee, Company Link,Material Code(required if creating product),Active / Inactive,Subscription Name, Reviewed for Contract, Subscription Description, Subscription Period Type[required if creating subscription],Subscription Effective Date[required if creating subscription],Subscription Expiration Date[required if creating subscription],Subscription Period Price[required if creating subscription],Subscription Material Code[required if creating subscription],Subscription Purchase Order Number, Subscription Period Cost, Subscription Active,Subscription Vendor, Domain (Required if Category = Domain),SSL Source(Required if Category = SSL Certificate),UDF: 29682852 Username,UDF: 29682853 Password,UDF: 29682854 IP Address, UDF:29682861 OS,UDF: 29682862 Name,UDF: 29682864 Roles,UDF: 29682865 WAN IP:,UDF: 29682866 LAN IP:,UDF: 29682867 Brand,UDF: 29682868 SSID,UDF: 29682869 Security,UDF: 29682870 Location,UDF: 29682871 Make & Model,UDF: 29682872 Battery Life, UDF:29682873 Version,UDF: 29682874 URL,UDF: 29682875 Registrar,UDF: 29682913 AEM_DeviceID,UDF: 29682914 AEM_DeviceUID,UDF: 29682915 AEM_Description,UDF: 29682916 AEM_Manufacturer,UDF: 29682917 AEM_Model,UDF: 29682918 AEM_OperatingSystem,UDF: 29682919 AEM_IPAddress,UDF: 29682920 User - defined field 3,UDF: 29682921 User - defined field 2,UDF: 29682922 User - defined field 1,UDF: 29682923 User - defined field 10,UDF: 29682924 User - defined field 7,UDF: 29682925 User - defined field 6,UDF: 29682926 User - defined field 5,UDF: 29682927 User - defined field 4,UDF: 29682928 User - defined field 9,UDF: 29682929 User - defined field 8,UDF: 29682981 User - defined field 19,UDF: 29682982 User - defined field 17,UDF: 29682983 User - defined field 18,UDF: 29682984 User - defined field 15,UDF: 29682985 User - defined field 16,UDF: 29682986 User - defined field 13,UDF: 29682987 User - defined field 14,UDF: 29682988 User - defined field 11,UDF: 29682989 User - defined field 12,UDF: 29682990 User - defined field 21,UDF: 29682991 User - defined field 20,UDF: 29682992 User - defined field 22,UDF: 29682993 User - defined field 23,UDF: 29682994 User - defined field 24,UDF: 29682995 User - defined field 25,UDF: 29682996 User - defined field 26,UDF: 29682997 User - defined field 27,UDF: 29682998 User - defined field 28,UDF: 29682999 User - defined field 29,UDF: 29683000 Server Type -PixelPOS,UDF: 29683001 User - defined field 30,UDF: 29683002 Bit - Locker,UDF: 29683003 PixelPoint - Backup,UDF: 29683004 Wholesaler,UDF: 29683005 Store ID, UDF:29683006 Symbol Group
-//                                                                                                                                            , WIN10 IOT ENT 2019 LTSC MULTILANG, Centra Roscommon 2054,,,15 / 03 / 2021,,04248000841821,,Till 1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-//,WIN10 IOT ENT 2019 LTSC MULTILANG, Centra Roscommon 2054,,,15 / 03 / 2021,,04248000841830,,Till 2,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-//,WIN10 IOT ENT 2019 LTSC MULTILANG, Centra Roscommon 2054,,,15 / 03 / 2021,,04248000841831,,Till 3,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+            //Configuration Item ID[updates only],[required] Product Name,[required] Company,Configuration Item Category,Configuration Item Type,[required] Install Date, Warranty Expiration,Serial Number, Reference Number,Reference Name, Number of Users, Contact, Location, Area, Contract, Service, Service Bundle,Billing Product, Billing Product Effective Date,Billing Product Expiration Date, Vendor, Service Level Agreement, Parent Configuration Item Serial Number, Description, Hourly Cost,Monthly Cost, Daily Cost,Per - Use Cost,Setup Fee, Company Link,Material Code(required if creating product),Active / Inactive,Subscription Name, Reviewed for Contract, Subscription Description, Subscription Period Type[required if creating subscription],Subscription Effective Date[required if creating subscription],Subscription Expiration Date[required if creating subscription],Subscription Period Price[required if creating subscription],Subscription Material Code[required if creating subscription],Subscription Purchase Order Number, Subscription Period Cost, Subscription Active,Subscription Vendor, Domain (Required if Category = Domain),SSL Source(Required if Category = SSL Certificate),UDF: 29682852 Username,UDF: 29682853 Password,UDF: 29682854 IP Address, UDF:29682861 OS,UDF: 29682862 Name,UDF: 29682864 Roles,UDF: 29682865 WAN IP:,UDF: 29682866 LAN IP:,UDF: 29682867 Brand,UDF: 29682868 SSID,UDF: 29682869 Security,UDF: 29682870 Location,UDF: 29682871 Make & Model,UDF: 29682872 Battery Life, UDF:29682873 Version,UDF: 29682874 URL,UDF: 29682875 Registrar,UDF: 29682913 AEM_DeviceID,UDF: 29682914 AEM_DeviceUID,UDF: 29682915 AEM_Description,UDF: 29682916 AEM_Manufacturer,UDF: 29682917 AEM_Model,UDF: 29682918 AEM_OperatingSystem,UDF: 29682919 AEM_IPAddress,UDF: 29682920 User - defined field 3,UDF: 29682921 User - defined field 2,UDF: 29682922 User - defined field 1,UDF: 29682923 User - defined field 10,UDF: 29682924 User - defined field 7,UDF: 29682925 User - defined field 6,UDF: 29682926 User - defined field 5,UDF: 29682927 User - defined field 4,UDF: 29682928 User - defined field 9,UDF: 29682929 User - defined field 8,UDF: 29682981 User - defined field 19,UDF: 29682982 User - defined field 17,UDF: 29682983 User - defined field 18,UDF: 29682984 User - defined field 15,UDF: 29682985 User - defined field 16,UDF: 29682986 User - defined field 13,UDF: 29682987 User - defined field 14,UDF: 29682988 User - defined field 11,UDF: 29682989 User - defined field 12,UDF: 29682990 User - defined field 21,UDF: 29682991 User - defined field 20,UDF: 29682992 User - defined field 22,UDF: 29682993 User - defined field 23,UDF: 29682994 User - defined field 24,UDF: 29682995 User - defined field 25,UDF: 29682996 User - defined field 26,UDF: 29682997 User - defined field 27,UDF: 29682998 User - defined field 28,UDF: 29682999 User - defined field 29,UDF: 29683000 Server Type -PixelPOS,UDF: 29683001 User - defined field 30,UDF: 29683002 Bit - Locker,UDF: 29683003 PixelPoint - Backup,UDF: 29683004 Wholesaler,UDF: 29683005 Store ID, UDF:29683006 Symbol Group
+            //                                                                                                                                            , WIN10 IOT ENT 2019 LTSC MULTILANG, Centra Roscommon 2054,,,15 / 03 / 2021,,04248000841821,,Till 1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+            //,WIN10 IOT ENT 2019 LTSC MULTILANG, Centra Roscommon 2054,,,15 / 03 / 2021,,04248000841830,,Till 2,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+            //,WIN10 IOT ENT 2019 LTSC MULTILANG, Centra Roscommon 2054,,,15 / 03 / 2021,,04248000841831,,Till 3,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+            var watch = System.Diagnostics.Stopwatch.StartNew();
+            string path = saveFileDialog1.FileName;
             if (saveFileDialog1.FileName != "")
             {
-                string path = saveFileDialog1.FileName;
+                
+               
                 using (var file = File.CreateText(path))
                 {   // next line creates AT header/////
                     file.WriteLine("Configuration Item ID[updates only],[required] Product Name,[required] Company,Configuration Item Category,Configuration Item Type,[required] Install Date, Warranty Expiration,Serial Number, Reference Number,Reference Name, Number of Users, Contact, Location, Area, Contract, Service, Service Bundle,Billing Product, Billing Product Effective Date,Billing Product Expiration Date, Vendor, Service Level Agreement, Parent Configuration Item Serial Number, Description, Hourly Cost,Monthly Cost, Daily Cost,Per - Use Cost,Setup Fee, Company Link,Material Code(required if creating product),Active / Inactive,Subscription Name, Reviewed for Contract, Subscription Description, Subscription Period Type[required if creating subscription],Subscription Effective Date[required if creating subscription],Subscription Expiration Date[required if creating subscription],Subscription Period Price[required if creating subscription],Subscription Material Code[required if creating subscription],Subscription Purchase Order Number, Subscription Period Cost, Subscription Active,Subscription Vendor, Domain (Required if Category = Domain),SSL Source(Required if Category = SSL Certificate),UDF: 29682852 Username,UDF: 29682853 Password,UDF: 29682854 IP Address, UDF:29682861 OS,UDF: 29682862 Name,UDF: 29682864 Roles,UDF: 29682865 WAN IP:,UDF: 29682866 LAN IP:,UDF: 29682867 Brand,UDF: 29682868 SSID,UDF: 29682869 Security,UDF: 29682870 Location,UDF: 29682871 Make & Model,UDF: 29682872 Battery Life, UDF:29682873 Version,UDF: 29682874 URL,UDF: 29682875 Registrar,UDF: 29682913 AEM_DeviceID,UDF: 29682914 AEM_DeviceUID,UDF: 29682915 AEM_Description,UDF: 29682916 AEM_Manufacturer,UDF: 29682917 AEM_Model,UDF: 29682918 AEM_OperatingSystem,UDF: 29682919 AEM_IPAddress,UDF: 29682920 User - defined field 3,UDF: 29682921 User - defined field 2,UDF: 29682922 User - defined field 1,UDF: 29682923 User - defined field 10,UDF: 29682924 User - defined field 7,UDF: 29682925 User - defined field 6,UDF: 29682926 User - defined field 5,UDF: 29682927 User - defined field 4,UDF: 29682928 User - defined field 9,UDF: 29682929 User - defined field 8,UDF: 29682981 User - defined field 19,UDF: 29682982 User - defined field 17,UDF: 29682983 User - defined field 18,UDF: 29682984 User - defined field 15,UDF: 29682985 User - defined field 16,UDF: 29682986 User - defined field 13,UDF: 29682987 User - defined field 14,UDF: 29682988 User - defined field 11,UDF: 29682989 User - defined field 12,UDF: 29682990 User - defined field 21,UDF: 29682991 User - defined field 20,UDF: 29682992 User - defined field 22,UDF: 29682993 User - defined field 23,UDF: 29682994 User - defined field 24,UDF: 29682995 User - defined field 25,UDF: 29682996 User - defined field 26,UDF: 29682997 User - defined field 27,UDF: 29682998 User - defined field 28,UDF: 29682999 User - defined field 29,UDF: 29683000 Server Type -PixelPOS,UDF: 29683001 User - defined field 30,UDF: 29683002 Bit - Locker,UDF: 29683003 PixelPoint - Backup,UDF: 29683004 Wholesaler,UDF: 29683005 Store ID, UDF:29683006 Symbol Group");
@@ -314,12 +327,18 @@ namespace WinRetail_Auto_Task_Utility
                             
                     }
                 }
+               
             }
+            watch.Stop();
+            var elapsedMs = watch.ElapsedMilliseconds;
 
 
 
-                Write_to_current_working_file();
-            Logwriter.writelog("File Exported:");
+            Write_to_current_working_file();
+            int count = global_list.Count();
+
+            Logwriter.writelog("#FILE EXPORTED:Time,Filename,Item Count,Time Elapsed");
+            Logwriter.writelog("FILE EXPORTED:"+current_timestamp+","+ path+","+ count+","+elapsedMs);
         }
 
         private void Write_to_current_working_file()
@@ -346,6 +365,7 @@ namespace WinRetail_Auto_Task_Utility
             {
                 string fileToOpen = FD.FileName;
                 label_current_file.Text = "File in Use: "+fileToOpen.ToString();
+                var watch = System.Diagnostics.Stopwatch.StartNew();
                 using (StreamReader sr = new StreamReader(fileToOpen))
                 {
                     string line;
@@ -371,6 +391,14 @@ namespace WinRetail_Auto_Task_Utility
 
                         
                     }
+                    watch.Stop();
+                    var elapsedMs = watch.ElapsedMilliseconds;
+                    int count = global_list.Count();
+                    Logwriter.writelog("#IMPORT CSV:Time,Count");
+                    Logwriter.writelog("IMPORT CSV:"+elapsedMs.ToString()+","+count.ToString());
+
+                   
+                    
 
                 }
                 dataGridView_products.DataSource = null;
@@ -382,6 +410,14 @@ namespace WinRetail_Auto_Task_Utility
 
         private void saveFileDialog1_FileOk(object sender, CancelEventArgs e)
         {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            Logwriter.writelog("#LOGOUT:User,Time");
+            Logwriter.writelog("LOGOUT:" + User + "," + current_timestamp);
 
         }
 

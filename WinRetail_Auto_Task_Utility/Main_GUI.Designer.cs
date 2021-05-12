@@ -54,6 +54,7 @@
             this.button_re_load = new System.Windows.Forms.Button();
             this.button_re_set = new System.Windows.Forms.Button();
             this.label_current_file = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_products)).BeginInit();
             this.SuspendLayout();
             // 
@@ -336,7 +337,7 @@
             // 
             this.button_re_set.BackColor = System.Drawing.Color.Red;
             this.button_re_set.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_re_set.Location = new System.Drawing.Point(958, 712);
+            this.button_re_set.Location = new System.Drawing.Point(958, 584);
             this.button_re_set.Margin = new System.Windows.Forms.Padding(2);
             this.button_re_set.Name = "button_re_set";
             this.button_re_set.Size = new System.Drawing.Size(169, 106);
@@ -355,12 +356,26 @@
             this.label_current_file.TabIndex = 28;
             this.label_current_file.Text = "Current File:";
             // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.Maroon;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(958, 723);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(169, 106);
+            this.button1.TabIndex = 29;
+            this.button1.Text = "&Exit";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // ATUtility
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1138, 859);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.label_current_file);
             this.Controls.Add(this.button_re_set);
             this.Controls.Add(this.button_re_load);
@@ -424,6 +439,7 @@
         private System.Windows.Forms.Button button_re_load;
         private System.Windows.Forms.Button button_re_set;
         private System.Windows.Forms.Label label_current_file;
+        private System.Windows.Forms.Button button1;
     }
 }
 
