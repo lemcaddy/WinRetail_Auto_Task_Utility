@@ -190,9 +190,10 @@ namespace WinRetail_Auto_Task_Utility
                 bool s3 = string.IsNullOrEmpty(textBox_reference_name.Text);
 
 
-
+           
             if (s1 == false && s2 == true && s3 == true)
             {
+                var watch = System.Diagnostics.Stopwatch.StartNew();
                 foreach (Items_From_Receipt currOb in global_list)
                 {
 
@@ -202,13 +203,23 @@ namespace WinRetail_Auto_Task_Utility
                     }
 
                 }
+                watch.Stop();
+
+                var elapsedMs = watch.ElapsedMilliseconds;
                 dataGridView_products.DataSource = null;////nblIAM RESET DATASOUCE!!!!!!!
                 var source = filtered;
                 dataGridView_products.DataSource = source;
 
+                string searchType = "Product Name";
+                string searchTerm = textBox_Product_name.Text;
+                int count = filtered.Count();
+                Logwriter.writelog("#SEARCH:Search by type, Search Term, Time Search Took, No of Items Returned");
+                Logwriter.writelog("SEARCH:"+searchType+","+searchTerm+","+ elapsedMs+","+count);
+
             }
             if (s1 == true && s2 == false && s3 == true)
             {
+                var watch = System.Diagnostics.Stopwatch.StartNew();
                 foreach (Items_From_Receipt currOb in global_list)
                 {
 
@@ -218,13 +229,25 @@ namespace WinRetail_Auto_Task_Utility
                     }
 
                 }
+                watch.Stop();
+
+                var elapsedMs = watch.ElapsedMilliseconds;
+                string searchTerm = textBox_serial_number.Text;
+                int count = filtered.Count();
+                string searchType = "Serial Number";
+
                 dataGridView_products.DataSource = null;
                 var source = filtered;
                 dataGridView_products.DataSource = source;
+
+                Logwriter.writelog("#SEARCH:Search by type, Search Term, Time Search Took, No of Items Returned");
+                Logwriter.writelog("SEARCH:" + searchType + "," + searchTerm + "," + elapsedMs + "," + count);
+
             }
 
             if (s1 == true && s2 == true && s3 == false)
             {
+                var watch = System.Diagnostics.Stopwatch.StartNew();
                 foreach (Items_From_Receipt currOb in global_list)
                 {
 
@@ -234,9 +257,19 @@ namespace WinRetail_Auto_Task_Utility
                     }
                    
                 }
+                watch.Stop();
+
+                var elapsedMs = watch.ElapsedMilliseconds;
+                string searchTerm = textBox_reference_name.Text;
+                int count = filtered.Count();
+                string searchType = "Reference Name";
+
                 dataGridView_products.DataSource = null;
                 var source = filtered;
                 dataGridView_products.DataSource = source;
+
+                Logwriter.writelog("#SEARCH:Search by type, Search Term, Time Search Took, No of Items Returned");
+                Logwriter.writelog("SEARCH:" + searchType + "," + searchTerm + "," + elapsedMs + "," + count);
             }
 
 
