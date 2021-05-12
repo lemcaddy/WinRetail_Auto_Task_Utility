@@ -184,6 +184,11 @@ namespace WinRetail_Auto_Task_Utility
                     "Serial Number, " +
                     "Reference Name " +
                     " textboxes above");
+                Logwriter.writelog("#SEARCH:Status, Reason");
+                Logwriter.writelog("SEARCH:Failed, as Values not Entered in either" +
+                    "\n Product Name," +
+                    "\n Serial Number" +
+                    "\n or Reference Name textboxes");
                 return;
             }
             
@@ -403,7 +408,9 @@ namespace WinRetail_Auto_Task_Utility
             {
                 string fileToOpen = FD.FileName;
                 label_current_file.Text = "File in Use: "+fileToOpen.ToString();
+
                 var watch = System.Diagnostics.Stopwatch.StartNew();
+
                 using (StreamReader sr = new StreamReader(fileToOpen))
                 {
                     string line;
@@ -432,8 +439,8 @@ namespace WinRetail_Auto_Task_Utility
                     watch.Stop();
                     var elapsedMs = watch.ElapsedMilliseconds;
                     int count = global_list.Count();
-                    Logwriter.writelog("#IMPORT CSV:Time,Count");
-                    Logwriter.writelog("IMPORT CSV:"+elapsedMs.ToString()+","+count.ToString());
+                    Logwriter.writelog("#IMPORT CSV:Time,Filename,Time lapsed,Count");
+                    Logwriter.writelog("IMPORT CSV:"+ current_timestamp+","+ FD.FileName+","+ elapsedMs.ToString()+","+count.ToString());
 
                    
                     
