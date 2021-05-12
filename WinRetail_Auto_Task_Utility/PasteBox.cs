@@ -102,28 +102,14 @@ namespace WinRetail_Auto_Task_Utility
 
                 if (Lines[i].ToString().Contains("@"))
                 {
-
-                        // 500MM POLE D / H
-                        //              4  @      1.00        4.00
-                        //  0000000000316
-                        //POP - UP DRAWER(E
-  
-                        //                2  @    195.00      390.00
-  
-                        //    0000000000515
-                        //  BLACK INT DRAWER
-  
-                        //                2  @    195.00      390.00
-  
-                        //    0000000000506
   
                       new_list.Add(Lines[i - 1] + "," + (Lines[i]) + "," + (Lines[i + 1]));
 
                     string line = Lines[i].ToString();//2  @    195.00      390.00
                     string[] aprts = line.Split('@');//2  @ 
                     var range = aprts[0];//2
-                    int Frange = Convert.ToInt32(range);///pick up here!!!
-                    for (int qty = 1; qty <= Frange; qty++)
+                    int Frange = Convert.ToInt32(range);
+                    for (int qty = 1; qty <= Frange; qty++)///increment by frange
                     {
                         Item_list_123.Add(new Items_From_Receipt
                         {

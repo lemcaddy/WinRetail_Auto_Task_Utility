@@ -252,7 +252,7 @@
             this.button_export.Name = "button_export";
             this.button_export.Size = new System.Drawing.Size(363, 51);
             this.button_export.TabIndex = 20;
-            this.button_export.Text = "Export CSV";
+            this.button_export.Text = " Export CSV";
             this.button_export.UseVisualStyleBackColor = false;
             this.button_export.Click += new System.EventHandler(this.button_export_Click);
             // 
