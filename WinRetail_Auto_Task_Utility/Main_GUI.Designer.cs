@@ -151,7 +151,7 @@
             this.textBox_Product_name.Margin = new System.Windows.Forms.Padding(2);
             this.textBox_Product_name.Name = "textBox_Product_name";
             this.textBox_Product_name.Size = new System.Drawing.Size(353, 20);
-            this.textBox_Product_name.TabIndex = 19;
+            this.textBox_Product_name.TabIndex = 0;
             // 
             // dataGridView_products
             // 
