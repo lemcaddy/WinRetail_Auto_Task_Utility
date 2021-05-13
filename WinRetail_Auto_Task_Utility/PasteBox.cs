@@ -57,38 +57,31 @@ namespace WinRetail_Auto_Task_Utility
                 }
             }
 
-            using (StreamReader SR = new StreamReader(contents_of_textbox))
-            {
-                string[] lines = File.ReadAllLines(contents_of_textbox);
-                {
-                    var target_text = lines.SkipWhile(x => x != "========================================")// skips everything before 
-                        .Skip(1)//and the ====== itself
-                                //.TakeWhile(x => x != "========================================")//up to =======
-                        .TakeWhile(x => x != "                          --------------")
-                        .ToList();
-
-
-                    using (StreamWriter SW = new StreamWriter(pattern_output))
-                    {
-
-                        {
-                            target_text.ForEach(i => SW.Write("{0}\r", i));
-                        }
-                    }
-                }
-                
-            }
+            handle_pastbox_contents_skip_unwanted_text();
 
             /// get rid of line with    LAYAWAY RECALL in it
             var oldlines = File.ReadAllLines(pattern_output);
             var omit_line = oldlines.Where(line => !line.Contains("LAYAWAY RECALL"));
             File.WriteAllLines(pattern_output, omit_line);
-           
+
 
             List<string> Lines = new List<string>(File.ReadAllLines(pattern_output));
 
             List<string> new_list = new List<string>();
+            Handle_finding_Patterns_in_the_text(Lines, new_list);
 
+            using (StreamWriter sr = new StreamWriter(resulting_file, false))//Example_2_Final.txt
+            {
+
+                new_list.ForEach(i => sr.Write("{0}\n", i));
+
+            }
+
+            this.Close();
+        }
+
+        private void Handle_finding_Patterns_in_the_text(List<string> Lines, List<string> new_list)
+        {
             for (int i = 0; i < Lines.Count; i++)
 
             {
@@ -109,8 +102,8 @@ namespace WinRetail_Auto_Task_Utility
 
                 if (Lines[i].ToString().Contains("@"))
                 {
-  
-                      new_list.Add(Lines[i - 1] + "," + (Lines[i]) + "," + (Lines[i + 1]));
+
+                    new_list.Add(Lines[i - 1] + "," + (Lines[i]) + "," + (Lines[i + 1]));
 
                     string line = Lines[i].ToString();//2  @    195.00      390.00
                     string[] aprts = line.Split('@');//2  @ 
@@ -148,25 +141,40 @@ namespace WinRetail_Auto_Task_Utility
 
                     }
                 }
-                
+
 
             }
-
-            using (StreamWriter sr = new StreamWriter(resulting_file, false))//Example_2_Final.txt
-            {
-
-                new_list.ForEach(i => sr.Write("{0}\n", i));
-
-            }
-
-            this.Close();
         }
-    
-            
+
+        private void handle_pastbox_contents_skip_unwanted_text()
+        {
+            using (StreamReader SR = new StreamReader(contents_of_textbox))
+            {
+                string[] lines = File.ReadAllLines(contents_of_textbox);
+                {
+                    var target_text = lines.SkipWhile(x => x != "========================================")// skips everything before 
+                        .Skip(1)//and the ====== itself
+                                //.TakeWhile(x => x != "========================================")//up to =======
+                        .TakeWhile(x => x != "                          --------------")
+                        .ToList();
+
+
+                    using (StreamWriter SW = new StreamWriter(pattern_output))
+                    {
+
+                        {
+                            target_text.ForEach(i => SW.Write("{0}\r", i));
+                        }
+                    }
+                }
+
+            }
+        }
 
 
 
-        
+
+
 
         private void button_exit_Click(object sender, EventArgs e)
         {
