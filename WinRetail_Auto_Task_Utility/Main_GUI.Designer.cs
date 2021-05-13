@@ -66,7 +66,7 @@
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(164, 26);
-            this.label2.TabIndex = 2;
+            this.label2.TabIndex = 8;
             this.label2.Text = "Product Name";
             // 
             // label3
@@ -88,7 +88,7 @@
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(133, 26);
-            this.label4.TabIndex = 4;
+            this.label4.TabIndex = 9;
             this.label4.Text = "Install Date";
             // 
             // label5
@@ -119,7 +119,7 @@
             this.textBox_install_date.Margin = new System.Windows.Forms.Padding(2);
             this.textBox_install_date.Name = "textBox_install_date";
             this.textBox_install_date.Size = new System.Drawing.Size(353, 20);
-            this.textBox_install_date.TabIndex = 7;
+            this.textBox_install_date.TabIndex = 3;
             // 
             // textBox_serial_number
             // 
@@ -127,7 +127,7 @@
             this.textBox_serial_number.Margin = new System.Windows.Forms.Padding(2);
             this.textBox_serial_number.Name = "textBox_serial_number";
             this.textBox_serial_number.Size = new System.Drawing.Size(353, 20);
-            this.textBox_serial_number.TabIndex = 8;
+            this.textBox_serial_number.TabIndex = 5;
             // 
             // textBox_reference_name
             // 
@@ -135,7 +135,7 @@
             this.textBox_reference_name.Margin = new System.Windows.Forms.Padding(2);
             this.textBox_reference_name.Name = "textBox_reference_name";
             this.textBox_reference_name.Size = new System.Drawing.Size(353, 20);
-            this.textBox_reference_name.TabIndex = 9;
+            this.textBox_reference_name.TabIndex = 6;
             // 
             // textBox_Company_details
             // 
@@ -143,7 +143,7 @@
             this.textBox_Company_details.Margin = new System.Windows.Forms.Padding(2);
             this.textBox_Company_details.Name = "textBox_Company_details";
             this.textBox_Company_details.Size = new System.Drawing.Size(353, 20);
-            this.textBox_Company_details.TabIndex = 11;
+            this.textBox_Company_details.TabIndex = 1;
             // 
             // textBox_Product_name
             // 
@@ -151,7 +151,7 @@
             this.textBox_Product_name.Margin = new System.Windows.Forms.Padding(2);
             this.textBox_Product_name.Name = "textBox_Product_name";
             this.textBox_Product_name.Size = new System.Drawing.Size(353, 20);
-            this.textBox_Product_name.TabIndex = 12;
+            this.textBox_Product_name.TabIndex = 0;
             // 
             // dataGridView_products
             // 
@@ -175,7 +175,7 @@
             this.button_search.Margin = new System.Windows.Forms.Padding(2);
             this.button_search.Name = "button_search";
             this.button_search.Size = new System.Drawing.Size(130, 51);
-            this.button_search.TabIndex = 14;
+            this.button_search.TabIndex = 7;
             this.button_search.Text = "Search";
             this.button_search.UseVisualStyleBackColor = false;
             this.button_search.Click += new System.EventHandler(this.button_search_Click);
@@ -188,7 +188,7 @@
             this.button_update.Margin = new System.Windows.Forms.Padding(2);
             this.button_update.Name = "button_update";
             this.button_update.Size = new System.Drawing.Size(130, 51);
-            this.button_update.TabIndex = 15;
+            this.button_update.TabIndex = 8;
             this.button_update.Text = "Update";
             this.button_update.UseVisualStyleBackColor = false;
             this.button_update.Click += new System.EventHandler(this.button_update_Click);
@@ -201,7 +201,7 @@
             this.button_new.Margin = new System.Windows.Forms.Padding(2);
             this.button_new.Name = "button_new";
             this.button_new.Size = new System.Drawing.Size(130, 51);
-            this.button_new.TabIndex = 16;
+            this.button_new.TabIndex = 9;
             this.button_new.Text = "New";
             this.button_new.UseVisualStyleBackColor = false;
             this.button_new.Click += new System.EventHandler(this.button_new_Click);
@@ -214,7 +214,7 @@
             this.button_delete.Margin = new System.Windows.Forms.Padding(2);
             this.button_delete.Name = "button_delete";
             this.button_delete.Size = new System.Drawing.Size(130, 51);
-            this.button_delete.TabIndex = 17;
+            this.button_delete.TabIndex = 10;
             this.button_delete.Text = "Delete";
             this.button_delete.UseVisualStyleBackColor = false;
             this.button_delete.Click += new System.EventHandler(this.button_delete_Click);
@@ -227,7 +227,7 @@
             this.button_Config.Margin = new System.Windows.Forms.Padding(2);
             this.button_Config.Name = "button_Config";
             this.button_Config.Size = new System.Drawing.Size(130, 51);
-            this.button_Config.TabIndex = 18;
+            this.button_Config.TabIndex = 11;
             this.button_Config.Text = "Config";
             this.button_Config.UseVisualStyleBackColor = false;
             this.button_Config.Click += new System.EventHandler(this.button_Config_Click);
@@ -240,7 +240,7 @@
             this.button_import.Margin = new System.Windows.Forms.Padding(2);
             this.button_import.Name = "button_import";
             this.button_import.Size = new System.Drawing.Size(380, 51);
-            this.button_import.TabIndex = 19;
+            this.button_import.TabIndex = 14;
             this.button_import.Text = "Import CSV";
             this.button_import.UseVisualStyleBackColor = false;
             this.button_import.Click += new System.EventHandler(this.button_import_Click);
@@ -253,7 +253,7 @@
             this.button_export.Margin = new System.Windows.Forms.Padding(2);
             this.button_export.Name = "button_export";
             this.button_export.Size = new System.Drawing.Size(363, 51);
-            this.button_export.TabIndex = 20;
+            this.button_export.TabIndex = 15;
             this.button_export.Text = " Export CSV";
             this.button_export.UseVisualStyleBackColor = false;
             this.button_export.Click += new System.EventHandler(this.button_export_Click);
@@ -279,7 +279,7 @@
             this.button_set_all_company.Margin = new System.Windows.Forms.Padding(2);
             this.button_set_all_company.Name = "button_set_all_company";
             this.button_set_all_company.Size = new System.Drawing.Size(102, 33);
-            this.button_set_all_company.TabIndex = 22;
+            this.button_set_all_company.TabIndex = 2;
             this.button_set_all_company.Text = "Set All";
             this.button_set_all_company.UseVisualStyleBackColor = false;
             this.button_set_all_company.Click += new System.EventHandler(this.button_set_all_company_Click);
@@ -292,7 +292,7 @@
             this.button_set_all_install_date.Margin = new System.Windows.Forms.Padding(2);
             this.button_set_all_install_date.Name = "button_set_all_install_date";
             this.button_set_all_install_date.Size = new System.Drawing.Size(102, 33);
-            this.button_set_all_install_date.TabIndex = 23;
+            this.button_set_all_install_date.TabIndex = 4;
             this.button_set_all_install_date.Text = "Set All";
             this.button_set_all_install_date.UseVisualStyleBackColor = false;
             this.button_set_all_install_date.Click += new System.EventHandler(this.button_set_all_install_date_Click);
@@ -316,7 +316,7 @@
             this.button_clear_fields.Margin = new System.Windows.Forms.Padding(2);
             this.button_clear_fields.Name = "button_clear_fields";
             this.button_clear_fields.Size = new System.Drawing.Size(169, 106);
-            this.button_clear_fields.TabIndex = 25;
+            this.button_clear_fields.TabIndex = 12;
             this.button_clear_fields.Text = "Clear Fields";
             this.button_clear_fields.UseVisualStyleBackColor = false;
             this.button_clear_fields.Click += new System.EventHandler(this.button_clear_fields_Click);
@@ -329,7 +329,7 @@
             this.button_re_load.Margin = new System.Windows.Forms.Padding(2);
             this.button_re_load.Name = "button_re_load";
             this.button_re_load.Size = new System.Drawing.Size(169, 106);
-            this.button_re_load.TabIndex = 26;
+            this.button_re_load.TabIndex = 13;
             this.button_re_load.Text = "Re-Load";
             this.button_re_load.UseVisualStyleBackColor = false;
             this.button_re_load.Click += new System.EventHandler(this.button_reset_Click);
@@ -342,7 +342,7 @@
             this.button_re_set.Margin = new System.Windows.Forms.Padding(2);
             this.button_re_set.Name = "button_re_set";
             this.button_re_set.Size = new System.Drawing.Size(169, 106);
-            this.button_re_set.TabIndex = 27;
+            this.button_re_set.TabIndex = 16;
             this.button_re_set.Text = "Re-Set";
             this.button_re_set.UseVisualStyleBackColor = false;
             this.button_re_set.Click += new System.EventHandler(this.button_re_set_Click);
@@ -365,7 +365,7 @@
             this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(169, 106);
-            this.button1.TabIndex = 29;
+            this.button1.TabIndex = 17;
             this.button1.Text = "&Exit";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
