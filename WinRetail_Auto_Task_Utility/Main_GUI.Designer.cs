@@ -151,7 +151,7 @@
             this.textBox_Product_name.Margin = new System.Windows.Forms.Padding(2);
             this.textBox_Product_name.Name = "textBox_Product_name";
             this.textBox_Product_name.Size = new System.Drawing.Size(353, 20);
-            this.textBox_Product_name.TabIndex = 0;
+            this.textBox_Product_name.TabIndex = 19;
             // 
             // dataGridView_products
             // 
@@ -266,7 +266,7 @@
             this.button_Paste_in_receipt.Margin = new System.Windows.Forms.Padding(2);
             this.button_Paste_in_receipt.Name = "button_Paste_in_receipt";
             this.button_Paste_in_receipt.Size = new System.Drawing.Size(169, 98);
-            this.button_Paste_in_receipt.TabIndex = 21;
+            this.button_Paste_in_receipt.TabIndex = 18;
             this.button_Paste_in_receipt.Text = "Paste In Receipt";
             this.button_Paste_in_receipt.UseVisualStyleBackColor = false;
             this.button_Paste_in_receipt.Click += new System.EventHandler(this.button_Paste_in_receipt_Click);

@@ -51,9 +51,9 @@ namespace WinRetail_Auto_Task_Utility
             //get company name
             for (int i = 0; i < Line_with_company_name_in_it.Count; i++)
             {
-                if (Line_with_company_name_in_it[i].ToString().Contains("Company:"))
+                if (Line_with_company_name_in_it[i].ToString().Contains("Name:"))
                 {
-                    Company_name = Line_with_company_name_in_it[i].Substring(8);
+                    Company_name = Line_with_company_name_in_it[i].Substring(8).Trim();
                 }
             }
 
@@ -94,7 +94,7 @@ namespace WinRetail_Auto_Task_Utility
                         Product_Name = Lines[i - 2].Substring(0, 30),
                         Company_Name = Company_name,
                         Install_Date = "",
-                        Serial_Number = Lines[i].Substring(16),
+                        Serial_Number = Lines[i].Substring(11).Trim(),
                         Reference_Name = ""
 
                     });

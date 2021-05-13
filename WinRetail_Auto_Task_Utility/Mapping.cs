@@ -27,7 +27,9 @@ namespace WinRetail_Auto_Task_Utility
 
         private void Mapping_Load(object sender, EventArgs e)
         {
-            string fileToOPen = @"Mapping.txt";
+            string fileToOPen =  @"Mapping.txt";
+
+            
             using (StreamReader sr = new StreamReader(fileToOPen))
             {
                 string line;
