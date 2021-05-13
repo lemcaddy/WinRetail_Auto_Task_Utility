@@ -10,8 +10,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DataModel;
-using NPOI.SS.Formula.Functions;
-using NPOI.SS.UserModel;
 using TransLog;
 
 

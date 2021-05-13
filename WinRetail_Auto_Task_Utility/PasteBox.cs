@@ -123,24 +123,67 @@ namespace WinRetail_Auto_Task_Utility
 
                         });
                     }
-
-                    if (Lines[i].ToString().Contains("  0"))
-                    {
-                        new_list.Add(Lines[i - 1] + "," + (Lines[i]));
-
-                        Item_list_123.Add(new Items_From_Receipt
-                        {
-                            Config_item_ID = "",
-                            Product_Name = Lines[i - 1].Substring(0, 20),
-                            Company_Name = Company_name,
-                            Install_Date = "",
-                            Serial_Number = "",
-                            Reference_Name = ""
-
-                        });
-
-                    }
                 }
+
+                if (Lines[i].Trim().Split(' ').Length==1  &&
+                    Lines[i].Trim().Split(' ')[0].Length>0 &&
+                    !Lines[i-1].Contains("@") && 
+                    !Lines[i+1].Contains("Serial No"))
+                {
+                    //USB KEYBOARDS                       1.00
+                    //  0000000000256
+                    //USB MOUSE                           1.50
+                    //  0000000000257
+                    //24" SCREEN                          3.00
+                    //  0000000000300
+                    //Serial No:       ZZQ1H4LNC02097
+                    //WIN 10 64 - BIT                       6.00
+                    //  0000000000594
+                    //Serial No:          QTC20201246
+                    //2 KVA UPS                           8.00
+                    //  0000000000187
+                    //Serial No:             20040004
+                    //1MTR PATCH
+                    //              6  @      1.00        6.00
+                    //  0000000000334
+                    // most likely a PLU Line
+                    // check if line above has an @ sign or
+                    // if the line below has Serial No:
+                    // if it doesn't have one of these then it is a
+                    // single item to be added
+                    // taking the description from the line above
+                    // see USB KEYBOARDS / USB MOUSE sample above
+                    Item_list_123.Add(new Items_From_Receipt
+                    {
+
+                        Config_item_ID = "",
+                        Product_Name = Lines[i - 1].Substring(0,20).Trim(),
+                        Company_Name = Company_name,
+                        Install_Date = "",
+                        Serial_Number = "",
+                        Reference_Name = ""
+
+                    });
+
+                }
+
+                //if (Lines[i].ToString().Contains("  0"))
+                //{
+                //    new_list.Add(Lines[i - 1] + "," + (Lines[i]));
+
+                //    Item_list_123.Add(new Items_From_Receipt
+                //    {
+                //        Config_item_ID = "",
+                //        Product_Name = Lines[i - 1].Substring(0, 20),
+                //        Company_Name = Company_name,
+                //        Install_Date = "",
+                //        Serial_Number = "",
+                //        Reference_Name = ""
+
+                //    });
+
+                //}
+                
 
 
             }
