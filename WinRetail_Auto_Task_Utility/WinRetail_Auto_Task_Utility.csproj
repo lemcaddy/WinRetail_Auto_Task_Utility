@@ -112,6 +112,12 @@
     <Compile Include="Mapping Form.Designer.cs">
       <DependentUpon>Mapping Form.cs</DependentUpon>
     </Compile>
+    <Compile Include="Mapping.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mapping.Designer.cs">
+      <DependentUpon>Mapping.cs</DependentUpon>
+    </Compile>
     <Compile Include="PasteBox.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -128,6 +134,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Mapping Form.resx">
       <DependentUpon>Mapping Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mapping.resx">
+      <DependentUpon>Mapping.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PasteBox.resx">
       <DependentUpon>PasteBox.cs</DependentUpon>
