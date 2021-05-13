@@ -21,8 +21,11 @@ namespace WinRetail_Auto_Task_Utility
     public partial class ATUtility : Form
     {
         BindingList<Items_From_Receipt> global_list = new BindingList<Items_From_Receipt>();
+        BindingList<Items_From_Receipt> filtered = new BindingList<Items_From_Receipt>();
         string User = "Liam Coleman";
         string current_timestamp = Timestamp();
+        bool bFiltered = false;
+
 
 
         public ATUtility()//
@@ -43,6 +46,7 @@ namespace WinRetail_Auto_Task_Utility
 
         private void button_Paste_in_receipt_Click(object sender, EventArgs e)
         {
+            bFiltered = false;
             PasteBox pasteForm = new PasteBox();
             pasteForm.ShowDialog(this);
             List<Items_From_Receipt> pasted_in = pasteForm.Item_list_123;
@@ -69,18 +73,31 @@ namespace WinRetail_Auto_Task_Utility
             { //gets a collection that contains all the rows
                 DataGridViewRow row = this.dataGridView_products.Rows[e.RowIndex];
                 //populate the textbox from specific value of the coordinates of column and row.
-                textBox_Product_name.Text = row.Cells[1].Value.ToString();
-                textBox_Company_details.Text = row.Cells[2].Value.ToString();
-                textBox_install_date.Text = row.Cells[3].Value.ToString();
-                textBox_serial_number.Text = row.Cells[4].Value.ToString();
-                textBox_reference_name.Text = row.Cells[5].Value.ToString();
+                textBox_Product_name.Text = row.Cells[2].Value.ToString();
+                textBox_Company_details.Text = row.Cells[3].Value.ToString();
+                textBox_install_date.Text = row.Cells[4].Value.ToString();
+                textBox_serial_number.Text = row.Cells[5].Value.ToString();
+                textBox_reference_name.Text = row.Cells[6].Value.ToString();
             }
         }
 
         private void button_update_Click(object sender, EventArgs e)
         {
 
-            Items_From_Receipt currob = global_list[dataGridView_products.CurrentRow.Index];
+
+            Items_From_Receipt currob;
+            if(bFiltered == true)
+            {
+                int rowindex = filtered[dataGridView_products.CurrentRow.Index].rowIndex;
+                currob = global_list[rowindex];
+            }
+            else
+            {
+
+               currob = global_list[dataGridView_products.CurrentRow.Index];
+            }
+                
+            
             currob.Product_Name = textBox_Product_name.Text;
             currob.Company_Name = textBox_Company_details.Text;
             currob.Install_Date = textBox_install_date.Text;
@@ -150,12 +167,12 @@ namespace WinRetail_Auto_Task_Utility
                 dataGridView_products.DataSource = source;
             Logwriter.writelog("#DELETE:Time,>>>>>VALUE<<<<<<");
             Logwriter.writelog("DELETE:" + current_timestamp + "," +">>>>>"+
-                dataGridView_products.CurrentRow.Cells[0].Value.ToString() + ","
-                + dataGridView_products.CurrentRow.Cells[1].Value.ToString() + ","
+                dataGridView_products.CurrentRow.Cells[1].Value.ToString() + ","
                 + dataGridView_products.CurrentRow.Cells[2].Value.ToString() + ","
                 + dataGridView_products.CurrentRow.Cells[3].Value.ToString() + ","
                 + dataGridView_products.CurrentRow.Cells[4].Value.ToString() + ","
-                + dataGridView_products.CurrentRow.Cells[5].Value.ToString());
+                + dataGridView_products.CurrentRow.Cells[5].Value.ToString() + ","
+                + dataGridView_products.CurrentRow.Cells[6].Value.ToString());
         }
 
             private void button_set_all_install_date_Click(object sender, EventArgs e)
@@ -175,7 +192,7 @@ namespace WinRetail_Auto_Task_Utility
 
         private void button_search_Click(object sender, EventArgs e)
         {
-            List<Items_From_Receipt> filtered = new List<Items_From_Receipt>();
+             filtered = new BindingList<Items_From_Receipt>();
 
             if (string.IsNullOrEmpty(textBox_Product_name.Text.Trim())
                 && string.IsNullOrEmpty(textBox_serial_number.Text.Trim())
@@ -202,20 +219,25 @@ namespace WinRetail_Auto_Task_Utility
             Search_By_serial_Number(filtered, s1, s2, s3);
             Search_By_refernce_Name(filtered, s1, s2, s3);
 
+            bFiltered = true;
+
         }
 
-        private void Search_By_refernce_Name(List<Items_From_Receipt> filtered, bool s1, bool s2, bool s3)
+        private void Search_By_refernce_Name(BindingList<Items_From_Receipt> filtered, bool s1, bool s2, bool s3)
         {
             if (s1 == true && s2 == true && s3 == false)
             {
                 var watch = System.Diagnostics.Stopwatch.StartNew();
+                int index = 0;
                 foreach (Items_From_Receipt currOb in global_list)
                 {
 
                     if (currOb.Reference_Name.Contains(textBox_reference_name.Text))
                     {
+                        currOb.rowIndex = index;
                         filtered.Add(currOb);
                     }
+                    index++;
 
                 }
                 watch.Stop();
@@ -234,22 +256,25 @@ namespace WinRetail_Auto_Task_Utility
             }
         }
 
-        private void Search_By_serial_Number(List<Items_From_Receipt> filtered, bool s1, bool s2, bool s3)
+        private void Search_By_serial_Number(BindingList<Items_From_Receipt> filtered, bool s1, bool s2, bool s3)
         {
             if (s1 == true && s2 == false && s3 == true)
             {
                 var watch = System.Diagnostics.Stopwatch.StartNew();
+                int index = 0;
                 foreach (Items_From_Receipt currOb in global_list)
                 {
 
                     if (currOb.Serial_Number.Contains(textBox_serial_number.Text))
                     {
+                        currOb.rowIndex = index;
                         filtered.Add(currOb);
                     }
+                    index++;
 
                 }
                 watch.Stop();
-
+                
                 var elapsedMs = watch.ElapsedMilliseconds;
                 string searchTerm = textBox_serial_number.Text;
                 int count = filtered.Count();
@@ -266,19 +291,22 @@ namespace WinRetail_Auto_Task_Utility
             }
         }
 
-        private void Search_by_Product_name(List<Items_From_Receipt> filtered, bool s1, bool s2, bool s3)
+        private void Search_by_Product_name(BindingList<Items_From_Receipt> filtered, bool s1, bool s2, bool s3)
         {
             if (s1 == false && s2 == true && s3 == true)
             {
                 var watch = System.Diagnostics.Stopwatch.StartNew();
+                int index = 0;
                 foreach (Items_From_Receipt currOb in global_list)
                 {
 
                     if (currOb.Product_Name.Contains(textBox_Product_name.Text))
                     {
+                        currOb.rowIndex = index;
                         filtered.Add(currOb);
                     }
 
+                    index++;
                 }
                 watch.Stop();
 
@@ -312,7 +340,7 @@ namespace WinRetail_Auto_Task_Utility
 
         private void button_reset_Click(object sender, EventArgs e)
         {
-
+            bFiltered = false;
             //MessageBox.Show("Warning!!! Reset will clear all work done");
             textBox_Product_name.Clear();
             textBox_Company_details.Clear();
@@ -333,6 +361,7 @@ namespace WinRetail_Auto_Task_Utility
 
         private void button_re_set_Click(object sender, EventArgs e)
         {
+            bFiltered = false;
             MessageBox.Show("Warning!!! Reset will clear all work done");
             textBox_Product_name.Clear();
             textBox_Company_details.Clear();

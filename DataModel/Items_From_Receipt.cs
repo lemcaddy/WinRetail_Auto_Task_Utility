@@ -5,6 +5,7 @@ namespace DataModel
 {
     public class Items_From_Receipt
     {
+        public int rowIndex { get; set; }
         public string Config_item_ID { get; set; }
         public string Product_Name { get; set; }
         public string Company_Name { get; set; }
