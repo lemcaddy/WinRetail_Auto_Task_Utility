@@ -504,5 +504,11 @@ namespace WinRetail_Auto_Task_Utility
             Logwriter.writelog("LOGOUT:" + User + "," + current_timestamp);
 
         }
+
+        private void button_Config_Click(object sender, EventArgs e)
+        {
+            Mapping form = new Mapping();
+            form.ShowDialog(this);
+        }
     }
 }

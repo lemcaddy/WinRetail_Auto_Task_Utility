@@ -230,6 +230,7 @@
             this.button_Config.TabIndex = 18;
             this.button_Config.Text = "Config";
             this.button_Config.UseVisualStyleBackColor = false;
+            this.button_Config.Click += new System.EventHandler(this.button_Config_Click);
             // 
             // button_import
             // 
