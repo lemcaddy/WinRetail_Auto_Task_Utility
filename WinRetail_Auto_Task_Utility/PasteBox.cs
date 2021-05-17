@@ -82,6 +82,7 @@ namespace WinRetail_Auto_Task_Utility
 
         private void Handle_finding_Patterns_in_the_text(List<string> Lines, List<string> new_list)
         {
+            Lines = removeblanks(Lines);
             for (int i = 0; i < Lines.Count; i++)
 
             {
@@ -187,6 +188,21 @@ namespace WinRetail_Auto_Task_Utility
 
 
             }
+        }
+
+        private List<string> removeblanks(List<string> lines)
+        {
+            List<string> ret_list = new List<string>();
+
+            foreach(string line in lines)
+            {
+                if (line.Trim().Length>0)
+                {
+                    ret_list.Add(line);
+                }
+            }
+            ret_list.Add("");
+            return ret_list;
         }
 
         private void handle_pastbox_contents_skip_unwanted_text()
