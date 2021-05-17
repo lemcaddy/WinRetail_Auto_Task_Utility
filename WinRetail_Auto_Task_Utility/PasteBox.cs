@@ -125,6 +125,10 @@ namespace WinRetail_Auto_Task_Utility
                         });
                     }
                 }
+                if(Lines[i].Contains("--------------"))
+                {
+                    break;
+                }
 
                 if (Lines[i].Trim().Split(' ').Length==1  &&
                     Lines[i].Trim().Split(' ')[0].Length>0 &&
@@ -134,7 +138,7 @@ namespace WinRetail_Auto_Task_Utility
                     //USB KEYBOARDS                       1.00
                     //  0000000000256
                     //USB MOUSE                           1.50
-                    //  0000000000257
+                    //  0000000000257////
                     //24" SCREEN                          3.00
                     //  0000000000300
                     //Serial No:       ZZQ1H4LNC02097
@@ -198,6 +202,10 @@ namespace WinRetail_Auto_Task_Utility
             {
                 if (line.Trim().Length>0)
                 {
+                    if(line.Contains("   --------------"))
+                    {
+                        ret_list.Add("");
+                    }
                     ret_list.Add(line);
                 }
             }
