@@ -77,6 +77,7 @@ namespace WinRetail_Auto_Task_Utility
 
             }
 
+            MessageBox.Show("Pasted Items Were Sucessfully Imported!!!");
             this.Close();
         }
 
