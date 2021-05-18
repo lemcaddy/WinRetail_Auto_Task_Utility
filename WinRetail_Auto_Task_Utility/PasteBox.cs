@@ -77,7 +77,9 @@ namespace WinRetail_Auto_Task_Utility
 
             }
 
-            MessageBox.Show("Pasted Items Were Sucessfully Imported!!!");
+            
+
+            MessageBox.Show("Successfully Imported", " Receipt Import Status", MessageBoxButtons.OK, MessageBoxIcon.Information);
             this.Close();
         }
 
@@ -246,6 +248,8 @@ namespace WinRetail_Auto_Task_Utility
 
         private void button_exit_Click(object sender, EventArgs e)
         {
+            MessageBox.Show("Have You Finished Your Work?\nYou Sure you Want to Exit?", "Warning",
+            MessageBoxButtons.OK, MessageBoxIcon.Error);
             this.Close();
            
         }
