@@ -98,6 +98,8 @@ namespace WinRetail_Auto_Task_Utility
 
         private void button_del_Click(object sender, EventArgs e)
         {
+            MessageBox.Show("Are You Sure You Wish To Delete This Record?", "Warning",
+            MessageBoxButtons.OK, MessageBoxIcon.Error);
             List_of_what_is_Mapped.RemoveAt(dataGridView1.CurrentRow.Index);
             dataGridView1.DataSource = null;
             var source = List_of_what_is_Mapped;
@@ -115,6 +117,18 @@ namespace WinRetail_Auto_Task_Utility
                         );
                 }
             }
+            dataGridView1.DataSource = null;////nblIAM RESET DATASOUCE!!!!!!!
+            var source2 = List_of_what_is_Mapped;
+            dataGridView1.DataSource = source2;
+            DataGridViewColumn column = dataGridView1.Columns[0];
+            column.Width = 430;
+            DataGridViewColumn columns = dataGridView1.Columns[1];
+            columns.Width = 430;
+
+            dataGridView1.FirstDisplayedScrollingRowIndex = dataGridView1.RowCount - 1;
+            dataGridView1.Rows[dataGridView1.RowCount - 1].Selected = true;
+            textBox_Receipt_name.Text = null;
+            textBox_AT_name.Text = null;
 
             //dataGridView1.DataSource = null;
             //var source1 = List_of_what_is_Mapped;
