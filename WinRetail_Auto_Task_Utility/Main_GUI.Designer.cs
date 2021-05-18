@@ -55,6 +55,9 @@
             this.button_re_set = new System.Windows.Forms.Button();
             this.label_current_file = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.button_setall_warrenty = new System.Windows.Forms.Button();
+            this.textBox_warrrenty = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_products)).BeginInit();
             this.SuspendLayout();
             // 
@@ -73,7 +76,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(97, 89);
+            this.label3.Location = new System.Drawing.Point(95, 67);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(113, 26);
@@ -84,7 +87,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(97, 145);
+            this.label4.Location = new System.Drawing.Point(95, 116);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(133, 26);
@@ -115,7 +118,7 @@
             // 
             // textBox_install_date
             // 
-            this.textBox_install_date.Location = new System.Drawing.Point(322, 145);
+            this.textBox_install_date.Location = new System.Drawing.Point(322, 122);
             this.textBox_install_date.Margin = new System.Windows.Forms.Padding(2);
             this.textBox_install_date.Name = "textBox_install_date";
             this.textBox_install_date.Size = new System.Drawing.Size(353, 20);
@@ -139,7 +142,7 @@
             // 
             // textBox_Company_details
             // 
-            this.textBox_Company_details.Location = new System.Drawing.Point(322, 89);
+            this.textBox_Company_details.Location = new System.Drawing.Point(321, 73);
             this.textBox_Company_details.Margin = new System.Windows.Forms.Padding(2);
             this.textBox_Company_details.Name = "textBox_Company_details";
             this.textBox_Company_details.Size = new System.Drawing.Size(353, 20);
@@ -275,7 +278,7 @@
             // 
             this.button_set_all_company.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.button_set_all_company.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_set_all_company.Location = new System.Drawing.Point(679, 89);
+            this.button_set_all_company.Location = new System.Drawing.Point(679, 73);
             this.button_set_all_company.Margin = new System.Windows.Forms.Padding(2);
             this.button_set_all_company.Name = "button_set_all_company";
             this.button_set_all_company.Size = new System.Drawing.Size(102, 33);
@@ -288,7 +291,7 @@
             // 
             this.button_set_all_install_date.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.button_set_all_install_date.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_set_all_install_date.Location = new System.Drawing.Point(679, 145);
+            this.button_set_all_install_date.Location = new System.Drawing.Point(679, 122);
             this.button_set_all_install_date.Margin = new System.Windows.Forms.Padding(2);
             this.button_set_all_install_date.Name = "button_set_all_install_date";
             this.button_set_all_install_date.Size = new System.Drawing.Size(102, 33);
@@ -370,12 +373,46 @@
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(95, 160);
+            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(222, 26);
+            this.label7.TabIndex = 29;
+            this.label7.Text = "Warranty Expiration";
+            // 
+            // button_setall_warrenty
+            // 
+            this.button_setall_warrenty.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.button_setall_warrenty.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_setall_warrenty.Location = new System.Drawing.Point(678, 167);
+            this.button_setall_warrenty.Margin = new System.Windows.Forms.Padding(2);
+            this.button_setall_warrenty.Name = "button_setall_warrenty";
+            this.button_setall_warrenty.Size = new System.Drawing.Size(102, 33);
+            this.button_setall_warrenty.TabIndex = 31;
+            this.button_setall_warrenty.Text = "Set All";
+            this.button_setall_warrenty.UseVisualStyleBackColor = false;
+            // 
+            // textBox_warrrenty
+            // 
+            this.textBox_warrrenty.Location = new System.Drawing.Point(321, 167);
+            this.textBox_warrrenty.Margin = new System.Windows.Forms.Padding(2);
+            this.textBox_warrrenty.Name = "textBox_warrrenty";
+            this.textBox_warrrenty.Size = new System.Drawing.Size(353, 20);
+            this.textBox_warrrenty.TabIndex = 30;
+            // 
             // ATUtility
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1138, 859);
+            this.Controls.Add(this.button_setall_warrenty);
+            this.Controls.Add(this.textBox_warrrenty);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label_current_file);
             this.Controls.Add(this.button_re_set);
@@ -441,6 +478,9 @@
         private System.Windows.Forms.Button button_re_set;
         private System.Windows.Forms.Label label_current_file;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button button_setall_warrenty;
+        private System.Windows.Forms.TextBox textBox_warrrenty;
     }
 }
 

@@ -10,6 +10,7 @@ namespace DataModel
         public string Product_Name { get; set; }
         public string Company_Name { get; set; }
         public string Install_Date { get; set; }
+        public string Warranty_Expiration { get; set; }
         public string Serial_Number { get; set; }
         public string Reference_Name { get; set; }
 
@@ -38,6 +39,7 @@ namespace DataModel
             Product_Name = "";
             Company_Name = "";
             Install_Date = "";
+            Warranty_Expiration = "";
             Serial_Number = "";
             Reference_Name = "";
             Pasted_in = new List<Items_From_Receipt>();

@@ -76,8 +76,9 @@ namespace WinRetail_Auto_Task_Utility
                 textBox_Product_name.Text = row.Cells[2].Value.ToString();
                 textBox_Company_details.Text = row.Cells[3].Value.ToString();
                 textBox_install_date.Text = row.Cells[4].Value.ToString();
-                textBox_serial_number.Text = row.Cells[5].Value.ToString();
-                textBox_reference_name.Text = row.Cells[6].Value.ToString();
+                textBox_warrrenty.Text = row.Cells[5].Value.ToString();
+                textBox_serial_number.Text = row.Cells[6].Value.ToString();
+                textBox_reference_name.Text = row.Cells[7].Value.ToString();
             }
         }
 
@@ -101,6 +102,7 @@ namespace WinRetail_Auto_Task_Utility
             currob.Product_Name = textBox_Product_name.Text;
             currob.Company_Name = textBox_Company_details.Text;
             currob.Install_Date = textBox_install_date.Text;
+            currob.Warranty_Expiration = textBox_warrrenty.Text;
             currob.Serial_Number = textBox_serial_number.Text;
             currob.Reference_Name = textBox_reference_name.Text;
 
@@ -109,7 +111,7 @@ namespace WinRetail_Auto_Task_Utility
             dataGridView_products.DataSource = source;
             Logwriter.writelog("#UPDATE:Time,>>>>>Item Updated<<<<<");
             Logwriter.writelog("UPDATE:" + current_timestamp + ","+">>>>>" + currob.Config_item_ID + ","+
-                currob.Product_Name + "," +currob.Company_Name + "," + currob.Install_Date
+                currob.Product_Name + "," +currob.Company_Name + "," + currob.Install_Date + ","+ currob.Warranty_Expiration
                 + "," +currob.Serial_Number + "," + currob.Reference_Name+"<<<<<");
 
         }
@@ -141,6 +143,7 @@ namespace WinRetail_Auto_Task_Utility
                 Product_Name = textBox_Product_name.Text,
                 Company_Name = textBox_Company_details.Text,
                 Install_Date = textBox_install_date.Text,
+                Warranty_Expiration = textBox_warrrenty.Text,
                 Serial_Number = textBox_serial_number.Text,
                 Reference_Name = textBox_reference_name.Text
 
@@ -155,6 +158,7 @@ namespace WinRetail_Auto_Task_Utility
             Logwriter.writelog("#NEW:"+current_timestamp+">>>>>"+ textBox_Product_name.Text+","+
                 textBox_Company_details.Text + "," +
                 textBox_install_date.Text + "," +
+                textBox_warrrenty.Text + "," +
                 textBox_serial_number.Text + "," +
                 textBox_reference_name.Text+"<<<<<<");
         }
@@ -172,7 +176,8 @@ namespace WinRetail_Auto_Task_Utility
                 + dataGridView_products.CurrentRow.Cells[3].Value.ToString() + ","
                 + dataGridView_products.CurrentRow.Cells[4].Value.ToString() + ","
                 + dataGridView_products.CurrentRow.Cells[5].Value.ToString() + ","
-                + dataGridView_products.CurrentRow.Cells[6].Value.ToString());
+                 + dataGridView_products.CurrentRow.Cells[6].Value.ToString() + ","
+                + dataGridView_products.CurrentRow.Cells[7].Value.ToString());
         }
 
             private void button_set_all_install_date_Click(object sender, EventArgs e)
@@ -329,6 +334,7 @@ namespace WinRetail_Auto_Task_Utility
             textBox_Product_name.Clear();
             textBox_Company_details.Clear();
             textBox_install_date.Clear();
+            textBox_warrrenty.Clear();
             textBox_serial_number.Clear();
             textBox_reference_name.Clear();
             Logwriter.writelog("#CLEAR FIELDS:Time");
@@ -345,6 +351,7 @@ namespace WinRetail_Auto_Task_Utility
             textBox_Product_name.Clear();
             textBox_Company_details.Clear();
             textBox_install_date.Clear();
+            textBox_warrrenty.Clear();
             textBox_serial_number.Clear();
             textBox_reference_name.Clear();
 
@@ -366,6 +373,7 @@ namespace WinRetail_Auto_Task_Utility
             textBox_Product_name.Clear();
             textBox_Company_details.Clear();
             textBox_install_date.Clear();
+            textBox_warrrenty.Clear();
             textBox_serial_number.Clear();
             textBox_reference_name.Clear();
 
@@ -434,7 +442,7 @@ namespace WinRetail_Auto_Task_Utility
                             + ","                   //Configuration Item Type  BLANK
 
                             + "\"" + item.Install_Date + "\"" + ","
-                            + ","                    //Warranty Expiration  BALNK
+                             + "\"" + item.Warranty_Expiration + "\"" + ","                
 
                             + "\"" + item.Serial_Number + "\"" + ","
                             + ","                    //Reference Number BALNK
@@ -465,6 +473,7 @@ namespace WinRetail_Auto_Task_Utility
                         + currOb.Product_Name.ToString() + ","
                         + currOb.Company_Name.ToString() + ","
                         + currOb.Install_Date.ToString() + ","
+                        + currOb.Warranty_Expiration.ToString() + ","
                         + currOb.Serial_Number.ToString() + ","
                         + currOb.Reference_Name.ToString()
                        );
@@ -499,6 +508,7 @@ namespace WinRetail_Auto_Task_Utility
                                 Product_Name = wholeLine[1],
                                 Company_Name = wholeLine[2],
                                 Install_Date = wholeLine[5],
+                                Warranty_Expiration =wholeLine[6],
                                 Serial_Number = wholeLine[7],
                                 Reference_Name = wholeLine[9]
 
