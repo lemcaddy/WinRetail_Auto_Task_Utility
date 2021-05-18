@@ -27,7 +27,7 @@ namespace WinRetail_Auto_Task_Utility
 
         private void Mapping_Load(object sender, EventArgs e)
         {
-            string fileToOPen =  @"Mapping.txt";
+            string fileToOPen =  @"Mapping_dgv_Entries.txt";
 
             
             using (StreamReader sr = new StreamReader(fileToOPen))
@@ -73,16 +73,20 @@ namespace WinRetail_Auto_Task_Utility
             dataGridView1.DataSource = null;////nblIAM RESET DATASOUCE!!!!!!!
             var source = List_of_what_is_Mapped;
             dataGridView1.DataSource = source;
+            DataGridViewColumn column = dataGridView1.Columns[0];
+            column.Width = 430;
+            DataGridViewColumn columns = dataGridView1.Columns[1];
+            columns.Width = 430;
 
-          dataGridView1.FirstDisplayedScrollingRowIndex = dataGridView1.RowCount - 1;
+            dataGridView1.FirstDisplayedScrollingRowIndex = dataGridView1.RowCount - 1;
             dataGridView1.Rows[dataGridView1.RowCount - 1].Selected = true;
 
 
-            using (StreamWriter sw = new StreamWriter(@"Mapping.txt"))
+            using (StreamWriter sw = new StreamWriter(@"Mapping_dgv_Entries.txt"))
             {
 
-            
-            
+
+
                 foreach (Mapped item in List_of_what_is_Mapped)
                 {
                     sw.WriteLine(item.Receipt_Name +
@@ -99,7 +103,7 @@ namespace WinRetail_Auto_Task_Utility
             var source = List_of_what_is_Mapped;
             dataGridView1.DataSource = source;
 
-            using (StreamWriter sw = new StreamWriter(@"Mapping.txt"))
+            using (StreamWriter sw = new StreamWriter(@"Mapping_dgv_Entries.txt"))
             {
 
 
@@ -126,6 +130,18 @@ namespace WinRetail_Auto_Task_Utility
 
         private void button_ok_Click(object sender, EventArgs e)
         {
+            using (StreamWriter sw = new StreamWriter(@"Mapping_dgv_Entries.txt"))
+            {
+
+
+
+                foreach (Mapped item in List_of_what_is_Mapped)
+                {
+                    sw.WriteLine(item.Receipt_Name +
+                        "," + item.AutoTask_Name
+                        );
+                }
+            }
             this.Close();
         }
     }
