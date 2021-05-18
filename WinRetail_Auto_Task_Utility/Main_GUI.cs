@@ -35,6 +35,8 @@ namespace WinRetail_Auto_Task_Utility
         {
             Logwriter.writelog("#LOGIN:, User,Time");
             Logwriter.writelog("LOGIN:" + User+","+ current_timestamp);
+
+            dataGridView_products.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
         }
 
         private static string Timestamp()

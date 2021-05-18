@@ -41,8 +41,8 @@ namespace WinRetail_Auto_Task_Utility
                     {
                         List_of_what_is_Mapped.Add(new Mapped()
                         {
-                            winreatail_name = wholeLine[0],
-                            autoTask_name = wholeLine[1]
+                            Receipt_Name = wholeLine[0],
+                            AutoTask_Name = wholeLine[1]
 
                         });
 
@@ -54,14 +54,19 @@ namespace WinRetail_Auto_Task_Utility
             dataGridView1.DataSource = null;
             var source = List_of_what_is_Mapped;
             dataGridView1.DataSource = source;
+            //dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            DataGridViewColumn column = dataGridView1.Columns[0];
+            column.Width = 430;
+            DataGridViewColumn columns = dataGridView1.Columns[1];
+            columns.Width = 430;
         }
 
         private void button_New_Click(object sender, EventArgs e)
         {
             List_of_what_is_Mapped.Add(new Mapped
             {
-                winreatail_name= textBox_Receipt_name.Text,
-                autoTask_name= textBox_AT_name.Text
+                Receipt_Name= textBox_Receipt_name.Text,
+                AutoTask_Name= textBox_AT_name.Text
               
 
             });
@@ -80,8 +85,8 @@ namespace WinRetail_Auto_Task_Utility
             
                 foreach (Mapped item in List_of_what_is_Mapped)
                 {
-                    sw.WriteLine(item.winreatail_name +
-                        "," + item.autoTask_name
+                    sw.WriteLine(item.Receipt_Name +
+                        "," + item.AutoTask_Name
                         );
                 }
             }
@@ -101,8 +106,8 @@ namespace WinRetail_Auto_Task_Utility
 
                 foreach (Mapped item in List_of_what_is_Mapped)
                 {
-                    sw.WriteLine(item.winreatail_name +
-                        "," + item.autoTask_name
+                    sw.WriteLine(item.Receipt_Name +
+                        "," + item.AutoTask_Name
                         );
                 }
             }
@@ -110,6 +115,18 @@ namespace WinRetail_Auto_Task_Utility
             //dataGridView1.DataSource = null;
             //var source1 = List_of_what_is_Mapped;
             //dataGridView1.DataSource = source1;
+        }
+
+        private void button_Exit_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Have You Finished Mapping?\nYou Sure you Want to Exit?", "Warning",
+            MessageBoxButtons.OK, MessageBoxIcon.Error);
+            this.Close();
+        }
+
+        private void button_ok_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

@@ -155,6 +155,7 @@
             this.button_ok.TabIndex = 11;
             this.button_ok.Text = "&Ok";
             this.button_ok.UseVisualStyleBackColor = false;
+            this.button_ok.Click += new System.EventHandler(this.button_ok_Click);
             // 
             // button_Exit
             // 
@@ -166,6 +167,7 @@
             this.button_Exit.TabIndex = 12;
             this.button_Exit.Text = "&Exit";
             this.button_Exit.UseVisualStyleBackColor = false;
+            this.button_Exit.Click += new System.EventHandler(this.button_Exit_Click);
             // 
             // label7
             // 

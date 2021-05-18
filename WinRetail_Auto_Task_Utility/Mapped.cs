@@ -3,7 +3,7 @@
     internal class Mapped
     {
 
-        public string winreatail_name { get; set; }
-        public string autoTask_name { get; set; }
+        public string Receipt_Name { get; set; }
+        public string AutoTask_Name { get; set; }
     }
 }
