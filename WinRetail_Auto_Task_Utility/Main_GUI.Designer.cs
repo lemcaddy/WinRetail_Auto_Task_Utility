@@ -126,6 +126,7 @@
             this.textBox_install_date.Name = "textBox_install_date";
             this.textBox_install_date.Size = new System.Drawing.Size(353, 20);
             this.textBox_install_date.TabIndex = 3;
+            this.textBox_install_date.TextChanged += new System.EventHandler(this.textBox_install_date_TextChanged);
             this.textBox_install_date.Validating += new System.ComponentModel.CancelEventHandler(this.textBox_install_date_Validating);
             // 
             // textBox_serial_number

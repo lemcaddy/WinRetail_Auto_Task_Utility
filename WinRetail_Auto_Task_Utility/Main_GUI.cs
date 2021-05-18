@@ -376,6 +376,7 @@ namespace WinRetail_Auto_Task_Utility
             textBox_warrrenty.Clear();
             textBox_serial_number.Clear();
             textBox_reference_name.Clear();
+            errorProvider_install_date.Clear();
 
             dataGridView_products.DataSource = null;
             global_list = new BindingList<Items_From_Receipt>();
@@ -388,7 +389,7 @@ namespace WinRetail_Auto_Task_Utility
         {
             if (ValidateChildren(ValidationConstraints.Enabled))
             {
-                MessageBox.Show(textBox_install_date.Text, "DO NOT LEAVE BLANK!!!!");
+                MessageBox.Show(textBox_install_date.Text, " Install Date Update Successful");
             }
 
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
@@ -575,13 +576,18 @@ namespace WinRetail_Auto_Task_Utility
             {
                 e.Cancel = true;
                 textBox_install_date.Focus();
-                errorProvider_install_date.SetError(textBox_install_date, "Name should not be left blank!");
+                errorProvider_install_date.SetError(textBox_install_date, "Install date should not be left blank!");
             }
             else
             {
                 e.Cancel = false;
                 errorProvider_install_date.SetError(textBox_install_date, "");
             }
+        }
+
+        private void textBox_install_date_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
