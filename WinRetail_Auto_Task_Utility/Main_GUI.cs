@@ -386,7 +386,10 @@ namespace WinRetail_Auto_Task_Utility
 
         private void button_export_Click(object sender, EventArgs e)
         {
-           
+            if (ValidateChildren(ValidationConstraints.Enabled))
+            {
+                MessageBox.Show(textBox_install_date.Text, "DO NOT LEAVE BLANK!!!!");
+            }
 
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
             saveFileDialog1.Filter = "|*.csv";
@@ -529,8 +532,9 @@ namespace WinRetail_Auto_Task_Utility
                 dataGridView_products.DataSource = source;
                 //Process.Start(@"current_working_file.csv");
             }
+           
         }
-
+        
         private void saveFileDialog1_FileOk(object sender, CancelEventArgs e)
         {
 
@@ -548,6 +552,36 @@ namespace WinRetail_Auto_Task_Utility
         {
             Mapping form = new Mapping();
             form.ShowDialog(this);
+        }
+
+        private void button_setall_warrenty_Click(object sender, EventArgs e)
+        {
+            foreach (Items_From_Receipt currrob in global_list)
+            {
+                currrob.Warranty_Expiration = textBox_warrrenty.Text;
+            }
+
+            dataGridView_products.DataSource = null;////nblIAM RESET DATASOUCE!!!!!!!
+            var source = global_list;
+            dataGridView_products.DataSource = source;
+
+            Logwriter.writelog("#SET ALL WARRANTY EXPIRATION DATE:Value ");
+            Logwriter.writelog("SET ALL WARRANTY EXPIRATION DATE:" + textBox_warrrenty.Text);
+        }
+
+        private void textBox_install_date_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(textBox_install_date.Text))
+            {
+                e.Cancel = true;
+                textBox_install_date.Focus();
+                errorProvider_install_date.SetError(textBox_install_date, "Name should not be left blank!");
+            }
+            else
+            {
+                e.Cancel = false;
+                errorProvider_install_date.SetError(textBox_install_date, "");
+            }
         }
     }
 }
