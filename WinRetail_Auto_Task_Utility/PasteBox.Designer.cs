@@ -57,7 +57,7 @@
             this.textBox_pasted_items.Multiline = true;
             this.textBox_pasted_items.Name = "textBox_pasted_items";
             this.textBox_pasted_items.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBox_pasted_items.Size = new System.Drawing.Size(376, 483);
+            this.textBox_pasted_items.Size = new System.Drawing.Size(421, 483);
             this.textBox_pasted_items.TabIndex = 1;
             this.textBox_pasted_items.TextChanged += new System.EventHandler(this.textBox_pasted_items_TextChanged);
             // 
@@ -65,7 +65,7 @@
             // 
             this.button_ok.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.button_ok.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_ok.Location = new System.Drawing.Point(496, 339);
+            this.button_ok.Location = new System.Drawing.Point(462, 339);
             this.button_ok.Margin = new System.Windows.Forms.Padding(2);
             this.button_ok.Name = "button_ok";
             this.button_ok.Size = new System.Drawing.Size(67, 110);
@@ -78,7 +78,7 @@
             // 
             this.button_exit.BackColor = System.Drawing.Color.Red;
             this.button_exit.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_exit.Location = new System.Drawing.Point(496, 712);
+            this.button_exit.Location = new System.Drawing.Point(462, 712);
             this.button_exit.Margin = new System.Windows.Forms.Padding(2);
             this.button_exit.Name = "button_exit";
             this.button_exit.Size = new System.Drawing.Size(67, 110);
@@ -91,7 +91,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(6, 24);
+            this.label2.Location = new System.Drawing.Point(6, 125);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(538, 24);
