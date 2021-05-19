@@ -376,7 +376,6 @@ namespace WinRetail_Auto_Task_Utility
             textBox_warrrenty.Clear();
             textBox_serial_number.Clear();
             textBox_reference_name.Clear();
-            errorProvider_install_date.Clear();
 
             dataGridView_products.DataSource = null;
             global_list = new BindingList<Items_From_Receipt>();
@@ -387,9 +386,30 @@ namespace WinRetail_Auto_Task_Utility
 
         private void button_export_Click(object sender, EventArgs e)
         {
-            if (ValidateChildren(ValidationConstraints.Enabled))
+            
+            foreach (Items_From_Receipt currOb in global_list)
             {
-                MessageBox.Show(textBox_install_date.Text, " Install Date Update Successful");
+                bool empty_company_name = !currOb.Company_Name.Any();
+                bool empty_Inatall_date = !currOb.Install_Date.Any();
+
+                if (empty_company_name)
+                {
+                    MessageBox.Show("Error With A Company Name Entry\n Are One or More Entries Blank?");
+                    return;
+
+                }
+                
+                if (empty_Inatall_date)
+                {
+                    MessageBox.Show("Error With An Install Date Entry\n" +
+                        "You Can Not Proceed Without an Install Date\n" +
+                        "Are One or More Entries Blank?");
+                    return;
+
+                }
+               
+
+
             }
 
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
@@ -570,20 +590,7 @@ namespace WinRetail_Auto_Task_Utility
             Logwriter.writelog("SET ALL WARRANTY EXPIRATION DATE:" + textBox_warrrenty.Text);
         }
 
-        private void textBox_install_date_Validating(object sender, CancelEventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(textBox_install_date.Text))
-            {
-                e.Cancel = true;
-                textBox_install_date.Focus();
-                errorProvider_install_date.SetError(textBox_install_date, "Install date should not be left blank!");
-            }
-            else
-            {
-                e.Cancel = false;
-                errorProvider_install_date.SetError(textBox_install_date, "");
-            }
-        }
+       
 
         private void textBox_install_date_TextChanged(object sender, EventArgs e)
         {

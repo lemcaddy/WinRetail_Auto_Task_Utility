@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -59,9 +58,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.button_setall_warrenty = new System.Windows.Forms.Button();
             this.textBox_warrrenty = new System.Windows.Forms.TextBox();
-            this.errorProvider_install_date = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_products)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider_install_date)).BeginInit();
             this.SuspendLayout();
             // 
             // label2
@@ -127,7 +124,6 @@
             this.textBox_install_date.Size = new System.Drawing.Size(353, 20);
             this.textBox_install_date.TabIndex = 3;
             this.textBox_install_date.TextChanged += new System.EventHandler(this.textBox_install_date_TextChanged);
-            this.textBox_install_date.Validating += new System.ComponentModel.CancelEventHandler(this.textBox_install_date_Validating);
             // 
             // textBox_serial_number
             // 
@@ -410,10 +406,6 @@
             this.textBox_warrrenty.Size = new System.Drawing.Size(353, 20);
             this.textBox_warrrenty.TabIndex = 30;
             // 
-            // errorProvider_install_date
-            // 
-            this.errorProvider_install_date.ContainerControl = this;
-            // 
             // ATUtility
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -455,7 +447,6 @@
             this.Text = "AutoTask_Utility";
             this.Load += new System.EventHandler(this.ATUtility_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_products)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider_install_date)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -492,7 +483,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button button_setall_warrenty;
         private System.Windows.Forms.TextBox textBox_warrrenty;
-        private System.Windows.Forms.ErrorProvider errorProvider_install_date;
     }
 }
 
