@@ -405,7 +405,7 @@ namespace WinRetail_Auto_Task_Utility
             if (saveFileDialog1.FileName != "")
             {
                 Dictionary<string, string> Mappings = new Dictionary<string, string>();
-                using (StreamReader sr = new StreamReader("Mapping.txt"))
+                using (StreamReader sr = new StreamReader(@"Mapping_dgv_Entries.txt"))
                 {
                     string line;
 
