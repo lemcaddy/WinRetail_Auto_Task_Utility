@@ -172,6 +172,7 @@ namespace WinRetail_Auto_Task_Utility
 
         private void button_Import_Click(object sender, EventArgs e)
         {
+            dataGridView1.DataSource = null;////nblIAM RESET DATASOUCE!!!!!!!
             var FD = new System.Windows.Forms.OpenFileDialog();
             if (FD.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
@@ -206,7 +207,7 @@ namespace WinRetail_Auto_Task_Utility
                     Logwriter.writelog("#MAPPING IMPORT CSV:Time,Filename,Time lapsed,Count");
                     Logwriter.writelog("MAPPING IMPORT CSV:" + current_timestamp + "," + FD.FileName + "," + elapsedMs.ToString() + "," + count.ToString());
                 }
-                dataGridView1.DataSource = null;////nblIAM RESET DATASOUCE!!!!!!!
+                //dataGridView1.DataSource = null;////nblIAM RESET DATASOUCE!!!!!!!
                 var source2 = List_of_what_is_Mapped;
                 dataGridView1.DataSource = source2;
                 DataGridViewColumn column = dataGridView1.Columns[0];

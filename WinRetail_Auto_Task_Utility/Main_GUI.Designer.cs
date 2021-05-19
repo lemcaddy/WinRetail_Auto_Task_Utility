@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ATUtility));
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -167,7 +168,7 @@
             this.dataGridView_products.RowHeadersWidth = 51;
             this.dataGridView_products.RowTemplate.Height = 24;
             this.dataGridView_products.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView_products.Size = new System.Drawing.Size(806, 343);
+            this.dataGridView_products.Size = new System.Drawing.Size(1027, 343);
             this.dataGridView_products.TabIndex = 13;
             this.dataGridView_products.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_products_CellClick);
             this.dataGridView_products.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_products_CellContentClick);
@@ -215,7 +216,7 @@
             // 
             this.button_delete.BackColor = System.Drawing.Color.Red;
             this.button_delete.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_delete.Location = new System.Drawing.Point(586, 352);
+            this.button_delete.Location = new System.Drawing.Point(594, 352);
             this.button_delete.Margin = new System.Windows.Forms.Padding(2);
             this.button_delete.Name = "button_delete";
             this.button_delete.Size = new System.Drawing.Size(130, 51);
@@ -228,7 +229,7 @@
             // 
             this.button_Config.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.button_Config.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_Config.Location = new System.Drawing.Point(776, 352);
+            this.button_Config.Location = new System.Drawing.Point(764, 352);
             this.button_Config.Margin = new System.Windows.Forms.Padding(2);
             this.button_Config.Name = "button_Config";
             this.button_Config.Size = new System.Drawing.Size(130, 51);
@@ -254,7 +255,7 @@
             // 
             this.button_export.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.button_export.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_export.Location = new System.Drawing.Point(543, 767);
+            this.button_export.Location = new System.Drawing.Point(764, 767);
             this.button_export.Margin = new System.Windows.Forms.Padding(2);
             this.button_export.Name = "button_export";
             this.button_export.Size = new System.Drawing.Size(363, 51);
@@ -267,7 +268,7 @@
             // 
             this.button_Paste_in_receipt.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.button_Paste_in_receipt.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_Paste_in_receipt.Location = new System.Drawing.Point(958, 11);
+            this.button_Paste_in_receipt.Location = new System.Drawing.Point(785, 8);
             this.button_Paste_in_receipt.Margin = new System.Windows.Forms.Padding(2);
             this.button_Paste_in_receipt.Name = "button_Paste_in_receipt";
             this.button_Paste_in_receipt.Size = new System.Drawing.Size(169, 98);
@@ -317,7 +318,7 @@
             // 
             this.button_clear_fields.BackColor = System.Drawing.SystemColors.GrayText;
             this.button_clear_fields.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_clear_fields.Location = new System.Drawing.Point(958, 122);
+            this.button_clear_fields.Location = new System.Drawing.Point(958, 8);
             this.button_clear_fields.Margin = new System.Windows.Forms.Padding(2);
             this.button_clear_fields.Name = "button_clear_fields";
             this.button_clear_fields.Size = new System.Drawing.Size(169, 106);
@@ -330,7 +331,7 @@
             // 
             this.button_re_load.BackColor = System.Drawing.Color.LightCoral;
             this.button_re_load.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_re_load.Location = new System.Drawing.Point(958, 238);
+            this.button_re_load.Location = new System.Drawing.Point(785, 116);
             this.button_re_load.Margin = new System.Windows.Forms.Padding(2);
             this.button_re_load.Name = "button_re_load";
             this.button_re_load.Size = new System.Drawing.Size(169, 106);
@@ -343,7 +344,7 @@
             // 
             this.button_re_set.BackColor = System.Drawing.Color.Red;
             this.button_re_set.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_re_set.Location = new System.Drawing.Point(958, 584);
+            this.button_re_set.Location = new System.Drawing.Point(785, 226);
             this.button_re_set.Margin = new System.Windows.Forms.Padding(2);
             this.button_re_set.Name = "button_re_set";
             this.button_re_set.Size = new System.Drawing.Size(169, 106);
@@ -366,7 +367,7 @@
             // 
             this.button1.BackColor = System.Drawing.Color.Maroon;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(958, 723);
+            this.button1.Location = new System.Drawing.Point(958, 226);
             this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(169, 106);
@@ -411,7 +412,7 @@
             // 
             this.button_log.BackColor = System.Drawing.Color.RosyBrown;
             this.button_log.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_log.Location = new System.Drawing.Point(958, 451);
+            this.button_log.Location = new System.Drawing.Point(958, 116);
             this.button_log.Margin = new System.Windows.Forms.Padding(2);
             this.button_log.Name = "button_log";
             this.button_log.Size = new System.Drawing.Size(169, 106);
@@ -425,7 +426,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(1138, 859);
+            this.ClientSize = new System.Drawing.Size(1221, 857);
             this.Controls.Add(this.button_log);
             this.Controls.Add(this.button_setall_warrenty);
             this.Controls.Add(this.textBox_warrrenty);
@@ -457,6 +458,7 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "ATUtility";
             this.Text = "AutoTask_Utility";
