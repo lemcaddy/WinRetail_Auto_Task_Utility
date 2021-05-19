@@ -58,6 +58,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.button_setall_warrenty = new System.Windows.Forms.Button();
             this.textBox_warrrenty = new System.Windows.Forms.TextBox();
+            this.button_log = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_products)).BeginInit();
             this.SuspendLayout();
             // 
@@ -406,12 +407,26 @@
             this.textBox_warrrenty.Size = new System.Drawing.Size(353, 20);
             this.textBox_warrrenty.TabIndex = 30;
             // 
+            // button_log
+            // 
+            this.button_log.BackColor = System.Drawing.Color.RosyBrown;
+            this.button_log.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_log.Location = new System.Drawing.Point(958, 451);
+            this.button_log.Margin = new System.Windows.Forms.Padding(2);
+            this.button_log.Name = "button_log";
+            this.button_log.Size = new System.Drawing.Size(169, 106);
+            this.button_log.TabIndex = 32;
+            this.button_log.Text = "Log";
+            this.button_log.UseVisualStyleBackColor = false;
+            this.button_log.Click += new System.EventHandler(this.button_log_Click);
+            // 
             // ATUtility
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1138, 859);
+            this.Controls.Add(this.button_log);
             this.Controls.Add(this.button_setall_warrenty);
             this.Controls.Add(this.textBox_warrrenty);
             this.Controls.Add(this.label7);
@@ -483,6 +498,7 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button button_setall_warrenty;
         private System.Windows.Forms.TextBox textBox_warrrenty;
+        private System.Windows.Forms.Button button_log;
     }
 }
 

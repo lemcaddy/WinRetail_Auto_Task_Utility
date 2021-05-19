@@ -250,12 +250,6 @@ namespace WinRetail_Auto_Task_Utility
                 }
 
             }
-
-
-                
-             
-
-            
         }
     }
 }

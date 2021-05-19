@@ -596,5 +596,30 @@ namespace WinRetail_Auto_Task_Utility
         {
 
         }
+
+        private void RunNotepad(string settingsFile, bool bwaitforexit = false)
+        {
+            var fileToOpen = "notepad.exe";
+            var process = new Process();
+            process.StartInfo = new ProcessStartInfo()
+            {
+                UseShellExecute = true,
+                FileName = fileToOpen,
+                Arguments = settingsFile
+            };
+
+            process.Start();
+            if (bwaitforexit)
+            {
+                process.WaitForExit();
+
+            }
+
+        }
+
+        private void button_log_Click(object sender, EventArgs e)
+        {
+            RunNotepad(Logwriter.logfile);
+        }
     }
 }
