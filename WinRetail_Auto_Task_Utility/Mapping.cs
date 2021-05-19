@@ -8,11 +8,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TransLog;
 
 namespace WinRetail_Auto_Task_Utility
 {
     public partial class Mapping : Form
     {
+        string current_timestamp = Timestamp();
+        private static string Timestamp()
+        {
+            return DateTime.Now.ToString("h:mm:ss tt");
+        }
 
         BindingList<Mapped> List_of_what_is_Mapped = new BindingList<Mapped>();
         public Mapping()
@@ -94,6 +100,8 @@ namespace WinRetail_Auto_Task_Utility
                         );
                 }
             }
+            Logwriter.writelog("#NEW MAPPING:Time,>>>>>Item Updated:Receipt Name, AT Name<<<<<");
+            Logwriter.writelog("NEW MAPPING:" + current_timestamp + "," + ">>>>>" + textBox_Receipt_name.Text +","+ textBox_AT_name.Text);
         }
 
         private void button_del_Click(object sender, EventArgs e)
@@ -130,6 +138,9 @@ namespace WinRetail_Auto_Task_Utility
             textBox_Receipt_name.Text = null;
             textBox_AT_name.Text = null;
 
+            Logwriter.writelog("#DELETE  MAPPING:Time,>>>>>Item DELETED:Receipt Name, AT Name<<<<<");
+            Logwriter.writelog("DELETE MAPPING:" + current_timestamp + "," + ">>>>>" + textBox_Receipt_name.Text + "," + textBox_AT_name.Text);
+
             //dataGridView1.DataSource = null;
             //var source1 = List_of_what_is_Mapped;
             //dataGridView1.DataSource = source1;
@@ -157,6 +168,94 @@ namespace WinRetail_Auto_Task_Utility
                 }
             }
             this.Close();
+        }
+
+        private void button_Import_Click(object sender, EventArgs e)
+        {
+            var FD = new System.Windows.Forms.OpenFileDialog();
+            if (FD.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                string fileToOpen = FD.FileName;
+                //label_current_file.Text = "File in Use: " + fileToOpen.ToString();
+
+                var watch = System.Diagnostics.Stopwatch.StartNew();
+
+                using (StreamReader sr = new StreamReader(fileToOpen))
+                {
+                    string line;
+
+                    while ((line = sr.ReadLine()) != null)
+                    {
+                        string[] wholeLine = line.Split(',');
+                        if (wholeLine.Length > 1)
+                        {
+                            List_of_what_is_Mapped.Add(new Mapped()
+                            {
+                                Receipt_Name = wholeLine[0],
+                                AutoTask_Name = wholeLine[1]
+
+                            });
+
+                        }
+
+
+                    }
+                    watch.Stop();
+                    var elapsedMs = watch.ElapsedMilliseconds;
+                    int count = List_of_what_is_Mapped.Count();
+                    Logwriter.writelog("#MAPPING IMPORT CSV:Time,Filename,Time lapsed,Count");
+                    Logwriter.writelog("MAPPING IMPORT CSV:" + current_timestamp + "," + FD.FileName + "," + elapsedMs.ToString() + "," + count.ToString());
+                }
+                dataGridView1.DataSource = null;////nblIAM RESET DATASOUCE!!!!!!!
+                var source2 = List_of_what_is_Mapped;
+                dataGridView1.DataSource = source2;
+                DataGridViewColumn column = dataGridView1.Columns[0];
+                column.Width = 430;
+                DataGridViewColumn columns = dataGridView1.Columns[1];
+                columns.Width = 430;
+
+            }
+        }
+
+        private void button_export_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog dlg = new SaveFileDialog();
+            dlg.Filter = "csv files (*.csv)|*.csv";
+            dlg.Title = "Export in CSV format";
+            dlg.CheckPathExists = true;
+            dlg.InitialDirectory = Application.StartupPath;
+            dlg.ShowDialog();
+            var watch = System.Diagnostics.Stopwatch.StartNew();
+
+            if (dlg.FileName != "")
+            {
+                using (StreamWriter sw = new StreamWriter(dlg.FileName))
+                {
+
+
+
+                    foreach (Mapped item in List_of_what_is_Mapped)
+                    {
+                        sw.WriteLine(item.Receipt_Name +
+                            "," + item.AutoTask_Name
+                            );
+                    }
+                    watch.Stop();
+                    var elapsedMs = watch.ElapsedMilliseconds;
+
+                    int count = List_of_what_is_Mapped.Count();
+
+                    Logwriter.writelog("#FILE EXPORTED:Time,Filename,Item Count,Time Elapsed");
+                    Logwriter.writelog("FILE EXPORTED:" + current_timestamp + "," + dlg.FileName + "," + count + "," + elapsedMs);
+                }
+
+            }
+
+
+                
+             
+
+            
         }
     }
 }
