@@ -170,17 +170,18 @@ namespace WinRetail_Auto_Task_Utility
             this.Close();
         }
 
+        ///////////////////////////importbutton/////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////////////
         private void button_Import_Click(object sender, EventArgs e)
         {
-            dataGridView1.DataSource = null;////nblIAM RESET DATASOUCE!!!!!!!
+            dataGridView1.DataSource = null;
+            List_of_what_is_Mapped = new BindingList<Mapped>();
+
             var FD = new System.Windows.Forms.OpenFileDialog();
             if (FD.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 string fileToOpen = FD.FileName;
-                //label_current_file.Text = "File in Use: " + fileToOpen.ToString();
-
                 var watch = System.Diagnostics.Stopwatch.StartNew();
-
                 using (StreamReader sr = new StreamReader(fileToOpen))
                 {
                     string line;
@@ -198,8 +199,6 @@ namespace WinRetail_Auto_Task_Utility
                             });
 
                         }
-
-
                     }
                     watch.Stop();
                     var elapsedMs = watch.ElapsedMilliseconds;
@@ -207,15 +206,28 @@ namespace WinRetail_Auto_Task_Utility
                     Logwriter.writelog("#MAPPING IMPORT CSV:Time,Filename,Time lapsed,Count");
                     Logwriter.writelog("MAPPING IMPORT CSV:" + current_timestamp + "," + FD.FileName + "," + elapsedMs.ToString() + "," + count.ToString());
                 }
-                //dataGridView1.DataSource = null;////nblIAM RESET DATASOUCE!!!!!!!
-                var source2 = List_of_what_is_Mapped;
-                dataGridView1.DataSource = source2;
+                var source1 = List_of_what_is_Mapped;
+                dataGridView1.DataSource = source1;
                 DataGridViewColumn column = dataGridView1.Columns[0];
                 column.Width = 430;
                 DataGridViewColumn columns = dataGridView1.Columns[1];
                 columns.Width = 430;
 
             }
+            using (StreamWriter sw = new StreamWriter(@"Mapping_dgv_Entries.txt"))
+            {
+
+
+
+                foreach (Mapped item in List_of_what_is_Mapped)
+                {
+                    sw.WriteLine(item.Receipt_Name +
+                        "," + item.AutoTask_Name
+                        );
+                }
+            }
+           
+            
         }
 
         private void button_export_Click(object sender, EventArgs e)
