@@ -60,6 +60,7 @@
             this.button_setall_warrenty = new System.Windows.Forms.Button();
             this.textBox_warrrenty = new System.Windows.Forms.TextBox();
             this.button_log = new System.Windows.Forms.Button();
+            this.button_setall_reference = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_products)).BeginInit();
             this.SuspendLayout();
             // 
@@ -421,12 +422,26 @@
             this.button_log.UseVisualStyleBackColor = false;
             this.button_log.Click += new System.EventHandler(this.button_log_Click);
             // 
+            // button_setall_reference
+            // 
+            this.button_setall_reference.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.button_setall_reference.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_setall_reference.Location = new System.Drawing.Point(679, 279);
+            this.button_setall_reference.Margin = new System.Windows.Forms.Padding(2);
+            this.button_setall_reference.Name = "button_setall_reference";
+            this.button_setall_reference.Size = new System.Drawing.Size(102, 33);
+            this.button_setall_reference.TabIndex = 33;
+            this.button_setall_reference.Text = "Set All";
+            this.button_setall_reference.UseVisualStyleBackColor = false;
+            this.button_setall_reference.Click += new System.EventHandler(this.button_setall_reference_Click);
+            // 
             // ATUtility
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1221, 857);
+            this.Controls.Add(this.button_setall_reference);
             this.Controls.Add(this.button_log);
             this.Controls.Add(this.button_setall_warrenty);
             this.Controls.Add(this.textBox_warrrenty);
@@ -501,6 +516,7 @@
         private System.Windows.Forms.Button button_setall_warrenty;
         private System.Windows.Forms.TextBox textBox_warrrenty;
         private System.Windows.Forms.Button button_log;
+        private System.Windows.Forms.Button button_setall_reference;
     }
 }
 

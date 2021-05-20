@@ -164,14 +164,14 @@ namespace WinRetail_Auto_Task_Utility
                 textBox_reference_name.Text+"<<<<<<");
         }
 
-            private void button_delete_Click(object sender, EventArgs e)
-            {
-                global_list.RemoveAt(dataGridView_products.CurrentRow.Index);
-                dataGridView_products.DataSource = null;////nblIAM RESET DATASOUCE!!!!!!!
-                var source = global_list;
-                dataGridView_products.DataSource = source;
+        private void button_delete_Click(object sender, EventArgs e)
+        {
+            global_list.RemoveAt(dataGridView_products.CurrentRow.Index);
+            dataGridView_products.DataSource = null;////nblIAM RESET DATASOUCE!!!!!!!
+            var source = global_list;
+            dataGridView_products.DataSource = source;
             Logwriter.writelog("#DELETE:Time,>>>>>VALUE:Item Updated:Product,Company,Install Date,Warranty,Serial No,Ref Name<<<<<<");
-            Logwriter.writelog("DELETE:" + current_timestamp + "," +">>>>>"+
+            Logwriter.writelog("DELETE:" + current_timestamp + "," + ">>>>>" +
                 dataGridView_products.CurrentRow.Cells[1].Value.ToString() + ","
                 + dataGridView_products.CurrentRow.Cells[2].Value.ToString() + ","
                 + dataGridView_products.CurrentRow.Cells[3].Value.ToString() + ","
@@ -623,6 +623,21 @@ namespace WinRetail_Auto_Task_Utility
         private void button_log_Click(object sender, EventArgs e)
         {
             RunNotepad(Logwriter.logfile);
+        }
+
+        private void button_setall_reference_Click(object sender, EventArgs e)
+        {
+            foreach (Items_From_Receipt currrob in global_list)
+            {
+                currrob.Reference_Name = textBox_reference_name.Text;
+            }
+
+            dataGridView_products.DataSource = null;////nblIAM RESET DATASOUCE!!!!!!!
+            var source = global_list;
+            dataGridView_products.DataSource = source;
+
+            Logwriter.writelog("#SET ALL REFERENCE NAME DATE:Date,Value ");
+            Logwriter.writelog("SET ALL REFERENCE NAME DATE:"+ current_timestamp+","+ textBox_reference_name.Text);
         }
     }
 }
