@@ -474,17 +474,19 @@ namespace WinRetail_Auto_Task_Utility
                             + "\"" + item.Reference_Name + "\"" + ",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"
                             );
                     }
+                    watch.Stop();
+                    var elapsedMs = watch.ElapsedMilliseconds;
+
+                    Write_to_current_working_file();
+                    int count = global_list.Count();
+                    Logwriter.writelog("#FILE EXPORTED:Time,Filename,Item Count,Time Elapsed");
+                    Logwriter.writelog("FILE EXPORTED:" + current_timestamp + "," + path + "," + count + "," + elapsedMs);
                 }
                
             }
-            watch.Stop();
-            var elapsedMs = watch.ElapsedMilliseconds;
+          
 
-            Write_to_current_working_file();
-            int count = global_list.Count();
-
-            Logwriter.writelog("#FILE EXPORTED:Time,Filename,Item Count,Time Elapsed");
-            Logwriter.writelog("FILE EXPORTED:"+current_timestamp+","+ path+","+ count+","+elapsedMs);
+            
         }
 
         private void Write_to_current_working_file()
