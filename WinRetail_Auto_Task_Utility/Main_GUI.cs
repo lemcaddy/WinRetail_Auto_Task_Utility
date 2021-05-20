@@ -20,7 +20,8 @@ namespace WinRetail_Auto_Task_Utility
     {
         BindingList<Items_From_Receipt> global_list = new BindingList<Items_From_Receipt>();
         BindingList<Items_From_Receipt> filtered = new BindingList<Items_From_Receipt>();
-        string User = "Noel Quinn";
+        string Name_of_user = new System.Security.Principal.WindowsPrincipal(System.Security.Principal.WindowsIdentity.GetCurrent()).Identity.Name;
+        //string User = Name_of_user;
         string current_timestamp = Timestamp();
         bool bFiltered = false;
 
@@ -34,7 +35,7 @@ namespace WinRetail_Auto_Task_Utility
         private void ATUtility_Load(object sender, EventArgs e)
         {
             Logwriter.writelog("#LOGIN:, User,Time");
-            Logwriter.writelog("LOGIN:" + User+","+ current_timestamp);
+            Logwriter.writelog("LOGIN:" + Name_of_user+","+ current_timestamp);
 
             dataGridView_products.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
         }
@@ -567,7 +568,7 @@ namespace WinRetail_Auto_Task_Utility
         {
             this.Close();
             Logwriter.writelog("#LOGOUT:User,Time");
-            Logwriter.writelog("LOGOUT:" + User + "," + current_timestamp);
+            Logwriter.writelog("LOGOUT:" + Name_of_user + "," + current_timestamp);
 
         }
 
