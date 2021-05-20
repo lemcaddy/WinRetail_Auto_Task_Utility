@@ -435,16 +435,24 @@ namespace WinRetail_Auto_Task_Utility
                         string[] wholeLine = line.Split(',');
                         if (wholeLine.Length > 1)
                         {
-                            Mappings.Add(wholeLine[0],wholeLine[1]);
-                            
-
+                            try
+                            {
+                                Mappings.Add(wholeLine[0], wholeLine[1]);
+                            }
+                            catch (ArgumentException)
+                            {
+                                //MessageBox.Show("Warning Check You Mapping Config Form\n You Have Duplicate Entries!!");
+                                MessageBox.Show("Warning: Check You Mapping Config Form.\n You May Have Duplicate Entries!!", "Mapping Config Form",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                return;
+                            }
                         }
-
 
                     }
 
 
                 }
+
 
                 using (var file = File.CreateText(path))
                 {   // next line creates AT header/////
