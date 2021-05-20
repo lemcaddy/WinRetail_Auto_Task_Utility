@@ -154,7 +154,7 @@ namespace WinRetail_Auto_Task_Utility
 
             dataGridView_products.FirstDisplayedScrollingRowIndex = dataGridView_products.RowCount - 1;
             dataGridView_products.Rows[dataGridView_products.RowCount - 1].Selected = true;
-            Logwriter.writelog("#NEW:Time,>>>>>VALUE<<<<<<");
+            Logwriter.writelog("#NEW:Time,>>>>>VALUE:Item Updated:Product,Company,Install Date,Warranty,Serial No,Ref Name<<<<<<");
             Logwriter.writelog("#NEW:"+current_timestamp+">>>>>"+ textBox_Product_name.Text+","+
                 textBox_Company_details.Text + "," +
                 textBox_install_date.Text + "," +
@@ -169,7 +169,7 @@ namespace WinRetail_Auto_Task_Utility
                 dataGridView_products.DataSource = null;////nblIAM RESET DATASOUCE!!!!!!!
                 var source = global_list;
                 dataGridView_products.DataSource = source;
-            Logwriter.writelog("#DELETE:Time,>>>>>VALUE<<<<<<");
+            Logwriter.writelog("#DELETE:Time,>>>>>VALUE:Item Updated:Product,Company,Install Date,Warranty,Serial No,Ref Name<<<<<<");
             Logwriter.writelog("DELETE:" + current_timestamp + "," +">>>>>"+
                 dataGridView_products.CurrentRow.Cells[1].Value.ToString() + ","
                 + dataGridView_products.CurrentRow.Cells[2].Value.ToString() + ","
