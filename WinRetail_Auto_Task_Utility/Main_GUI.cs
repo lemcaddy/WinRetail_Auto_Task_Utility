@@ -20,7 +20,7 @@ namespace WinRetail_Auto_Task_Utility
     {
         BindingList<Items_From_Receipt> global_list = new BindingList<Items_From_Receipt>();
         BindingList<Items_From_Receipt> filtered = new BindingList<Items_From_Receipt>();
-        string User = "Liam Coleman";
+        string User = "Noel Quinn";
         string current_timestamp = Timestamp();
         bool bFiltered = false;
 
@@ -109,7 +109,7 @@ namespace WinRetail_Auto_Task_Utility
             dataGridView_products.DataSource = null;////nblIAM RESET DATASOUCE!!!!!!!
             var source = global_list;
             dataGridView_products.DataSource = source;
-            Logwriter.writelog("#UPDATE:Time,>>>>>Item Updated<<<<<");
+            Logwriter.writelog("#UPDATE:Time,>>>>>Item Updated:Config ID,Product,Company,Install Date,Warranty,Serial No,Ref Name <<<<<");
             Logwriter.writelog("UPDATE:" + current_timestamp + ","+">>>>>" + currob.Config_item_ID + ","+
                 currob.Product_Name + "," +currob.Company_Name + "," + currob.Install_Date + ","+ currob.Warranty_Expiration
                 + "," +currob.Serial_Number + "," + currob.Reference_Name+"<<<<<");
