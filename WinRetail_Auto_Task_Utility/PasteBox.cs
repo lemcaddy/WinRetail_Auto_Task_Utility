@@ -42,7 +42,7 @@ namespace WinRetail_Auto_Task_Utility
             }
             watch1.Stop();
             var elapsedMs = watch1.ElapsedMilliseconds;
-            Logwriter.writelog("#TIME LASPE PASTED ITEMS:");
+            Logwriter.writelog("#TIME LASPE PASTED ITEMS:Time in Ms");
             Logwriter.writelog("TIME LASPE PASTED ITEMS:" + elapsedMs.ToString());
 
 
