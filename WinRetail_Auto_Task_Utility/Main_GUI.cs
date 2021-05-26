@@ -178,7 +178,7 @@ namespace WinRetail_Auto_Task_Utility
                 + dataGridView_products.CurrentRow.Cells[4].Value.ToString() + ","
                 + dataGridView_products.CurrentRow.Cells[5].Value.ToString() + ","
                  + dataGridView_products.CurrentRow.Cells[6].Value.ToString() + ","
-                + dataGridView_products.CurrentRow.Cells[7].Value.ToString());
+                + dataGridView_products.CurrentRow.Cells[7].Value.ToString()+"<<<<<");
         }
 
             private void button_set_all_install_date_Click(object sender, EventArgs e)
