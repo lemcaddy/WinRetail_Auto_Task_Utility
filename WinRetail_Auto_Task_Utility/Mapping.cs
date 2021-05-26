@@ -108,6 +108,9 @@ namespace WinRetail_Auto_Task_Utility
         {
             MessageBox.Show("Are You Sure You Wish To Delete This Record?", "Warning",
             MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            string for_del_receipt_name = dataGridView1.CurrentRow.Cells[0].Value.ToString();
+            string for_del_AT_name = dataGridView1.CurrentRow.Cells[1].Value.ToString();
             List_of_what_is_Mapped.RemoveAt(dataGridView1.CurrentRow.Index);
             dataGridView1.DataSource = null;
             var source = List_of_what_is_Mapped;
@@ -139,7 +142,7 @@ namespace WinRetail_Auto_Task_Utility
             textBox_AT_name.Text = null;
 
             Logwriter.writelog("#DELETE  MAPPING:Time,>>>>>Item DELETED:Receipt Name, AT Name<<<<<");
-            Logwriter.writelog("DELETE MAPPING:" + current_timestamp + "," + ">>>>>" + textBox_Receipt_name.Text + "," + textBox_AT_name.Text);
+            Logwriter.writelog("DELETE MAPPING:" + current_timestamp + "," + ">>>>>" + for_del_receipt_name +","+ for_del_AT_name+ "<<<<<");
 
             //dataGridView1.DataSource = null;
             //var source1 = List_of_what_is_Mapped;
@@ -263,6 +266,11 @@ namespace WinRetail_Auto_Task_Utility
                 }
 
             }
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }
