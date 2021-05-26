@@ -192,7 +192,7 @@ namespace WinRetail_Auto_Task_Utility
                 var source = global_list;
                 dataGridView_products.DataSource = source;
             Logwriter.writelog("#SET ALL INSTALL DATE:Value ");
-            Logwriter.writelog("SET ALL INSTALL DATE::" + textBox_install_date.Text);
+            Logwriter.writelog("SET ALL INSTALL DATE:" + textBox_install_date.Text);
 
         }
 
