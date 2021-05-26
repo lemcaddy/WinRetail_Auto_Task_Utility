@@ -162,7 +162,6 @@ namespace WinRetail_Auto_Task_Utility
 
         private void button_ok_Click(object sender, EventArgs e)
         {
-            //Dictionary<string, string> Mappings = new Dictionary<string, string>();
             using (StreamWriter sw = new StreamWriter(@"Mapping_dgv_Entries.txt"))
             {
 
