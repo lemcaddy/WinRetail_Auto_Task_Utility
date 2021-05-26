@@ -69,15 +69,19 @@ namespace WinRetail_Auto_Task_Utility
 
         private void button_New_Click(object sender, EventArgs e)
         {
-            List_of_what_is_Mapped.Add(new Mapped
-            {
-                Receipt_Name= textBox_Receipt_name.Text,
-                AutoTask_Name= textBox_AT_name.Text
-              
+                List_of_what_is_Mapped.Add(new Mapped
+                {
+                    Receipt_Name = textBox_Receipt_name.Text,
+                    AutoTask_Name = textBox_AT_name.Text
 
-            });
+                });
             dataGridView1.DataSource = null;////nblIAM RESET DATASOUCE!!!!!!!
             var source = List_of_what_is_Mapped;
+            bool isUnique = List_of_what_is_Mapped.Distinct().Count() == List_of_what_is_Mapped.Count();
+            if(isUnique==false)
+            {
+                MessageBox.Show("Error Duplictes");
+            }
             dataGridView1.DataSource = source;
             DataGridViewColumn column = dataGridView1.Columns[0];
             column.Width = 430;
@@ -155,6 +159,7 @@ namespace WinRetail_Auto_Task_Utility
 
         private void button_ok_Click(object sender, EventArgs e)
         {
+            //Dictionary<string, string> Mappings = new Dictionary<string, string>();
             using (StreamWriter sw = new StreamWriter(@"Mapping_dgv_Entries.txt"))
             {
 
@@ -167,7 +172,39 @@ namespace WinRetail_Auto_Task_Utility
                         );
                 }
             }
+            checkmappings();
             this.Close();
+        }
+
+        private void checkmappings()
+        {
+            Dictionary<string, string> Mappings = new Dictionary<string, string>();
+            using (StreamReader sr = new StreamReader(@"Mapping_dgv_Entries.txt"))
+            {
+                string line;
+
+                while ((line = sr.ReadLine()) != null)
+                {
+                    string[] wholeLine = line.Split(',');
+                    if (wholeLine.Length > 1)
+                    {
+                        try
+                        {
+                            Mappings.Add(wholeLine[0], wholeLine[1]);
+                        }
+                        catch (ArgumentException)
+                        {
+                            //MessageBox.Show("Warning Check You Mapping Config Form\n You Have Duplicate Entries!!");
+                            MessageBox.Show("Warning: Duplicte entry:"+wholeLine[0], "Mapping Config Form",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            
+                        }
+                    }
+
+                }
+
+
+            }
         }
 
         ///////////////////////////importbutton/////////////////////////////////////////////////
