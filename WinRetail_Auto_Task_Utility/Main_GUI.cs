@@ -34,6 +34,7 @@ namespace WinRetail_Auto_Task_Utility
         //
         private void ATUtility_Load(object sender, EventArgs e)
         {
+            this.CenterToScreen();
             Logwriter.writelog("#LOGIN:, User,Time");
             Logwriter.writelog("LOGIN:" + Name_of_user+","+ current_timestamp);
 
@@ -584,6 +585,8 @@ namespace WinRetail_Auto_Task_Utility
         {
             Mapping form = new Mapping();
             form.ShowDialog(this);
+            
+            
         }
 
         private void button_setall_warrenty_Click(object sender, EventArgs e)

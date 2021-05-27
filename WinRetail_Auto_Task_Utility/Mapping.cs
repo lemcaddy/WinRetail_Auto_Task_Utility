@@ -33,6 +33,7 @@ namespace WinRetail_Auto_Task_Utility
 
         private void Mapping_Load(object sender, EventArgs e)
         {
+            this.CenterToScreen();
             string fileToOPen =  @"Mapping_dgv_Entries.txt";
 
             
@@ -158,6 +159,7 @@ namespace WinRetail_Auto_Task_Utility
             MessageBox.Show("Have You Finished Mapping?\nYou Sure you Want to Exit?", "Warning",
             MessageBoxButtons.OK, MessageBoxIcon.Error);
             this.Close();
+            
         }
 
         private void button_ok_Click(object sender, EventArgs e)
@@ -175,6 +177,7 @@ namespace WinRetail_Auto_Task_Utility
                 }
             }
             checkmappings();
+
             this.Close();
         }
 
@@ -199,6 +202,15 @@ namespace WinRetail_Auto_Task_Utility
                             //MessageBox.Show("Warning Check You Mapping Config Form\n You Have Duplicate Entries!!");
                             MessageBox.Show("Warning: Duplicte entry:"+wholeLine[0], "Mapping Config Form",
                             MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                            Mapping form = new Mapping();
+                            
+                            form.Show();
+                            form.CenterToScreen();
+                            form.BringToFront();
+                            form.TopMost = true;
+                            form.Focus();
+                            
                             
                         }
                     }
