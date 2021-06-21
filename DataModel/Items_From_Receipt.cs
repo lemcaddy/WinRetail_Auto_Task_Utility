@@ -13,6 +13,7 @@ namespace DataModel
         public string Warranty_Expiration { get; set; }
         public string Serial_Number { get; set; }
         public string Reference_Name { get; set; }
+        public string status { get; set; }
 
         public List<Items_From_Receipt> Pasted_in = null;
         // Pattern 1 looks for three lines, keyword is "Serial Number", takes it and the previous 2 lines

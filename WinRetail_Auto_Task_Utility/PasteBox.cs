@@ -99,7 +99,8 @@ namespace WinRetail_Auto_Task_Utility
                         Company_Name = Company_name,
                         Install_Date = "",
                         Serial_Number = Lines[i].Substring(11).Trim(),
-                        Reference_Name = ""
+                        Reference_Name = "",
+                        status=""
 
                     });
                 }
@@ -123,7 +124,8 @@ namespace WinRetail_Auto_Task_Utility
                             Company_Name = Company_name,
                             Install_Date = "",
                             Serial_Number = "",
-                            Reference_Name = ""
+                            Reference_Name = "",
+                            status =""
 
                         });
                     }
@@ -169,7 +171,8 @@ namespace WinRetail_Auto_Task_Utility
                         Company_Name = Company_name,
                         Install_Date = "",
                         Serial_Number = "",
-                        Reference_Name = ""
+                        Reference_Name = "",
+                        status=""
 
                     });
 
