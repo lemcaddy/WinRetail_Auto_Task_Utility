@@ -36,10 +36,35 @@ namespace WinRetail_Auto_Task_Utility
         {
             this.CenterToScreen();
             Logwriter.writelog("#LOGIN:, User,Time");
-            Logwriter.writelog("LOGIN:" + Name_of_user+","+ current_timestamp);
+            Logwriter.writelog("LOGIN:" + Name_of_user + "," + current_timestamp);
 
             dataGridView_products.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            dataGridView_products.Refresh();
+            System.Threading.Thread.Sleep(1000);
+
+           
+
+
+
         }
+        //private void dataGridView_products_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        //{
+        //    foreach (DataGridViewRow Myrow in dataGridView_products.Rows)
+        //        if (Myrow.Cells[8].Value.ToString() == "VOIDED")
+        //        {
+        //            Myrow.DefaultCellStyle.BackColor = Color.Red;
+        //        }
+        //        else
+        //        {
+        //            Myrow.DefaultCellStyle.BackColor = Color.White;
+        //        }
+
+        //}
+
+
+
+
+
 
         private static string Timestamp()
         {
@@ -60,13 +85,18 @@ namespace WinRetail_Auto_Task_Utility
             // show the revised datagrid
             var source = global_list;
             dataGridView_products.DataSource = source;
+
+            
             var list_count = global_list.Count();
             Logwriter.writelog("#NUMBER OF ITEMS PASTED IN:,Count");
             Logwriter.writelog("NUMBER OF ITEMS PASTED IN:"+list_count.ToString());
         }
         private void dataGridView_products_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
+            //foreach (DataGridViewRow r in dataGridView_products.Rows)
+            //    if (r.Cells[8].ToString() == "VOIDED")
+            //        //if (r.Cells.Value.ToString() == "") - also trying
+            //        r.DefaultCellStyle.BackColor = Color.Red;
 
         }
         private void dataGridView_products_CellClick(object sender, DataGridViewCellEventArgs e)

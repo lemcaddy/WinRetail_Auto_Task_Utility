@@ -89,6 +89,15 @@ namespace WinRetail_Auto_Task_Utility
             for (int i = 0; i < Lines.Count; i++)
 
             {
+                ///handle void/////////
+                if(Lines[i].ToString().Contains("VOID ITEM "))
+                {
+                    i++;
+                    Item_list_123[Item_list_123.Count - 1].status = "VOIDED";
+                    
+                   
+                    //new_list.Remove(Lines[i]);
+                }
                 if (Lines[i].ToString().Contains("Serial No:"))
                 {
                     new_list.Add(Lines[i - 2] + "," + (Lines[i - 1] + "," + (Lines[i])));
