@@ -83,6 +83,22 @@ namespace WinRetail_Auto_Task_Utility
                 {
                     //find the item in global list that is not already refunded
                     //and mark it now as refunded, do not add this item to global list
+                    foreach(Items_From_Receipt gi in global_list)
+
+                    {
+                        if (gi.status!="REFUNDED"&&gi.status!="VOIDED")
+                        {
+                            if (gi.Product_Name == ifr.Product_Name &&
+                                ((gi.Serial_Number.Length == 0 && ifr.Serial_Number.Length == 0)
+                                ||(gi.Serial_Number.Length>0 && gi.Serial_Number==ifr.Serial_Number)))
+
+                            {
+                                gi.status="REFUNDED";
+                            }
+                        }
+
+
+                    }
                 }
                 else
                 {
