@@ -79,8 +79,17 @@ namespace WinRetail_Auto_Task_Utility
             List<Items_From_Receipt> pasted_in = pasteForm.Item_list_123;
             foreach (Items_From_Receipt ifr in pasted_in)
             {
-                global_list.Add(ifr);
+                if (ifr.status == "REFUNDED")
+                {
+                    //find the item in global list that is not already refunded
+                    //and mark it now as refunded, do not add this item to global list
+                }
+                else
+                {
+                    global_list.Add(ifr);
+                }
             }
+            
 
             // show the revised datagrid
             var source = global_list;

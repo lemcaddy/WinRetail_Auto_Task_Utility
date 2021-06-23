@@ -86,41 +86,16 @@ namespace WinRetail_Auto_Task_Utility
 
         private void Handle_finding_Patterns_in_the_text(List<string> Lines, List<string> new_list)
         {
+            bool bRefunded = false;
             Lines = removeblanks(Lines);
             for (int i = 0; i < Lines.Count; i++)
-                if (Lines[i].Contains("..............REFUND ITEM...............") && Lines[i + 3].Contains("Serial No:"))
+                if (Lines[i].Contains("REFUND ITEM") )
                 {
-
-
-                    Item_list_123.Add(new Items_From_Receipt
-                    {
-                        Config_item_ID = "",
-                        Product_Name = Lines[i + 1].Substring(0, 30),
-                        Company_Name = Company_name,
-                        Install_Date = "",
-                        Serial_Number = Lines[i + 3].Substring(11).Trim(),
-                        Reference_Name = "",
-                        status = "REFUNDED ITEM"
-
-
-                    });
+                    i++;
+                    bRefunded = true;
                 }
 
-                else if (Lines[i].Contains("..............REFUND ITEM...............") && !Lines[i + 3].Contains("Serial No:"))
-                {
-                    Item_list_123.Add(new Items_From_Receipt
-                    {
-                        Config_item_ID = "",
-                        Product_Name = Lines[i + 1].Substring(0, 30),
-                        Company_Name = Company_name,
-                        Install_Date = "",
-                        Serial_Number = "",
-                        Reference_Name = "",
-                        status = "REFUNDED ITEM"
-
-
-                    });
-                }
+               
 
 
                 ///handle void/////////
@@ -133,121 +108,97 @@ namespace WinRetail_Auto_Task_Utility
 
                     //new_list.Remove(Lines[i]);
                 }
-            else if (Lines[i].ToString().Contains("Serial No:"))
+                else if (Lines[i].ToString().Contains("Serial No:"))
+                {
+                    new_list.Add(Lines[i - 2] + "," + (Lines[i - 1] + "," + (Lines[i])));
+                    Item_list_123.Add(new Items_From_Receipt
                     {
-                        new_list.Add(Lines[i - 2] + "," + (Lines[i - 1] + "," + (Lines[i])));
-                        Item_list_123.Add(new Items_From_Receipt
-                        {
-                            Config_item_ID = "",
-                            Product_Name = Lines[i - 2].Substring(0, 30),
-                            Company_Name = Company_name,
-                            Install_Date = "",
-                            Serial_Number = Lines[i].Substring(11).Trim(),
-                            Reference_Name = "",
-                            status = ""
+                        Config_item_ID = "",
+                        Product_Name = Lines[i - 2].Substring(0, 30),
+                        Company_Name = Company_name,
+                        Install_Date = "",
+                        Serial_Number = Lines[i].Substring(11).Trim(),
+                        Reference_Name = "",
+                        status = ((bRefunded) ? "REFUNDED" : "" )
 
-                        });
-                    }
+                    });
+                    bRefunded = false;
+                }
 
-                    else if (Lines[i].ToString().Contains("@"))
+                else if (Lines[i].ToString().Contains("@"))
+                {
+
+                    new_list.Add(Lines[i - 1] + "," + (Lines[i]) + "," + (Lines[i + 1]));
+
+                    string line = Lines[i].ToString();//2  @    195.00      390.00
+                    string[] aprts = line.Split('@');//2  @ 
+                    var range = aprts[0];//2
+                    int Frange = Convert.ToInt32(range);
+                    for (int qty = 1; qty <= Frange; qty++)///increment by frange
                     {
-
-                        new_list.Add(Lines[i - 1] + "," + (Lines[i]) + "," + (Lines[i + 1]));
-
-                        string line = Lines[i].ToString();//2  @    195.00      390.00
-                        string[] aprts = line.Split('@');//2  @ 
-                        var range = aprts[0];//2
-                        int Frange = Convert.ToInt32(range);
-                        for (int qty = 1; qty <= Frange; qty++)///increment by frange
-                        {
-                            Item_list_123.Add(new Items_From_Receipt
-                            {
-
-                                Config_item_ID = "",
-                                Product_Name = Lines[i - 1],
-                                Company_Name = Company_name,
-                                Install_Date = "",
-                                Serial_Number = "",
-                                Reference_Name = "",
-                                status = ""
-
-                            });
-                        }
-                    }
-                    else if (Lines[i].Contains("--------------"))
-                    {
-                        break;
-                    }
-
-                    else if (Lines[i].Trim().Split(' ').Length == 1 &&
-                        Lines[i].Trim().Split(' ')[0].Length > 0 &&
-                        !Lines[i - 1].Contains("@") &&
-                        !Lines[i + 1].Contains("Serial No"))
-                    {
-                        //USB KEYBOARDS                       1.00
-                        //  0000000000256
-                        //USB MOUSE                           1.50
-                        //  0000000000257////
-                        //24" SCREEN                          3.00
-                        //  0000000000300
-                        //Serial No:       ZZQ1H4LNC02097
-                        //WIN 10 64 - BIT                       6.00
-                        //  0000000000594
-                        //Serial No:          QTC20201246
-                        //2 KVA UPS                           8.00
-                        //  0000000000187
-                        //Serial No:             20040004
-                        //1MTR PATCH
-                        //              6  @      1.00        6.00
-                        //  0000000000334
-                        // most likely a PLU Line
-                        // check if line above has an @ sign or
-                        // if the line below has Serial No:
-                        // if it doesn't have one of these then it is a
-                        // single item to be added
-                        // taking the description from the line above
-                        // see USB KEYBOARDS / USB MOUSE sample above
                         Item_list_123.Add(new Items_From_Receipt
                         {
 
                             Config_item_ID = "",
-                            Product_Name = Lines[i - 1].Substring(0, 20).Trim(),
+                            Product_Name = Lines[i - 1],
                             Company_Name = Company_name,
                             Install_Date = "",
                             Serial_Number = "",
                             Reference_Name = "",
-                            status = ""
+                            status = ((bRefunded) ? "REFUNDED" : "")
 
                         });
-
                     }
+                    bRefunded = false;
 
+                }
+                else if (Lines[i].Contains("--------------"))
+                {
+                    break;
+                }
 
+                else if (Lines[i].Trim().Split(' ').Length == 1 &&
+                    Lines[i].Trim().Split(' ')[0].Length > 0 &&
+                    !Lines[i - 1].Contains("@") &&
+                    !Lines[i + 1].Contains("Serial No"))
+                {
+                    //USB KEYBOARDS                       1.00
+                    //  0000000000256
+                    //USB MOUSE                           1.50
+                    //  0000000000257////
+                    //24" SCREEN                          3.00
+                    //  0000000000300
+                    //Serial No:       ZZQ1H4LNC02097
+                    //WIN 10 64 - BIT                       6.00
+                    //  0000000000594
+                    //Serial No:          QTC20201246
+                    //2 KVA UPS                           8.00
+                    //  0000000000187
+                    //Serial No:             20040004
+                    //1MTR PATCH
+                    //              6  @      1.00        6.00
+                    //  0000000000334
+                    // most likely a PLU Line
+                    // check if line above has an @ sign or
+                    // if the line below has Serial No:
+                    // if it doesn't have one of these then it is a
+                    // single item to be added
+                    // taking the description from the line above
+                    // see USB KEYBOARDS / USB MOUSE sample above
+                    Item_list_123.Add(new Items_From_Receipt
+                    {
 
-                    //if (Lines[i].ToString().Contains("  0"))
-                    //{
-                    //    new_list.Add(Lines[i - 1] + "," + (Lines[i]));
+                        Config_item_ID = "",
+                        Product_Name = Lines[i - 1].Substring(0, 20).Trim(),
+                        Company_Name = Company_name,
+                        Install_Date = "",
+                        Serial_Number = "",
+                        Reference_Name = "",
+                        status = ((bRefunded) ? "REFUNDED" : "")
 
-                    //    Item_list_123.Add(new Items_From_Receipt
-                    //    {
-                    //        Config_item_ID = "",
-                    //        Product_Name = Lines[i - 1].Substring(0, 20),
-                    //        Company_Name = Company_name,
-                    //        Install_Date = "",
-                    //        Serial_Number = "",
-                    //        Reference_Name = ""
-
-                    //    });
-
-                    //}
-
-
-
-
-
-                
-
-                
+                    });
+                    bRefunded = false;
+                }
         }
 
             private List<string> removeblanks(List<string> lines)
