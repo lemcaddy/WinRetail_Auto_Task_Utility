@@ -125,12 +125,10 @@ namespace WinRetail_Auto_Task_Utility
 
                         
                         
-                        Logwriter.writelog("#REFUND ERRORS:TIME ERROR DETAILS");
-                        foreach (string s in not_founds)
-                        {
-                            Logwriter.writelog(Timestamp());
-                            Logwriter.writelog((string.Format("REFUND ERROR: ({0}).", string.Join(", ", not_founds))));
-                        }
+                        Logwriter.writelog("#REFUND ERRORS:TIME, ERROR DETAILS");
+                            Logwriter.writelog((Timestamp()+
+                                ","+
+                                string.Format("REFUND ERROR: ({0}).", string.Join(", ", not_founds))));
                     }
                 }
                 else
