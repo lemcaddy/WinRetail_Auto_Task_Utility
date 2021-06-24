@@ -110,7 +110,7 @@ namespace WinRetail_Auto_Task_Utility
                     Item_list_123[Item_list_123.Count - 1].status = "VOIDED";
 
                     Logwriter.writelog("#VOIDED:TIME, PRODUCT DETAILS");
-                    Logwriter.writelog(Timestamp()+","+ i.ToString());
+                    Logwriter.writelog(Timestamp()+","+ Lines[i].ToString());
 
                     //new_list.Remove(Lines[i]);
                 }
