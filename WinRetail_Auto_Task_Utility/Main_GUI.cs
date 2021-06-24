@@ -77,25 +77,36 @@ namespace WinRetail_Auto_Task_Utility
             PasteBox pasteForm = new PasteBox();
             pasteForm.ShowDialog(this);
             List<Items_From_Receipt> pasted_in = pasteForm.Item_list_123;
+            Dictionary<string, string> mappings = new Dictionary<string, string>();
+            mappings = load_mappings();
             foreach (Items_From_Receipt ifr in pasted_in)
             {
                 if (ifr.status == "REFUNDED")
                 {
                     //find the item in global list that is not already refunded
                     //and mark it now as refunded, do not add this item to global list
+                   
+
                     foreach(Items_From_Receipt gi in global_list)
 
                     {
                         if (gi.status!="REFUNDED"&&gi.status!="VOIDED")
                         {
-                            if (gi.Product_Name == ifr.Product_Name &&
+                            string Mapped_product = ifr.Product_Name;// assuming product name is not mapped yet
+                            if(mappings.ContainsKey(ifr.Product_Name))
+                            {
+                                Mapped_product = mappings[ifr.Product_Name];// ah the product is mapped!
+                            }
+                            if ((gi.Product_Name == ifr.Product_Name || gi.Product_Name==Mapped_product) &&
                                 ((gi.Serial_Number.Length == 0 && ifr.Serial_Number.Length == 0)
                                 ||(gi.Serial_Number.Length>0 && gi.Serial_Number==ifr.Serial_Number)))
 
                             {
                                 gi.status="REFUNDED";
                             }
+
                         }
+
 
 
                     }
@@ -483,33 +494,8 @@ namespace WinRetail_Auto_Task_Utility
             if (saveFileDialog1.FileName != "")
             {
                 Dictionary<string, string> Mappings = new Dictionary<string, string>();
-                using (StreamReader sr = new StreamReader(@"Mapping_dgv_Entries.txt"))
-                {
-                    string line;
 
-                    while ((line = sr.ReadLine()) != null)
-                    {
-                        string[] wholeLine = line.Split(',');
-                        if (wholeLine.Length > 1)
-                        {
-                            try
-                            {
-                                Mappings.Add(wholeLine[0], wholeLine[1]);
-                            }
-                            catch (ArgumentException)
-                            {
-                                //MessageBox.Show("Warning Check You Mapping Config Form\n You Have Duplicate Entries!!");
-                                MessageBox.Show("Warning: Check You Mapping Config Form.\n You May Have Duplicate Entries!!", "Mapping Config Form",
-                                MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                return;
-                            }
-                        }
-
-                    }
-
-
-                }
-
+                Mappings = load_mappings();
 
                 using (var file = File.CreateText(path))
                 {   // next line creates AT header/////
@@ -556,6 +542,38 @@ namespace WinRetail_Auto_Task_Utility
           
 
             
+        }
+
+        private Dictionary<string, string> load_mappings()
+        {
+            Dictionary<string, string> Mappings = new Dictionary<string, string>();
+            using (StreamReader sr = new StreamReader(@"Mapping_dgv_Entries.txt"))
+            {
+                string line;
+
+                while ((line = sr.ReadLine()) != null)
+                {
+                    string[] wholeLine = line.Split(',');
+                    if (wholeLine.Length > 1)
+                    {
+                        try
+                        {
+                            Mappings.Add(wholeLine[0], wholeLine[1]);
+                        }
+                        catch (ArgumentException)
+                        {
+                            //MessageBox.Show("Warning Check You Mapping Config Form\n You Have Duplicate Entries!!");
+                            MessageBox.Show("Warning: Check You Mapping Config Form.\n You May Have Duplicate Entries!!", "Mapping Config Form",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return Mappings;
+                        }
+                    }
+
+                }
+
+
+            }
+            return Mappings;
         }
 
         private void Write_to_current_working_file()
