@@ -41,7 +41,7 @@ namespace WinRetail_Auto_Task_Utility
             dataGridView_products.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
             dataGridView_products.Refresh();
             System.Threading.Thread.Sleep(1000);
-
+            button_re_load.PerformClick();
            
 
 
@@ -85,8 +85,8 @@ namespace WinRetail_Auto_Task_Utility
                 {
                     //find the item in global list that is not already refunded
                     //and mark it now as refunded, do not add this item to global list
-                   
 
+                    bool bFound = false;
                     foreach(Items_From_Receipt gi in global_list)
 
                     {
@@ -103,12 +103,34 @@ namespace WinRetail_Auto_Task_Utility
 
                             {
                                 gi.status="REFUNDED";
+                                bFound = true;
+                                break;
                             }
 
                         }
 
 
 
+                    }
+                    if(!bFound)
+                    {
+                        List<string> not_founds = new List<string>();
+                        not_founds.Add(ifr.Product_Name);
+                        not_founds.Add(",");
+                        not_founds.Add(ifr.Serial_Number);
+                        MessageBox.Show("Not Found ; Product;"+
+                            ifr.Product_Name+
+                            "\n Serial Number;"+
+                            ifr.Serial_Number,"Refund Item Not Found");
+
+                        
+                        
+                        Logwriter.writelog("#REFUND ERRORS:TIME ERROR DETAILS");
+                        foreach (string s in not_founds)
+                        {
+                            Logwriter.writelog(Timestamp());
+                            Logwriter.writelog((string.Format("REFUND ERROR: ({0}).", string.Join(", ", not_founds))));
+                        }
                     }
                 }
                 else

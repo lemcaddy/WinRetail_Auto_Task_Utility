@@ -19,8 +19,12 @@ namespace WinRetail_Auto_Task_Utility
         string pattern_output = @"Pattern_output_file.txt";
         string resulting_file = @"Final_output_file.txt";
         string Company_name;
+        private static string Timestamp()
+        {
+            return DateTime.Now.ToString("h:mm:ss tt");
+        }
 
-       public  List<Items_From_Receipt> Item_list_123 = new List<Items_From_Receipt>();
+        public  List<Items_From_Receipt> Item_list_123 = new List<Items_From_Receipt>();
         public List<refund_List> list_of_Refunds = new List<refund_List>();
 
         public List<Items_From_Receipt> get_list ()
@@ -105,6 +109,8 @@ namespace WinRetail_Auto_Task_Utility
                     i++;
                     Item_list_123[Item_list_123.Count - 1].status = "VOIDED";
 
+                    Logwriter.writelog("#VOIDED:TIME, PRODUCT DETAILS");
+                    Logwriter.writelog(Timestamp()+","+ i.ToString());
 
                     //new_list.Remove(Lines[i]);
                 }
