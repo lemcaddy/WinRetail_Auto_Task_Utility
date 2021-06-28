@@ -90,16 +90,16 @@ namespace WinRetail_Auto_Task_Utility
                     foreach(Items_From_Receipt gi in global_list)
 
                     {
-                        if (gi.status!="REFUNDED"&&gi.status!="VOIDED")
+                        if (gi.status!="REFUNDED"&& gi.status!="VOIDED")
                         {
                             string Mapped_product = ifr.Product_Name;// assuming product name is not mapped yet
                             if(mappings.ContainsKey(ifr.Product_Name))
                             {
                                 Mapped_product = mappings[ifr.Product_Name];// ah the product is mapped!
                             }
-                            if ((gi.Product_Name == ifr.Product_Name || gi.Product_Name==Mapped_product) &&
+                            if ((gi.Product_Name.Trim() == ifr.Product_Name.Trim() || gi.Product_Name.Trim()==Mapped_product.Trim()) &&
                                 ((gi.Serial_Number.Length == 0 && ifr.Serial_Number.Length == 0)
-                                ||(gi.Serial_Number.Length>0 && gi.Serial_Number==ifr.Serial_Number)))
+                                ||(gi.Serial_Number.Length>0 && gi.Serial_Number.Trim()==ifr.Serial_Number.Trim())))// should this be >0
 
                             {
                                 gi.status="REFUNDED";
@@ -136,11 +136,11 @@ namespace WinRetail_Auto_Task_Utility
                     global_list.Add(ifr);
                 }
             }
-            
 
-            // show the revised datagrid
-            var source = global_list;
-            dataGridView_products.DataSource = source;
+
+            button_re_load.PerformClick(); 
+
+            
 
             
             var list_count = global_list.Count();
