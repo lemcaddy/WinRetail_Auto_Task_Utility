@@ -6,10 +6,14 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinRetail_Auto_Task_Utility", "WinRetail_Auto_Task_Utility\WinRetail_Auto_Task_Utility.csproj", "{22A0B12F-3001-40AA-86E9-51E747768BBB}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{53A7075A-1B5A-4A5B-9F31-10BE55C25DC2}"
+	ProjectSection(SolutionItems) = preProject
+		Documentation\AT utility quick start.docx = Documentation\AT utility quick start.docx
+		Documentation\WinRetail_AP_Utility_SDS_July_2021 (1).docx = Documentation\WinRetail_AP_Utility_SDS_July_2021 (1).docx
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataModel", "DataModel\DataModel.csproj", "{672A1D4A-BF82-418B-84B8-B64463A10C66}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransLog", "TransLog\TransLog.csproj", "{B8AE878B-BBBD-4D81-A5C4-54BC86846975}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TransLog", "TransLog\TransLog.csproj", "{B8AE878B-BBBD-4D81-A5C4-54BC86846975}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
