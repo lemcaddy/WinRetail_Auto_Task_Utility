@@ -449,7 +449,7 @@ namespace WinRetail_Auto_Task_Utility
             string fsource = source.ToString();
             dataGridView_products.DataSource = source;
 
-            Logwriter.writelog("#RE-LOAD:Time,Source Reset To..., Count");
+            Logwriter.writelog("#RE-LOAD:Time,Source Reset To:, Count");
             Logwriter.writelog("RE-LOAD:"+ current_timestamp+","+ "Global List"+","+global_list.Count() );
 
 
